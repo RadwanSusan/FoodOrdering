@@ -13,7 +13,7 @@ const PizzaList = ({ pizzaList }) => {
 				Whether you prefer classic toppings like pepperoni and mushrooms or
 				something more adventurous like goat cheese and arugula, we have
 				something for everyone. <br />
-				And don't forget to try our homemade garlic knots and salads to
+				And dont forget to try our homemade garlic knots and salads to
 				complete your meal. Join us for a delicious slice today!
 				<br />
 				<br />
