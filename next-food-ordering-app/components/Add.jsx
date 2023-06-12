@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '../styles/Add.module.css';
 import axios from 'axios';
-import { useRouter } from 'next/router';
+import Swal from 'sweetalert2';
 
 const Add = ({ setClose }) => {
 	const [file, setFile] = useState(null);
@@ -49,8 +49,22 @@ const Add = ({ setClose }) => {
 
 			await axios.post('http://localhost:3000/api/products', newProduct);
 			setClose(true);
+			Swal.fire({
+				position: 'center',
+				icon: 'success',
+				title: 'Product Added',
+				showConfirmButton: false,
+				timer: 1500,
+			});
 		} catch (err) {
 			console.log(err);
+			Swal.fire({
+				position: 'center',
+				icon: 'error',
+				title: 'Something went wrong',
+				showConfirmButton: false,
+				timer: 1500,
+			});
 		}
 	};
 
