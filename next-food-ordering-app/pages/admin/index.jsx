@@ -12,7 +12,7 @@ const Index = ({ orders, products }) => {
 		console.log(id);
 		try {
 			const res = await axios.delete(
-				'http://31.170.165.239:5000/api/products/' + id,
+				'http://127.0.0.1:5000/api/products/' + id,
 			);
 			setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
 		} catch (err) {
@@ -25,12 +25,9 @@ const Index = ({ orders, products }) => {
 		const currentStatus = item.status;
 
 		try {
-			const res = await axios.put(
-				'http://31.170.165.239:5000/api/orders/' + id,
-				{
-					status: currentStatus + 1,
-				},
-			);
+			const res = await axios.put('http://127.0.0.1:5000/api/orders/' + id, {
+				status: currentStatus + 1,
+			});
 			setOrderList([
 				res.data,
 				...orderList.filter((order) => order._id !== id),
@@ -136,10 +133,8 @@ export const getServerSideProps = async (ctx) => {
 		};
 	}
 
-	const productRes = await axios.get(
-		'http://31.170.165.239:5000/api/products',
-	);
-	const orderRes = await axios.get('http://31.170.165.239:5000/api/orders');
+	const productRes = await axios.get('http://127.0.0.1:5000/api/products');
+	const orderRes = await axios.get('http://127.0.0.1:5000/api/orders');
 
 	return {
 		props: {

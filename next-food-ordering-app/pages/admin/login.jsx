@@ -11,7 +11,7 @@ const Login = () => {
 
 	const handleClick = async () => {
 		try {
-			await axios.post('http://31.170.165.239:5000/api/login', {
+			await axios.post('http://127.0.0.1:5000/api/login', {
 				username,
 				password,
 			});

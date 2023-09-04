@@ -39,7 +39,7 @@ export const getServerSideProps = async (ctx) => {
 		admin = true;
 	}
 
-	const res = await axios.get('http://31.170.165.239:5000/api/products');
+	const res = await axios.get('http://127.0.0.1:5000/api/products');
 	return {
 		props: {
 			pizzaList: res.data,
