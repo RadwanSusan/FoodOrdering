@@ -1,0 +1,5 @@
+
+*.yaml
+*.lock
+next-food-ordering-app/pnpm-lock.yaml
+next-food-ordering-app/yarn.lock
