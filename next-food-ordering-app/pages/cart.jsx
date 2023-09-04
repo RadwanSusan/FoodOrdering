@@ -26,7 +26,7 @@ const Cart = () => {
 	const createOrder = async (data) => {
 		try {
 			const res = await axios.post(
-				'http://31.170.165.239:3300/api/orders',
+				'http://31.170.165.239:5000/api/orders',
 				data,
 			);
 			if (res.status === 201) {
