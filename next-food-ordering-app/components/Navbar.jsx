@@ -32,7 +32,7 @@ const Navbar = () => {
 					<li className={styles.listItem}>Products</li>
 					<li className={styles.listItem}>Menu</li>
 					<Image
-						src='/img/DocumentLogo.png'
+						src='/img/logo2.png'
 						alt=''
 						width='40px'
 						height='40px'

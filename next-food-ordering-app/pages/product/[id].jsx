@@ -112,7 +112,7 @@ const Product = ({ pizza }) => {
 								className={styles.checkbox}
 								onChange={(e) => handleChange(e, option)}
 							/>
-							<label htmlFor='double'>{option.text}</label>
+							<label htmlFor={option.text}>{option.text}</label>
 						</div>
 					))}
 				</div>
