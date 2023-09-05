@@ -47,7 +47,7 @@ const Add = ({ setClose }) => {
 				img: url,
 			};
 
-			await axios.post('http://localhost:3000/api/products', newProduct);
+			await axios.post('http://localhost:8000/api/products', newProduct);
 			setClose(true);
 			Swal.fire({
 				position: 'center',

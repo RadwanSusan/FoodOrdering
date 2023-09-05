@@ -1,5 +1,5 @@
 import styles from '../../styles/Product.module.css';
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -137,7 +137,7 @@ const Product = ({ pizza }) => {
 
 export const getServerSideProps = async ({ params }) => {
 	const res = await axios.get(
-		`http://localhost:3000/api/products/${params.id}`,
+		`http://localhost:8000/api/products/${params.id}`,
 	);
 	return {
 		props: {

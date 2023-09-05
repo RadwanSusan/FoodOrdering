@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Head from 'next/head';
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import { useState } from 'react';
 import Add from '../components/Add';
 import AddButton from '../components/AddButton';
@@ -39,7 +39,7 @@ export const getServerSideProps = async (ctx) => {
 		admin = true;
 	}
 
-	const res = await axios.get('http://localhost:3000/api/products');
+	const res = await axios.get('http://localhost:8000/api/products');
 	return {
 		props: {
 			pizzaList: res.data,
