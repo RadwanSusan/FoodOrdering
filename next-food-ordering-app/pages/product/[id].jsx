@@ -1,5 +1,5 @@
 import styles from '../../styles/Product.module.css';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';

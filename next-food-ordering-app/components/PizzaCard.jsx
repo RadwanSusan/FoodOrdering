@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "../styles/PizzaCard.module.css";
 import Link from "next/link";
 
