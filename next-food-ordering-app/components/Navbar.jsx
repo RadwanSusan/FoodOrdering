@@ -34,8 +34,8 @@ const Navbar = () => {
 					<Image
 						src='/img/logo2.png'
 						alt=''
-						width='40px'
-						height='40px'
+						width={40}
+						height={40}
 						className={styles.DocumentLogo}
 					/>
 					<li className={styles.listItem}>Events</li>
@@ -52,8 +52,8 @@ const Navbar = () => {
 						<Image
 							src='/img/cart.png'
 							alt=''
-							width='30px'
-							height='30px'
+							width={30}
+							height={30}
 						/>
 						<div className={styles.counter}>{quantity}</div>
 					</div>
