@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import styles from '../styles/Navbar.module.css';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
@@ -26,6 +26,7 @@ const Navbar = () => {
 					<Link
 						href='/'
 						passHref
+						aria-label='link to homepage'
 					>
 						<li className={styles.listItem}>Homepage</li>
 					</Link>
@@ -46,6 +47,7 @@ const Navbar = () => {
 			<Link
 				href='/cart'
 				passHref
+				aria-label='link to cart page'
 			>
 				<div className={styles.item}>
 					<div className={styles.cart}>
