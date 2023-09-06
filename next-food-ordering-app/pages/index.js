@@ -21,7 +21,6 @@ export default function Home({ pizzaList, admin }) {
 					rel='icon'
 					href='/favicon.ico'
 					type='image/x-icon'
-					aria-label='favicon'
 				/>
 			</Head>
 			<Featured />
