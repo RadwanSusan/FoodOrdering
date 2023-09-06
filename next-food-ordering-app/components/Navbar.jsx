@@ -18,7 +18,12 @@ const Navbar = () => {
 				</div>
 				<div className={styles.texts}>
 					<div className={styles.text}>ORDER NOW!</div>
-					<div className={styles.text}>971(4)8811784</div>
+					<a
+						href='tel:+971(4)8811784'
+						className={styles.text}
+					>
+						+971(4)8811784
+					</a>
 				</div>
 			</div>
 			<div className={styles.item}>
@@ -33,10 +38,10 @@ const Navbar = () => {
 					<li className={styles.listItem}>Products</li>
 					<li className={styles.listItem}>Menu</li>
 					<Image
-						src='/img/logo2.png'
+						src='/img/pme-svg-logo.svg'
 						alt=''
-						width={40}
-						height={40}
+						width={80}
+						height={80}
 						className={styles.DocumentLogo}
 					/>
 					<li className={styles.listItem}>Events</li>

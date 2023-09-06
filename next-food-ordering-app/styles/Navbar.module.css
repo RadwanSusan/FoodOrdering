@@ -17,7 +17,7 @@
 }
 
 .item:nth-child(2) {
-	flex: 3;
+	flex: 2.13;
 }
 
 .item:last-child {
