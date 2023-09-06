@@ -4,10 +4,10 @@ import { useState } from 'react';
 import Add from '../components/Add';
 import AddButton from '../components/AddButton';
 import Featured from '../components/Featured';
-import PizzaList from '../components/PizzaList';
+import MenuList from '../components/MenuList';
 import styles from '../styles/Home.module.css';
 
-export default function Home({ pizzaList, admin }) {
+export default function Home({ productsList, admin }) {
 	const [close, setClose] = useState(true);
 	return (
 		<div className={styles.container}>
@@ -25,7 +25,7 @@ export default function Home({ pizzaList, admin }) {
 			</Head>
 			<Featured />
 			{admin ? <AddButton setClose={setClose} /> : null}
-			<PizzaList pizzaList={pizzaList} />
+			<MenuList menuListItems={productsList} />
 			{!close && <Add setClose={setClose} />}
 		</div>
 	);
@@ -42,7 +42,7 @@ export const getServerSideProps = async (ctx) => {
 	const res = await axios.get('http://31.170.165.239:8000/api/products');
 	return {
 		props: {
-			pizzaList: res.data,
+			productsList: res.data,
 			admin,
 		},
 	};
