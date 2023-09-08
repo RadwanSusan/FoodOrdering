@@ -3,7 +3,7 @@
    border-radius: .5rem;
    text-transform: uppercase;
    box-shadow: inset .1rem .1rem .5rem rgba(0, 0, 0, .15);
-   width: 90%;
+   width: 98%;
 }
 
 .menu a {
@@ -845,7 +845,7 @@
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(3):focus-within > ol a,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(3):focus > ol a,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(3):hover > ol a {
-      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(237, 110, 160, .57142857142857)
+      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(255, 87, 87, 0.36);
    }
 
    .menu > ol > li:first-child:nth-last-child(7):nth-child(3):focus-within > ol a:focus,
@@ -866,7 +866,7 @@
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(3):hover > ol a:focus,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(3):hover > ol a:focus-within,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(3):hover > ol a:hover {
-      box-shadow: inset 0 0 0 3rem rgba(0, 0, 0, .1), inset 0 0 0 3rem rgba(237, 110, 160, .57142857142857)
+      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(230, 25, 10, 0.497);
    }
 
    .menu > ol > li:first-child:nth-last-child(7):nth-child(4):focus-within ~ li:last-child:after,
@@ -884,7 +884,7 @@
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(4):focus-within > ol a,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(4):focus > ol a,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(4):hover > ol a {
-      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(237, 110, 160, .42857142857143)
+      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgb(189 13 0 / 25%);
    }
 
    .menu > ol > li:first-child:nth-last-child(7):nth-child(4):focus-within > ol a:focus,
@@ -905,7 +905,7 @@
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(4):hover > ol a:focus,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(4):hover > ol a:focus-within,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(4):hover > ol a:hover {
-      box-shadow: inset 0 0 0 3rem rgba(0, 0, 0, .1), inset 0 0 0 3rem rgba(237, 110, 160, .42857142857143)
+      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(230, 25, 10, 0.497);
    }
 
    .menu > ol > li:first-child:nth-last-child(7):nth-child(5):focus-within ~ li:last-child:after,
@@ -923,7 +923,7 @@
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(5):focus-within > ol a,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(5):focus > ol a,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(5):hover > ol a {
-      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(237, 110, 160, .28571428571429)
+      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(255, 87, 87, 0.36)
    }
 
    .menu > ol > li:first-child:nth-last-child(7):nth-child(5):focus-within > ol a:focus,
@@ -944,7 +944,7 @@
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(5):hover > ol a:focus,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(5):hover > ol a:focus-within,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(5):hover > ol a:hover {
-      box-shadow: inset 0 0 0 3rem rgba(0, 0, 0, .1), inset 0 0 0 3rem rgba(237, 110, 160, .28571428571429)
+      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(230, 25, 10, 0.497);
    }
 
    .menu > ol > li:first-child:nth-last-child(7):nth-child(6):focus-within ~ li:last-child:after,
@@ -962,7 +962,7 @@
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(6):focus-within > ol a,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(6):focus > ol a,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(6):hover > ol a {
-      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(237, 110, 160, .14285714285714)
+      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(255, 87, 87, 0.36)
    }
 
    .menu > ol > li:first-child:nth-last-child(7):nth-child(6):focus-within > ol a:focus,
@@ -983,7 +983,7 @@
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(6):hover > ol a:focus,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(6):hover > ol a:focus-within,
    .menu > ol > li:first-child:nth-last-child(7) ~ li:nth-child(6):hover > ol a:hover {
-      box-shadow: inset 0 0 0 3rem rgba(0, 0, 0, .1), inset 0 0 0 3rem rgba(237, 110, 160, .14285714285714)
+      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(230, 25, 10, 0.497);
    }
 
    .menu > ol > li:first-child:nth-last-child(8):nth-child(1):focus-within ~ li:last-child:after,
@@ -2015,7 +2015,7 @@
    .menu > ol > li:first-child:nth-last-child(11) ~ li:nth-child(3):focus-within > ol a,
    .menu > ol > li:first-child:nth-last-child(11) ~ li:nth-child(3):focus > ol a,
    .menu > ol > li:first-child:nth-last-child(11) ~ li:nth-child(3):hover > ol a {
-      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(237, 110, 160, .72727272727273)
+      box-shadow: inset 0 0 0 3rem transparent, inset 0 0 0 3rem rgba(237, 110, 160, .27272727272727)s
    }
 
    .menu > ol > li:first-child:nth-last-child(11):nth-child(3):focus-within > ol a:focus,
@@ -2036,7 +2036,7 @@
    .menu > ol > li:first-child:nth-last-child(11) ~ li:nth-child(3):hover > ol a:focus,
    .menu > ol > li:first-child:nth-last-child(11) ~ li:nth-child(3):hover > ol a:focus-within,
    .menu > ol > li:first-child:nth-last-child(11) ~ li:nth-child(3):hover > ol a:hover {
-      box-shadow: inset 0 0 0 3rem rgba(0, 0, 0, .1), inset 0 0 0 3rem rgba(237, 110, 160, .72727272727273)
+      box-shadow: inset 0 0 0 3rem rgba(0, 0, 0, .1), inset 0 0 0 3rem rgba(237, 110, 160, .27272727272727);
    }
 
    .menu > ol > li:first-child:nth-last-child(11):nth-child(4):focus-within ~ li:last-child:after,
@@ -2323,8 +2323,9 @@
    }
 
    .menu > ol > li > a {
-      padding: 1rem 0;
-      font-size: 1.6vw;
+      padding: 0.5rem 0;
+      font-size: 1.1vw;
+      font-weight: 600;
       position: relative;
       width: 100%;
       z-index: 1;
@@ -2335,8 +2336,12 @@
       position: absolute;
       top: 100%;
       left: 0;
-      width: 100%;
+      width: 200%;
       visibility: hidden
+   }
+
+   .menu > ol > li:last-child > ol {
+      left: -100%;
    }
 
    .menu > ol > li > ol > li {
@@ -2350,7 +2355,7 @@
       border-radius: 0.2rem;
       padding: 1rem 0.5rem;
       font-size: 1.5vw;
-      background: #00000030;
+      background: #cf392582;
       color: rgb(255 255 255)
    }
 
@@ -2485,8 +2490,12 @@
       border-top: .5rem solid #fff;
       border-left: .3rem solid transparent;
       border-right: .3rem solid transparent;
-      transition: 250ms ease all
-   }
+      transition: 250ms ease all   ;
+      -webkit-transition: 250ms ease all;
+      -moz-transition: 250ms ease all;
+      -ms-transition: 250ms ease all;
+      -o-transition: 250ms ease all;
+}
 
    .menu > ol > li:focus-within:nth-last-child(2):after,
    .menu > ol > li:focus:nth-last-child(2):after,

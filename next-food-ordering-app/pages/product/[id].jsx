@@ -36,7 +36,15 @@ const Product = ({ pizza }) => {
 	};
 
 	const handleClick = () => {
-		dispatch(addProduct({ ...pizza, extras, price, quantity }));
+		dispatch(
+			addProduct({
+				...pizza,
+				extras,
+				price,
+				category: pizza.category,
+				quantity,
+			}),
+		);
 		Swal.fire({
 			position: 'center',
 			icon: 'success',
@@ -137,7 +145,7 @@ const Product = ({ pizza }) => {
 
 export const getServerSideProps = async ({ params }) => {
 	const res = await axios.get(
-		`http://31.170.165.239:8000/api/products/${params.id}`,
+		`http://localhost:8000/api/products/${params.id}`,
 	);
 	return {
 		props: {

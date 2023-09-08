@@ -1,6 +1,10 @@
+const path = require('path');
 module.exports = {
 	images: {
 		domains: ['res.cloudinary.com'],
+	},
+	sassOptions: {
+		includePaths: [path.join(__dirname, 'styles')],
 	},
 	async headers() {
 		return [
@@ -10,7 +14,7 @@ module.exports = {
 					{ key: 'Access-Control-Allow-Credentials', value: 'true' },
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: '31.170.165.239',
+						value: 'localhost',
 					},
 					{ key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS' },
 					{ key: 'Access-Control-Allow-Headers', value: 'Content-Type' },

@@ -4,7 +4,10 @@ import { useSelector } from 'react-redux';
 import Link from 'next/link';
 
 const Navbar = () => {
-	const quantity = useSelector((state) => state.cart.quantity);
+	let quantity = useSelector((state) => state.cart?.quantity);
+	if (quantity == undefined) {
+		quantity = 0;
+	}
 	return (
 		<div className={styles.container}>
 			<div className={styles.item}>
@@ -36,14 +39,25 @@ const Navbar = () => {
 						<li className={styles.listItem}>Homepage</li>
 					</Link>
 					<li className={styles.listItem}>Products</li>
-					<li className={styles.listItem}>Menu</li>
-					<Image
-						src='/img/pme-svg-logo.svg'
-						alt=''
-						width={80}
-						height={80}
-						className={styles.DocumentLogo}
-					/>
+					<a
+						href='#menu'
+						className={styles.listItem}
+					>
+						Menu
+					</a>
+					<Link
+						href='/'
+						passHref
+						aria-label='link to homepage'
+					>
+						<Image
+							src='/img/pme-svg-logo.svg'
+							alt=''
+							width={80}
+							height={80}
+							className={styles.DocumentLogo}
+						/>
+					</Link>
 					<li className={styles.listItem}>Events</li>
 					<li className={styles.listItem}>Blog</li>
 					<li className={styles.listItem}>Contact</li>

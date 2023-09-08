@@ -18,11 +18,13 @@
 		"react-dom": "18.2.0",
 		"react-redux": "^8.1.2",
 		"redux": "^4.2.1",
+		"redux-persist": "^6.0.0",
 		"sweetalert2": "^11.7.27"
 	},
 	"devDependencies": {
 		"@netlify/plugin-nextjs": "^4.40.1",
 		"eslint": "8.48.0",
-		"eslint-config-next": "13.4.19"
+		"eslint-config-next": "13.4.19",
+		"sass": "^1.66.1"
 	}
 }
