@@ -3,97 +3,6 @@ import barStyles from '../styles/MenuListCategoryBar.module.css';
 import ProductCard from './ProductCard';
 import { useState, useEffect } from 'react';
 
-// const MenuList = ({ menuListItems }) => {
-// 	return (
-// 		<div
-// 			id='menu'
-// 			className={styles.container}
-// 		>
-// 			<h1 className={styles.title}>OUR MENU</h1>
-// 			<br />
-// 			<br />
-// 			<nav className={barStyles.menu}>
-// 				<ol>
-// 					<li className={barStyles.menuItem}>
-// 						<a href='#0'>best sellers</a>
-// 					</li>
-// 					<li className={barStyles.menuItem}>
-// 						<a href='#0'>Our Mix Grill</a>
-// 					</li>
-// 					<li className={barStyles.menuItem}>
-// 						<a href='#0'>Meals</a>
-// 						<ol className={barStyles.subMenu}>
-// 							<li className={barStyles.menuItem}>
-// 								<a href='#0'>Meal For One</a>
-// 							</li>
-// 							<li className={barStyles.menuItem}>
-// 								<a href='#0'>Meal For Two</a>
-// 							</li>
-// 							<li className={barStyles.menuItem}>
-// 								<a href='#0'>Meal For Three</a>
-// 							</li>
-// 						</ol>
-// 					</li>
-// 					<li className={barStyles.menuItem}>
-// 						<a href='#0'>Sandwiches</a>
-// 					</li>
-// 					<li className={barStyles.menuItem}>
-// 						<a href='#0'>Appetizers</a>
-// 					</li>
-// 					<li className={barStyles.menuItem}>
-// 						<a href='#0'>Pans</a>
-// 					</li>
-// 					<li className={barStyles.menuItem}>
-// 						<a href='#0'>Salads</a>
-// 					</li>
-// 					{renderSubMenu('Lambs', [
-// 						'Australian Lamb',
-// 						'Local Lamb',
-// 						'Syrian Lamb',
-// 					])}
-// 					<li className={barStyles.menuItem}>
-// 						<a href='#0'>Mutton</a>
-// 					</li>
-// 					{renderSubMenu('Beef', ['Australian Beef', 'Local Beef'])}
-// 					{renderSubMenu('Other Meals', [
-// 						'Fresh Chicken',
-// 						'Ready To Cook',
-// 						'Ready To Grill',
-// 						'Frozen Items',
-// 						'SOFT DRINKS',
-// 					])}
-// 				</ol>
-// 			</nav>
-// 			<div className={styles.wrapper}>
-// 				{menuListItems.map((product) => (
-// 					<ProductCard
-// 						key={product._id}
-// 						product={product}
-// 					/>
-// 				))}
-// 			</div>
-// 		</div>
-// 	);
-// };
-
-// const renderSubMenu = (menuTitle, items) => {
-// 	return (
-// 		<li className={barStyles.menuItem}>
-// 			<a href='#0'>{menuTitle}</a>
-// 			<ol className={barStyles.subMenu}>
-// 				{items.map((item) => (
-// 					<li
-// 						key={item}
-// 						className={barStyles.menuItem}
-// 					>
-// 						<a href='#0'>{item}</a>
-// 					</li>
-// 				))}
-// 			</ol>
-// 		</li>
-// 	);
-// };
-
 const MenuList = ({ menuListItems }) => {
 	const [filteredProducts, setFilteredProducts] = useState(menuListItems);
 
@@ -119,20 +28,19 @@ const MenuList = ({ menuListItems }) => {
 			<nav className={barStyles.menu}>
 				<ol>
 					<li className={barStyles.menuItem}>
-						<a
-							href='#0'
-							onClick={() => handleCategoryClick('best sellers')}
+						<div
+							onClick={(event) => {
+								event.preventDefault();
+								handleCategoryClick('best sellers');
+							}}
 						>
 							best sellers
-						</a>
+						</div>
 					</li>
 					<li className={barStyles.menuItem}>
-						<a
-							href='#0'
-							onClick={() => handleCategoryClick('Our Mix Grill')}
-						>
+						<div onClick={() => handleCategoryClick('Our Mix Grill')}>
 							Our Mix Grill
-						</a>
+						</div>
 					</li>
 					{renderSubMenu('Meals', [
 						'Meal For One',
@@ -140,36 +48,22 @@ const MenuList = ({ menuListItems }) => {
 						'Meal For Three',
 					])}
 					<li className={barStyles.menuItem}>
-						<a
-							href='#0'
-							onClick={() => handleCategoryClick('Sandwiches')}
-						>
+						<div onClick={() => handleCategoryClick('Sandwiches')}>
 							Sandwiches
-						</a>
+						</div>
 					</li>
 					<li className={barStyles.menuItem}>
-						<a
-							href='#0'
-							onClick={() => handleCategoryClick('Appetizers')}
-						>
+						<div onClick={() => handleCategoryClick('Appetizers')}>
 							Appetizers
-						</a>
+						</div>
 					</li>
 					<li className={barStyles.menuItem}>
-						<a
-							href='#0'
-							onClick={() => handleCategoryClick('Pans')}
-						>
-							Pans
-						</a>
+						<div onClick={() => handleCategoryClick('Pans')}>Pans</div>
 					</li>
 					<li className={barStyles.menuItem}>
-						<a
-							href='#0'
-							onClick={() => handleCategoryClick('Salads')}
-						>
+						<div onClick={() => handleCategoryClick('Salads')}>
 							Salads
-						</a>
+						</div>
 					</li>
 					{renderSubMenu('Lambs', [
 						'Australian Lamb',
@@ -177,12 +71,9 @@ const MenuList = ({ menuListItems }) => {
 						'Syrian Lamb',
 					])}
 					<li className={barStyles.menuItem}>
-						<a
-							href='#0'
-							onClick={() => handleCategoryClick('Mutton')}
-						>
+						<div onClick={() => handleCategoryClick('Mutton')}>
 							Mutton
-						</a>
+						</div>
 					</li>
 					{renderSubMenu('Beef', ['Australian Beef', 'Local Beef'])}
 					{renderSubMenu('Other Meals', [
@@ -208,24 +99,14 @@ const MenuList = ({ menuListItems }) => {
 const renderSubMenu = (menuTitle, items) => {
 	return (
 		<li className={barStyles.menuItem}>
-			<a
-				href='#0'
-				onClick={() => handleCategoryClick(menuTitle)}
-			>
-				{menuTitle}
-			</a>
+			<div onClick={() => handleCategoryClick(menuTitle)}>{menuTitle}</div>
 			<ol className={barStyles.subMenu}>
 				{items.map((item) => (
 					<li
 						key={item}
 						className={barStyles.menuItem}
 					>
-						<a
-							href='#0'
-							onClick={() => handleCategoryClick(item)}
-						>
-							{item}
-						</a>
+						<div onClick={() => handleCategoryClick(item)}>{item}</div>
 					</li>
 				))}
 			</ol>
