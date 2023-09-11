@@ -33,7 +33,7 @@ const Add = ({ setClose }) => {
 
 		try {
 			const uploadRes = await axios.post(
-				'http://localhost:8000/api/upload',
+				'http://31.170.165.239:8000/api/upload',
 				data,
 			);
 			const { url } = uploadRes.data;
@@ -44,7 +44,10 @@ const Add = ({ setClose }) => {
 				extraOptions,
 				img: url,
 			};
-			await axios.post('http://localhost:8000/api/products', newProduct);
+			await axios.post(
+				'http://31.170.165.239:8000/api/products',
+				newProduct,
+			);
 			setClose(true);
 			Swal.fire({
 				position: 'center',

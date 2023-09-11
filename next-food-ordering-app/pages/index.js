@@ -43,7 +43,7 @@ export const getServerSideProps = async (ctx) => {
 		admin = true;
 	}
 
-	const res = await axios.get('http://localhost:8000/api/products');
+	const res = await axios.get('http://31.170.165.239:8000/api/products');
 	return {
 		props: {
 			productsList: res.data,
