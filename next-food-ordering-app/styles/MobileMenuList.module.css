@@ -1,0 +1,283 @@
+.hero__wrapper {
+   display: flex;
+   align-items: flex-end;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.hero__wrapper:before {
+   content: "";
+   width: 150px;
+   height: 150px;
+   background: linear-gradient(135deg, #941ed2, #2719cd);
+   border-radius: 50%;
+   position: fixed;
+   bottom: 50px;
+   left: 10px;
+   z-index: -1;
+}
+
+.hero__wrapper > * {
+   margin: 15px;
+}
+
+.hero__header {
+   flex: 0 1 1px;
+   padding-right: 50px;
+   color: #333;
+   font-size: 8vmax;
+}
+
+.hero__phone {
+   width: 300px;
+   height: 630px;
+   background: #fff;
+   background-color: #ffffff;
+   background: #fff url("https://codepenworldsfair.com/images/small-worlds-fair.png") center/250px no-repeat;
+   border: 12px solid #333;
+   border-radius: 36px;
+   position: relative;
+   overflow: hidden;
+}
+
+.hero__phone:before {
+   content: "";
+   width: 175px;
+   height: 25px;
+   background: #333;
+   border-bottom-right-radius: 20px;
+   border-bottom-left-radius: 20px;
+   position: absolute;
+   top: 0;
+   left: 50%;
+   transform: translatex(-50%);
+   z-index: 1000;
+}
+
+.hero__phone:after {
+   content: "";
+   width: 100px;
+   height: 5px;
+   background: #333;
+   border-radius: 2px;
+   position: absolute;
+   bottom: 6px;
+   left: 50%;
+   transform: translatex(-50%);
+   z-index: 1000;
+}
+
+.menu__button {
+   --x: -50%;
+   --y: 0;
+   --z: 0;
+   display: none;
+   align-items: center;
+   justify-content: space-between;
+   background: linear-gradient(to right, #d01307, #d53e36);
+   padding: 10px 20px;
+   border-radius: 28px;
+   box-shadow: 0 2px 40px -10px #d01307;
+   color: #fff;
+   font-size: 16px;
+   white-space: nowrap;
+   position: fixed;
+   bottom: 30px;
+   left: 50%;
+   transform: translate3d(var(--x), var(--y), var(--z));
+   cursor: pointer;
+   z-index: 9999;
+   transition: 0.15s cubic-bezier(0.33, 1, 0.53, 1);
+   -webkit-transform: translate3d(var(--x), var(--y), var(--z));
+   -moz-transform: translate3d(var(--x), var(--y), var(--z));
+   -ms-transform: translate3d(var(--x), var(--y), var(--z));
+   -o-transform: translate3d(var(--x), var(--y), var(--z));
+   border: none;
+}
+
+@media only screen and (max-width: 850px) {
+   .menu__button {
+      display: flex;
+   }
+}
+
+.menu__button[hidden] {
+   --y: 200%;
+}
+
+.menu__button div {
+   display: flex;
+   align-items: center;
+   width: 25px;
+   height: 13px;
+   margin-right: 15px;
+}
+
+.menu__button div div {
+   display: table;
+   height: 1px;
+   background: #fff;
+   box-shadow: 0 4px 0 #fff, 0 -4px 0 #fff;
+}
+
+.menu__overlay {
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.1);
+   position: absolute;
+   z-index: 100;
+}
+
+.menu__body {
+   --x: 0;
+   --y: 0;
+   --z: 0;
+   display: block;
+   width: 100%;
+   background: #fff;
+   padding-bottom: 15px;
+   border-top-left-radius: 20px;
+   border-top-right-radius: 20px;
+   box-shadow: 0px -9px 50px -30px black;
+   font-family: "Montserrat", sans-serif;
+   position: fixed;
+   bottom: 0;
+   z-index: 105;
+   transform: translate3d(var(--x), var(--y), var(--z));
+   transition: 0.2s cubic-bezier(0.33, 1, 0.53, 1);
+}
+
+.menu__body[hidden] {
+   --y: 150%;
+}
+
+.menu__body > *:not(:last-child) {
+   border-bottom: 2px solid #f6f6f6;
+}
+
+.menu__header {
+   display: flex;
+   justify-content: space-between;
+   padding: 15px 20px;
+   align-items: center;
+}
+
+.menu__header label div {
+   width: 15px;
+   height: 15px;
+   border: 2px solid #333;
+   border-radius: 50%;
+   position: relative;
+   transform: rotate(5.5rad);
+}
+
+.menu__header label div:after {
+   content: "";
+   width: 2px;
+   height: 10px;
+   background: #333;
+   position: absolute;
+   top: 100%;
+   left: 50%;
+   transform: translateX(-50%);
+}
+
+.menu__header p {
+   font-size: 18px;
+   font-weight: bold;
+   vertical-align: center;
+   white-space: nowrap;
+}
+
+.menu__header h3 {
+   font-weight: normal;
+}
+
+.menu__header button {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 35px;
+   height: 35px;
+   background: #e1e1e1;
+   border-radius: 50%;
+   cursor: pointer;
+   border: none;
+}
+
+.menu__header button:hover {
+   background: #d53e36;
+}
+
+
+.menu__header button div {
+   width: 15px;
+   height: 3px;
+   background: #fff;
+   position: relative;
+   transform: rotate(5.5rad);
+}
+
+.menu__header button div:before {
+   content: "";
+   width: 3px;
+   height: 15px;
+   background: #fff;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+.menu__links {
+   display: flex;
+   padding: 10px 15px;
+   font-weight: bold;
+   overflow-x: auto;
+}
+
+
+.menu__links::-webkit-scrollbar-track {
+   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+   background-color: #F5F5F5;
+}
+
+.menu__links::-webkit-scrollbar {
+   height: 3px;
+   background-color: #F5F5F5;
+}
+
+.menu__links::-webkit-scrollbar-thumb {
+   background-color: #404040;
+}
+
+.menu__links a {
+   flex: 1 1 1px;
+   padding: 10px 8px;
+   color: #333;
+   text-decoration: none;
+   white-space: nowrap;
+}
+
+.menu__contact {
+   display: flex;
+   padding: 8px;
+   justify-content: center;
+}
+
+.menu__contact svg {
+   width: 100%;
+   fill: #d53e36;
+}
+
+.menu__contact a {
+   flex: 1 1 30%;
+   padding: 5px;
+   margin: 5px;
+   border-radius: 8px;
+   background: #f6f6f6;
+   color: #d53e36;
+   text-align: center;
+   font-size: 14px;
+   font-weight: bold;
+}

@@ -12,8 +12,14 @@
 
 .item:last-child {
   flex: 2;
-  padding: 50px;
+  padding: 30px;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 480px) {
+  .item:last-child {
+    padding: 10px;
+  }
 }
 
 .card {
@@ -39,6 +45,7 @@
     height: auto;
     text-align: center;
   }
+
   .item:first-child {
     display: none;
   }

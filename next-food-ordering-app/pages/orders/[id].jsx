@@ -43,7 +43,7 @@ const Order = ({ order }) => {
 							src='/img/paid.png'
 							width={30}
 							height={30}
-							alt=''
+							alt='Payment'
 						/>
 						<span>Payment</span>
 						<div className={styles.checkedIcon}>
@@ -52,7 +52,7 @@ const Order = ({ order }) => {
 								src='/img/checked.png'
 								width={20}
 								height={20}
-								alt=''
+								alt='checked'
 							/>
 						</div>
 					</div>
@@ -61,7 +61,7 @@ const Order = ({ order }) => {
 							src='/img/bake.png'
 							width={30}
 							height={30}
-							alt=''
+							alt='Preparing'
 						/>
 						<span>Preparing</span>
 						<div className={styles.checkedIcon}>
@@ -70,7 +70,7 @@ const Order = ({ order }) => {
 								src='/img/checked.png'
 								width={20}
 								height={20}
-								alt=''
+								alt='checked'
 							/>
 						</div>
 					</div>
@@ -79,7 +79,7 @@ const Order = ({ order }) => {
 							src='/img/bike.png'
 							width={30}
 							height={30}
-							alt=''
+							alt='On the way'
 						/>
 						<span>On the way</span>
 						<div className={styles.checkedIcon}>
@@ -88,7 +88,7 @@ const Order = ({ order }) => {
 								src='/img/checked.png'
 								width={20}
 								height={20}
-								alt=''
+								alt='checked'
 							/>
 						</div>
 					</div>
@@ -97,7 +97,7 @@ const Order = ({ order }) => {
 							src='/img/delivered.png'
 							width={30}
 							height={30}
-							alt=''
+							alt='Delivered'
 						/>
 						<span>Delivered</span>
 						<div className={styles.checkedIcon}>
@@ -106,7 +106,7 @@ const Order = ({ order }) => {
 								src='/img/checked.png'
 								width={20}
 								height={20}
-								alt=''
+								alt='checked'
 							/>
 						</div>
 					</div>

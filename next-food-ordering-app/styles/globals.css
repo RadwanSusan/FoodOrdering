@@ -5,8 +5,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   scroll-behavior: smooth;
-  /* user-select: none;
-  -webkit-user-drag: none; */
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 img {
@@ -24,4 +24,21 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: -webkit-gradient(linear,
+      left bottom,
+      left top,
+      color-stop(0.44, #ff691d),
+      color-stop(0.72, rgb(217, 73, 54)),
+      color-stop(0.86, rgb(245, 91, 30)));
 }

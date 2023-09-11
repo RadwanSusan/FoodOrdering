@@ -13,10 +13,11 @@ const Navbar = () => {
 			<div className={styles.item}>
 				<div className={styles.callButton}>
 					<Image
-						src='/img/telephone.png'
-						alt=''
+						src='/img/phone.svg'
+						alt='phone'
 						width='32'
 						height='32'
+						priority
 					/>
 				</div>
 				<div className={styles.texts}>
@@ -39,12 +40,6 @@ const Navbar = () => {
 						<li className={styles.listItem}>Homepage</li>
 					</Link>
 					<li className={styles.listItem}>Products</li>
-					<a
-						href='#menu'
-						className={styles.listItem}
-					>
-						Menu
-					</a>
 					<Link
 						href='/'
 						passHref
@@ -52,14 +47,19 @@ const Navbar = () => {
 					>
 						<Image
 							src='/img/pme-svg-logo.svg'
-							alt=''
+							alt='restaurant logo'
 							width={80}
 							height={80}
 							className={styles.DocumentLogo}
+							priority
 						/>
 					</Link>
-					<li className={styles.listItem}>Events</li>
-					<li className={styles.listItem}>Blog</li>
+					<a
+						href='#menu'
+						className={styles.listItem}
+					>
+						Menu
+					</a>
 					<li className={styles.listItem}>Contact</li>
 				</ul>
 			</div>
@@ -71,10 +71,11 @@ const Navbar = () => {
 				<div className={styles.item}>
 					<div className={styles.cart}>
 						<Image
-							src='/img/cart.png'
-							alt=''
+							src='/img/cart.svg'
+							alt='cart'
 							width={30}
 							height={30}
+							priority
 						/>
 						<div className={styles.counter}>{quantity}</div>
 					</div>

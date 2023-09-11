@@ -9,6 +9,7 @@ import styles from '../styles/Home.module.css';
 
 export default function Home({ productsList, admin }) {
 	const [close, setClose] = useState(true);
+	let counter = 0;
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -25,7 +26,10 @@ export default function Home({ productsList, admin }) {
 			</Head>
 			<Featured />
 			{admin ? <AddButton setClose={setClose} /> : null}
-			<MenuList menuListItems={productsList} />
+			<MenuList
+				menuListItems={productsList}
+				key={counter++}
+			/>
 			{!close && <Add setClose={setClose} />}
 		</div>
 	);

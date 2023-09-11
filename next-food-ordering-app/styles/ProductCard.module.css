@@ -26,17 +26,66 @@
   color: #383838;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1200px) {
   .container {
-    width: 100%;
+    width: 33%;
+    padding: 20px 40px;
   }
 
   .title {
-    font-size: 30px;
+    font-size: 25px;
   }
 
   .price,
   .desc {
-    font-size: 24px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    width: 50%;
+    padding: 20px 30px;
+  }
+
+  .title {
+    font-size: 27px;
+  }
+
+  .price,
+  .desc {
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    width: 50%;
+    padding: 10px 15px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .price,
+  .desc {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .container {
+    width: 100%;
+    padding: 10px 10px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .price,
+  .desc {
+    font-size: 15px;
   }
 }

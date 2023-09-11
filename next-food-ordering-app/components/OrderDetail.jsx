@@ -18,7 +18,7 @@ const OrderDetail = ({ total, createOrder }) => {
 				<div className={styles.item}>
 					<label className={styles.label}>Name Surname</label>
 					<input
-						placeholder='Radwan Susan'
+						placeholder='Full Name'
 						type='text'
 						className={styles.input}
 						onChange={(e) => setCustomer(e.target.value)}
@@ -28,7 +28,7 @@ const OrderDetail = ({ total, createOrder }) => {
 					<label className={styles.label}>Phone Number</label>
 					<input
 						type='text'
-						placeholder='+971(4)8811784'
+						placeholder='+971(50)0000000'
 						className={styles.input}
 					/>
 				</div>

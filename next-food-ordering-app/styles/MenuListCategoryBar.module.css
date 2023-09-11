@@ -6,6 +6,13 @@
    width: 98%;
 }
 
+@media screen and (max-width: 850px) {
+   .menu {
+      display: none;
+   }
+}
+
+
 .menu div {
    color: #fff;
    text-decoration: none;
@@ -2329,7 +2336,7 @@
 
    .menu > ol > li > div {
       padding: 0.5rem 0;
-      font-size: 1.1vw;
+      font-size: 1.15vw;
       font-weight: 600;
       position: relative;
       width: 100%;
@@ -2523,7 +2530,11 @@
       box-shadow: inset .1rem .1rem .5rem rgba(0, 0, 0, .15);
       overflow: hidden;
       max-height: 0;
-      transition: 250ms ease all
+      transition: 250ms ease all;
+      -webkit-transition: 250ms ease all;
+      -moz-transition: 250ms ease all;
+      -ms-transition: 250ms ease all;
+      -o-transition: 250ms ease all;
    }
 
    .menu > ol > li > ol > li div {

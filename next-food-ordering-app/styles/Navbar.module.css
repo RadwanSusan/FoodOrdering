@@ -17,18 +17,24 @@
 }
 
 .item:nth-child(2) {
-	flex: 2.13;
+	flex: 1.75;
 }
 
 @media screen and (max-width: 1700px) {
 	.item:nth-child(2) {
-		flex: 2.75;
+		flex: 2.1;
 	}
 }
 
 @media screen and (max-width: 1500px) {
 	.item:nth-child(2) {
-		flex: 2.9;
+		flex: 2.5;
+	}
+}
+
+@media screen and (max-width: 620px) {
+	.item:nth-child(2) {
+		display: none;
 	}
 }
 

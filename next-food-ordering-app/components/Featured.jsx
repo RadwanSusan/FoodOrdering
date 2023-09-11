@@ -28,9 +28,10 @@ const Featured = () => {
 			>
 				<Image
 					src='/img/arrowl.png'
-					alt=''
+					alt='left-arrow'
 					layout='fill'
 					objectFit='contain'
+					priority
 				/>
 			</div>
 			<div
@@ -44,7 +45,7 @@ const Featured = () => {
 					>
 						<Image
 							src={img}
-							alt=''
+							alt='featured-image'
 							layout='fill'
 							objectFit='contain'
 							priority
@@ -60,8 +61,9 @@ const Featured = () => {
 				<Image
 					src='/img/arrowr.png'
 					layout='fill'
-					alt=''
+					alt='right-arrow'
 					objectFit='contain'
+					priority
 				/>
 			</div>
 		</div>

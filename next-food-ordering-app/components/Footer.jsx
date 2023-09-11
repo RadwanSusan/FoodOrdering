@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import styles from '../styles/Footer.module.css';
 
 const Footer = () => {
@@ -9,7 +9,7 @@ const Footer = () => {
 					src='/img/bg.png'
 					objectFit='cover'
 					layout='fill'
-					alt=''
+					alt='footer-background'
 				/>
 			</div>
 			<div className={styles.item}>

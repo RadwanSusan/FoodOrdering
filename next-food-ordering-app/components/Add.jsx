@@ -27,17 +27,15 @@ const Add = ({ setClose }) => {
 		document.getElementById('extra').value = '';
 		document.getElementById('extra2').value = '';
 	};
-
 	const handleCreate = async () => {
 		const data = new FormData();
 		data.append('file', file);
-		data.append('upload_preset', 'uploads');
+
 		try {
 			const uploadRes = await axios.post(
-				'https://api.cloudinary.com/v1_1/demdyab5j/image/upload',
+				'http://localhost:8000/api/upload',
 				data,
 			);
-
 			const { url } = uploadRes.data;
 			const newProduct = {
 				title,
@@ -46,7 +44,6 @@ const Add = ({ setClose }) => {
 				extraOptions,
 				img: url,
 			};
-
 			await axios.post('http://localhost:8000/api/products', newProduct);
 			setClose(true);
 			Swal.fire({
@@ -77,7 +74,7 @@ const Add = ({ setClose }) => {
 				>
 					X
 				</span>
-				<h1>Add a new Pizza</h1>
+				<h1>Add a new Product</h1>
 				<div className={styles.item}>
 					<label className={styles.label}>Choose an image</label>
 					<input

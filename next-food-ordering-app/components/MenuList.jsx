@@ -2,8 +2,16 @@ import styles from '../styles/MenuList.module.css';
 import barStyles from '../styles/MenuListCategoryBar.module.css';
 import ProductCard from './ProductCard';
 import { useState, useEffect } from 'react';
+import Lottie from 'react-lottie';
+import MobileMenuList from './MobileMenuList';
 
 const MenuList = ({ menuListItems }) => {
+	const animationOptions = {
+		loop: false,
+		autoplay: true,
+		animationData: require('../public/lottie-files/empty-cat.json'),
+	};
+
 	const [filteredProducts, setFilteredProducts] = useState(menuListItems);
 
 	const handleCategoryClick = (selectedCategory) => {
@@ -17,27 +25,61 @@ const MenuList = ({ menuListItems }) => {
 		handleCategoryClick('best sellers');
 	}, []);
 
+	const renderSubMenu = (menuTitle, items) => {
+		return (
+			<li
+				className={barStyles.menuItem}
+				key={menuTitle}
+			>
+				<div onClick={() => handleCategoryClick(menuTitle)}>
+					{menuTitle}
+				</div>
+				<ol className={barStyles.subMenu}>
+					{items.map((item) => (
+						<li
+							key={`${menuTitle}-${item}`}
+							className={barStyles.menuItem}
+						>
+							<div onClick={() => handleCategoryClick(item)}>{item}</div>
+						</li>
+					))}
+				</ol>
+			</li>
+		);
+	};
+
 	return (
 		<div
 			id='menu'
 			className={styles.container}
 		>
-			<h1 className={styles.title}>OUR MENU</h1>
+			<MobileMenuList handleCategoryClick={handleCategoryClick} />
+			<h1
+				id='menu'
+				className={styles.title}
+			>
+				OUR MENU
+			</h1>
 			<br />
 			<br />
 			<nav className={barStyles.menu}>
 				<ol>
-					<li className={barStyles.menuItem}>
+					<li
+						className={barStyles.menuItem}
+						key='best sellers - mobile'
+					>
 						<div
-							onClick={(event) => {
-								event.preventDefault();
+							onClick={() => {
 								handleCategoryClick('best sellers');
 							}}
 						>
 							best sellers
 						</div>
 					</li>
-					<li className={barStyles.menuItem}>
+					<li
+						className={barStyles.menuItem}
+						key={'Our Mix Grill - mobile'}
+					>
 						<div onClick={() => handleCategoryClick('Our Mix Grill')}>
 							Our Mix Grill
 						</div>
@@ -47,20 +89,32 @@ const MenuList = ({ menuListItems }) => {
 						'Meal For Two',
 						'Meal For Three',
 					])}
-					<li className={barStyles.menuItem}>
+					<li
+						className={barStyles.menuItem}
+						key={'Sandwiches - mobile'}
+					>
 						<div onClick={() => handleCategoryClick('Sandwiches')}>
 							Sandwiches
 						</div>
 					</li>
-					<li className={barStyles.menuItem}>
+					<li
+						className={barStyles.menuItem}
+						key={'Appetizers - mobile'}
+					>
 						<div onClick={() => handleCategoryClick('Appetizers')}>
 							Appetizers
 						</div>
 					</li>
-					<li className={barStyles.menuItem}>
+					<li
+						className={barStyles.menuItem}
+						key={'Pans - mobile'}
+					>
 						<div onClick={() => handleCategoryClick('Pans')}>Pans</div>
 					</li>
-					<li className={barStyles.menuItem}>
+					<li
+						className={barStyles.menuItem}
+						key={'Salads - mobile'}
+					>
 						<div onClick={() => handleCategoryClick('Salads')}>
 							Salads
 						</div>
@@ -70,7 +124,10 @@ const MenuList = ({ menuListItems }) => {
 						'Local Lamb',
 						'Syrian Lamb',
 					])}
-					<li className={barStyles.menuItem}>
+					<li
+						className={barStyles.menuItem}
+						key={'Mutton - mobile'}
+					>
 						<div onClick={() => handleCategoryClick('Mutton')}>
 							Mutton
 						</div>
@@ -85,32 +142,26 @@ const MenuList = ({ menuListItems }) => {
 					])}
 				</ol>
 			</nav>
-			<div className={styles.wrapper}>
-				{filteredProducts.map((product) => (
-					<ProductCard
-						key={product._id}
-						product={product}
+			{filteredProducts.length === 0 ? (
+				<>
+					<Lottie
+						options={animationOptions}
+						height={400}
+						width={400}
 					/>
-				))}
-			</div>
+					<h3>This category is empty.</h3>
+				</>
+			) : (
+				<div className={styles.wrapper}>
+					{filteredProducts.map((product) => (
+						<ProductCard
+							key={`${product._id} - mobile - subMenu`}
+							product={product}
+						/>
+					))}
+				</div>
+			)}
 		</div>
-	);
-};
-const renderSubMenu = (menuTitle, items) => {
-	return (
-		<li className={barStyles.menuItem}>
-			<div onClick={() => handleCategoryClick(menuTitle)}>{menuTitle}</div>
-			<ol className={barStyles.subMenu}>
-				{items.map((item) => (
-					<li
-						key={item}
-						className={barStyles.menuItem}
-					>
-						<div onClick={() => handleCategoryClick(item)}>{item}</div>
-					</li>
-				))}
-			</ol>
-		</li>
 	);
 };
 
