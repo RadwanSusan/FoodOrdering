@@ -1,72 +1,105 @@
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import styles from '../styles/Add.module.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import MultiSelectDropdown from './MultiSelectDropdown';
 
-const Add = ({ setClose }) => {
-	const [file, setFile] = useState(null);
-	const [title, setTitle] = useState(null);
-	const [desc, setDesc] = useState(null);
-	const [prices, setPrices] = useState([]);
-	const [extraOptions, setExtraOptions] = useState([]);
-	const [extra, setExtra] = useState(null);
+const Add = memo(({ setClose }) => {
+	const [product, setProduct] = useState({
+		file: null,
+		title: null,
+		desc: null,
+		prices: [],
+		extraOptions: [],
+		extra: null,
+		category: null,
+	});
 
-	const changePrice = (e, index) => {
-		const currentPrices = prices;
-		currentPrices[index] = e.target.value;
-		setPrices(currentPrices);
-	};
+	const changePrice = useCallback((e, index) => {
+		setProduct((prevProduct) => {
+			const newPrices = [...prevProduct.prices];
+			newPrices[index] = e.target.value;
+			return { ...prevProduct, prices: newPrices };
+		});
+	}, []);
 
-	const handleExtraInput = (e) => {
-		setExtra({ ...extra, [e.target.name]: e.target.value });
-	};
+	const handleCategoryChange = useCallback((selectedOptions) => {
+		setProduct((prevProduct) => ({
+			...prevProduct,
+			category: selectedOptions.map((option) => option.value),
+		}));
+	}, []);
 
-	const handleExtra = (e) => {
-		setExtraOptions((prev) => [...prev, extra]);
-		setExtra(null);
-		document.getElementById('extra').value = '';
-		document.getElementById('extra2').value = '';
-	};
-	const handleCreate = async () => {
+	const handleExtraInput = useCallback(
+		(e) => {
+			setProduct((prevProduct) => ({
+				...prevProduct,
+				extra: { ...prevProduct.extra, [e.target.name]: e.target.value },
+			}));
+		},
+		[product.extra],
+	);
+
+	const handleExtra = useCallback(() => {
+		setProduct((prevProduct) => ({
+			...prevProduct,
+			extraOptions: [...prevProduct.extraOptions, product.extra],
+			extra: null,
+		}));
+	}, [product.extra]);
+
+	const uploadFile = async (file) => {
 		const data = new FormData();
 		data.append('file', file);
-
-		try {
-			const uploadRes = await axios.post(
-				'http://31.170.165.239:8000/api/upload',
-				data,
-			);
-			const { url } = uploadRes.data;
-			const newProduct = {
-				title,
-				desc,
-				prices,
-				extraOptions,
-				img: url,
-			};
-			await axios.post(
-				'http://31.170.165.239:8000/api/products',
-				newProduct,
-			);
-			setClose(true);
-			Swal.fire({
-				position: 'center',
-				icon: 'success',
-				title: 'Product Added',
-				showConfirmButton: false,
-				timer: 1500,
-			});
-		} catch (err) {
-			console.log(err);
-			Swal.fire({
-				position: 'center',
-				icon: 'error',
-				title: 'Something went wrong',
-				showConfirmButton: false,
-				timer: 1500,
-			});
-		}
+		const uploadRes = await axios.post(
+			'http://31.170.165.239:8000/api/upload',
+			data,
+		);
+		return uploadRes.data.files.file[0].url;
 	};
+
+	const createProduct = async (product) => {
+		await axios.post('http://31.170.165.239:8000/api/products', product);
+	};
+
+	const handleCreate = useCallback(async () => {
+		try {
+			const url = await uploadFile(product.file);
+			const newProduct = {
+				title: product.title,
+				desc: product.desc,
+				prices: product.prices,
+				extraOptions: product.extraOptions,
+				img: url,
+				category: product.category,
+			};
+			await createProduct(newProduct);
+			setClose(true);
+			showSuccessMessage('Product Added');
+		} catch (err) {
+			showErrorMessage('Something went wrong');
+		}
+	}, [product, setClose]);
+
+	const showSuccessMessage = useCallback((message) => {
+		Swal.fire({
+			position: 'center',
+			icon: 'success',
+			title: message,
+			showConfirmButton: false,
+			timer: 1500,
+		});
+	}, []);
+
+	const showErrorMessage = useCallback((message) => {
+		Swal.fire({
+			position: 'center',
+			icon: 'error',
+			title: message,
+			showConfirmButton: false,
+			timer: 1500,
+		});
+	}, []);
 
 	return (
 		<div className={styles.container}>
@@ -82,7 +115,9 @@ const Add = ({ setClose }) => {
 					<label className={styles.label}>Choose an image</label>
 					<input
 						type='file'
-						onChange={(e) => setFile(e.target.files[0])}
+						onChange={(e) =>
+							setProduct({ ...product, file: e.target.files[0] })
+						}
 					/>
 				</div>
 				<div className={styles.item}>
@@ -90,7 +125,9 @@ const Add = ({ setClose }) => {
 					<input
 						className={styles.input}
 						type='text'
-						onChange={(e) => setTitle(e.target.value)}
+						onChange={(e) =>
+							setProduct({ ...product, title: e.target.value })
+						}
 					/>
 				</div>
 				<div className={styles.item}>
@@ -98,7 +135,9 @@ const Add = ({ setClose }) => {
 					<textarea
 						rows={4}
 						type='text'
-						onChange={(e) => setDesc(e.target.value)}
+						onChange={(e) =>
+							setProduct({ ...product, desc: e.target.value })
+						}
 					/>
 				</div>
 				<div className={styles.item}>
@@ -151,7 +190,7 @@ const Add = ({ setClose }) => {
 						</button>
 					</div>
 					<div className={styles.extraItems}>
-						{extraOptions.map((option) => (
+						{product.extraOptions.map((option) => (
 							<span
 								key={option.text}
 								className={styles.extraItem}
@@ -160,6 +199,10 @@ const Add = ({ setClose }) => {
 							</span>
 						))}
 					</div>
+				</div>
+				<div className={styles.item}>
+					<label className={styles.label}>Category</label>
+					<MultiSelectDropdown onChange={handleCategoryChange} />
 				</div>
 				<button
 					className={styles.addButton}
@@ -170,6 +213,6 @@ const Add = ({ setClose }) => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default Add;

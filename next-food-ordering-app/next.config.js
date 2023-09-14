@@ -1,11 +1,18 @@
-const path = require('path');
+// const path = require('path');
 module.exports = {
 	images: {
-		domains: ['res.cloudinary.com'],
+		domains: [
+			'res.cloudinary.com',
+			'31.170.165.239:8000',
+			'127.0.0.1:8000',
+			'31.170.165.239',
+			'localhost:8000',
+			'localhost',
+		],
 	},
-	sassOptions: {
-		includePaths: [path.join(__dirname, 'styles')],
-	},
+	// sassOptions: {
+	// 	includePaths: [path.join(__dirname, 'styles')],
+	// },
 	async headers() {
 		return [
 			{

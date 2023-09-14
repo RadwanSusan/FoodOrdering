@@ -5,12 +5,19 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../redux/cartSlice';
 import Swal from 'sweetalert2';
+import 'yet-another-react-lightbox/styles.css';
+import dynamic from 'next/dynamic';
+
+const Lightbox = dynamic(() => import('yet-another-react-lightbox'), {
+	ssr: false,
+});
 
 const Product = ({ product }) => {
 	const [price, setPrice] = useState(product.prices[0]);
 	const [size, setSize] = useState(0);
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
+	const [isOpen, setIsOpen] = useState(false);
 	const dispatch = useDispatch();
 
 	const changePrice = (number) => {
@@ -53,17 +60,28 @@ const Product = ({ product }) => {
 			timer: 1500,
 		});
 	};
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.left}>
-				<div className={styles.imgContainer}>
+				<div
+					className={styles.imgContainer}
+					onClick={() => setIsOpen(true)}
+				>
 					<Image
 						src={product.img}
 						objectFit='contain'
 						layout='fill'
 						alt='product-image'
+						style={{ cursor: 'pointer' }}
+						priority
 					/>
+					{isOpen && (
+						<Lightbox
+							open={isOpen}
+							close={() => setIsOpen(false)}
+							slides={[{ src: product.img }]}
+						/>
+					)}
 				</div>
 			</div>
 			<div className={styles.right}>
@@ -106,7 +124,9 @@ const Product = ({ product }) => {
 						<span className={styles.number}>Large</span>
 					</div>
 				</div>
-				<h3 className={styles.choose}>Choose additional ingredients</h3>
+				{product.extraOptions.length > 0 && (
+					<h3 className={styles.choose}>Choose additional ingredients</h3>
+				)}
 				<div className={styles.ingredients}>
 					{product.extraOptions.map((option) => (
 						<div

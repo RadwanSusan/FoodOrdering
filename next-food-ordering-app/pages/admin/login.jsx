@@ -4,8 +4,8 @@ import { useState } from 'react';
 import styles from '../../styles/Login.module.css';
 
 const Login = () => {
-	const [username, setUsername] = useState(null);
-	const [password, setPassword] = useState(null);
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
 	const [error, setError] = useState(false);
 	const router = useRouter();
 
@@ -29,12 +29,14 @@ const Login = () => {
 					placeholder='username'
 					className={styles.input}
 					onChange={(e) => setUsername(e.target.value)}
+					autoComplete='off'
 				/>
 				<input
 					placeholder='password'
 					type='password'
 					className={styles.input}
 					onChange={(e) => setPassword(e.target.value)}
+					autoComplete='off'
 				/>
 				<button
 					onClick={handleClick}

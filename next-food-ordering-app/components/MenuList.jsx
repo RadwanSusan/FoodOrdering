@@ -14,9 +14,15 @@ const MenuList = ({ menuListItems }) => {
 
 	const [filteredProducts, setFilteredProducts] = useState(menuListItems);
 
-	const handleCategoryClick = (selectedCategory) => {
-		const newFilteredProducts = menuListItems.filter(
-			(product) => product.category === selectedCategory,
+	// const handleCategoryClick = (selectedCategory) => {
+	// 	const newFilteredProducts = menuListItems.filter(
+	// 		(product) => product.category === selectedCategory,
+	// 	);
+	// 	setFilteredProducts(newFilteredProducts);
+	// };
+	const handleCategoryClick = (selectedCategories) => {
+		const newFilteredProducts = menuListItems.filter((product) =>
+			selectedCategories.includes(product.category),
 		);
 		setFilteredProducts(newFilteredProducts);
 	};
@@ -138,7 +144,7 @@ const MenuList = ({ menuListItems }) => {
 						'Ready To Cook',
 						'Ready To Grill',
 						'Frozen Items',
-						'SOFT DRINKS',
+						'Soft Drinks',
 					])}
 				</ol>
 			</nav>

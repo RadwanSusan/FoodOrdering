@@ -16,6 +16,9 @@ const ProductCard = ({ product }) => {
 					alt='product-image'
 					width='500'
 					height='500'
+					objectFit='cover'
+					style={{ borderRadius: '8px' }}
+					priority
 				/>
 				<h1 className={styles.title}>{product.title}</h1>
 				<span className={styles.price}>${product.prices[0]}</span>

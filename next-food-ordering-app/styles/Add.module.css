@@ -108,3 +108,7 @@
 	padding: 5px 0;
 	align-self: flex-end;
 }
+
+.addButton:hover {
+	background-color: rgb(255, 38, 0);
+}

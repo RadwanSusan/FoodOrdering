@@ -10,6 +10,7 @@ const Footer = () => {
 					objectFit='cover'
 					layout='fill'
 					alt='footer-background'
+					priority
 				/>
 			</div>
 			<div className={styles.item}>
