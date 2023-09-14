@@ -10,6 +10,9 @@ module.exports = {
 			'localhost',
 		],
 	},
+	rules: {
+		'react/display-name': 'off',
+	},
 	// sassOptions: {
 	// 	includePaths: [path.join(__dirname, 'styles')],
 	// },
