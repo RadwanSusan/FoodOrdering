@@ -30,15 +30,12 @@ const Add = memo(({ setClose }) => {
 		}));
 	}, []);
 
-	const handleExtraInput = useCallback(
-		(e) => {
-			setProduct((prevProduct) => ({
-				...prevProduct,
-				extra: { ...prevProduct.extra, [e.target.name]: e.target.value },
-			}));
-		},
-		[product.extra],
-	);
+	const handleExtraInput = useCallback((e) => {
+		setProduct((prevProduct) => ({
+			...prevProduct,
+			extra: { ...prevProduct.extra, [e.target.name]: e.target.value },
+		}));
+	}, []);
 
 	const handleExtra = useCallback(() => {
 		setProduct((prevProduct) => ({
@@ -61,26 +58,6 @@ const Add = memo(({ setClose }) => {
 	const createProduct = async (product) => {
 		await axios.post('http://31.170.165.239:8000/api/products', product);
 	};
-
-	const handleCreate = useCallback(async () => {
-		try {
-			const url = await uploadFile(product.file);
-			const newProduct = {
-				title: product.title,
-				desc: product.desc,
-				prices: product.prices,
-				extraOptions: product.extraOptions,
-				img: url,
-				category: product.category,
-			};
-			await createProduct(newProduct);
-			setClose(true);
-			showSuccessMessage('Product Added');
-		} catch (err) {
-			showErrorMessage('Something went wrong');
-		}
-	}, [product, setClose]);
-
 	const showSuccessMessage = useCallback((message) => {
 		Swal.fire({
 			position: 'center',
@@ -100,6 +77,25 @@ const Add = memo(({ setClose }) => {
 			timer: 1500,
 		});
 	}, []);
+
+	const handleCreate = useCallback(async () => {
+		try {
+			const url = await uploadFile(product.file);
+			const newProduct = {
+				title: product.title,
+				desc: product.desc,
+				prices: product.prices,
+				extraOptions: product.extraOptions,
+				img: url,
+				category: product.category,
+			};
+			await createProduct(newProduct);
+			setClose(true);
+			showSuccessMessage('Product Added');
+		} catch (err) {
+			showErrorMessage('Something went wrong');
+		}
+	}, [product, setClose, showErrorMessage, showSuccessMessage]);
 
 	return (
 		<div className={styles.container}>
@@ -214,5 +210,5 @@ const Add = memo(({ setClose }) => {
 		</div>
 	);
 });
-
+Add.displayName = 'Add';
 export default Add;

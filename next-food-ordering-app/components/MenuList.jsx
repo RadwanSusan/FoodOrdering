@@ -1,7 +1,8 @@
 import styles from '../styles/MenuList.module.css';
 import barStyles from '../styles/MenuListCategoryBar.module.css';
 import ProductCard from './ProductCard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+
 import Lottie from 'react-lottie';
 import MobileMenuList from './MobileMenuList';
 
@@ -20,16 +21,19 @@ const MenuList = ({ menuListItems }) => {
 	// 	);
 	// 	setFilteredProducts(newFilteredProducts);
 	// };
-	const handleCategoryClick = (selectedCategories) => {
-		const newFilteredProducts = menuListItems.filter((product) =>
-			selectedCategories.includes(product.category),
-		);
-		setFilteredProducts(newFilteredProducts);
-	};
+	const handleCategoryClick = useCallback(
+		(selectedCategories) => {
+			const newFilteredProducts = menuListItems.filter((product) =>
+				selectedCategories.includes(product.category),
+			);
+			setFilteredProducts(newFilteredProducts);
+		},
+		[menuListItems],
+	);
 
 	useEffect(() => {
 		handleCategoryClick('best sellers');
-	}, []);
+	}, [handleCategoryClick]);
 
 	const renderSubMenu = (menuTitle, items) => {
 		return (
