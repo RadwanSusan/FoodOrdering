@@ -6,8 +6,8 @@ module.exports = {
 			'localhost:8000',
 			'127.0.0.1:8000',
 			'localhost',
-			'localhost:8000',
-			'localhost',
+			'31.170.165.239:8000',
+			'31.170.165.239',
 		],
 	},
 	// sassOptions: {
@@ -21,7 +21,7 @@ module.exports = {
 					{ key: 'Access-Control-Allow-Credentials', value: 'true' },
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: '31.170.165.239',
+						value: '31.170.165.239:8000/*',
 					},
 					{ key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS' },
 					{ key: 'Access-Control-Allow-Headers', value: 'Content-Type' },

@@ -32,7 +32,6 @@ const Product = ({ product }) => {
 
 	const handleChange = (e, option) => {
 		const checked = e.target.checked;
-
 		if (checked) {
 			changePrice(option.price);
 			setExtras((prev) => [...prev, option]);
@@ -43,6 +42,26 @@ const Product = ({ product }) => {
 	};
 
 	const handleClick = () => {
+		if (quantity <= 0) {
+			Swal.fire({
+				position: 'center',
+				icon: 'error',
+				title: 'Please select a quantity greater than 0',
+				showConfirmButton: false,
+			});
+			return;
+		}
+
+		if (size === null) {
+			Swal.fire({
+				position: 'center',
+				icon: 'error',
+				title: 'Please select a size',
+				showConfirmButton: false,
+			});
+			return;
+		}
+
 		dispatch(
 			addProduct({
 				...product,
@@ -52,14 +71,20 @@ const Product = ({ product }) => {
 				quantity,
 			}),
 		);
+
 		Swal.fire({
 			position: 'center',
 			icon: 'success',
-			title: 'Product Added',
+			title: 'Product added',
 			showConfirmButton: false,
-			timer: 1500,
 		});
+
+		setExtras([]);
+		setSize(null);
+		setPrice(product.prices[0]);
+		setQuantity(1);
 	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.left}>

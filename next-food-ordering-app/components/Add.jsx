@@ -3,6 +3,7 @@ import styles from '../styles/Add.module.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import MultiSelectDropdown from './MultiSelectDropdown';
+import { IoClose } from 'react-icons/io5';
 
 const Add = memo(({ setClose }) => {
 	const [product, setProduct] = useState({
@@ -64,7 +65,6 @@ const Add = memo(({ setClose }) => {
 			icon: 'success',
 			title: message,
 			showConfirmButton: false,
-			timer: 1500,
 		});
 	}, []);
 
@@ -74,7 +74,6 @@ const Add = memo(({ setClose }) => {
 			icon: 'error',
 			title: message,
 			showConfirmButton: false,
-			timer: 1500,
 		});
 	}, []);
 
@@ -104,7 +103,10 @@ const Add = memo(({ setClose }) => {
 					onClick={() => setClose(true)}
 					className={styles.close}
 				>
-					X
+					<IoClose
+						size={23}
+						color='white'
+					/>
 				</span>
 				<h1>Add a new Product</h1>
 				<div className={styles.item}>
