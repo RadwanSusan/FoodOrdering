@@ -5,7 +5,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 	apiVersion: '2023-08-16',
 });
 
-export default async (req, res) => {
+const handler = async (req, res) => {
 	if (req.method === 'POST') {
 		try {
 			const { currency, cart } = req.body;
@@ -73,3 +73,5 @@ export default async (req, res) => {
 		res.status(405).end('Method Not Allowed');
 	}
 };
+
+export default handler;

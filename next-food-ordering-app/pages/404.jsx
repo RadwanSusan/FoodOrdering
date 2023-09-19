@@ -10,10 +10,10 @@ export default function Custom404() {
 				</div>
 			</div>
 			<div className={styles.info}>
-				<h2>We can't find that page</h2>
+				<h2>We can&apos;t find that page</h2>
 				<p>
-					We're fairly sure that page used to be here, but seems to have
-					gone missing. We do apologise on it's behalf.
+					We&apos;re fairly sure that page used to be here, but seems to
+					have gone missing. We do apologise on it&apos;s behalf.
 				</p>
 				<a
 					href={`${process.env.API_URL}`}
