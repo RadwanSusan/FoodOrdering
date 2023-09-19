@@ -5,15 +5,14 @@ const OrderDetail = ({ total, createOrder, cart }) => {
 	const [customer, setCustomer] = useState('');
 	const [address, setAddress] = useState('');
 
-	console.log(
-		`🚀  file: OrderDetail.jsx:5  cart =>`,
-		JSON.stringify(cart.products),
-	);
 	const handleClick = () => {
-		createOrder(
-			{ customer, address, total, method: 'Cash on Delivery' },
-			JSON.stringify(cart.products),
-		);
+		createOrder({
+			customer,
+			address,
+			total,
+			method: 'Cash on Delivery',
+			cart: JSON.stringify(cart.products),
+		});
 	};
 
 	return (

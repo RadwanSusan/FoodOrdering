@@ -12,7 +12,7 @@ const Index = ({ orders, products }) => {
 		console.log(id);
 		try {
 			const res = await axios.delete(
-				'http://31.170.165.239:8000/api/products/' + id,
+				`${process.env.API_URL}/api/products/` + id,
 			);
 			console.log(`🚀  file: index.jsx:17  res =>`, res);
 			setProductList(product.filter((product) => product._id !== id));
@@ -30,7 +30,7 @@ const Index = ({ orders, products }) => {
 
 		try {
 			const res = await axios.put(
-				'http://31.170.165.239:8000/api/orders/' + id,
+				`${process.env.API_URL}/api/orders/` + id,
 				{
 					status: currentStatus + 1,
 				},
@@ -145,10 +145,8 @@ export const getServerSideProps = async (ctx) => {
 		};
 	}
 
-	const productRes = await axios.get(
-		'http://31.170.165.239:8000/api/products',
-	);
-	const orderRes = await axios.get('http://31.170.165.239:8000/api/orders');
+	const productRes = await axios.get(`${process.env.API_URL}/api/products`);
+	const orderRes = await axios.get(`${process.env.API_URL}/api/orders`);
 
 	return {
 		props: {

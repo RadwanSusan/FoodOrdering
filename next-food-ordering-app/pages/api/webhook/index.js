@@ -1,7 +1,28 @@
 import Stripe from 'stripe';
+import axios from 'axios';
 import { buffer } from 'micro';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+	apiVersion: '2023-08-16',
+});
+
+async function updateOrder(session, res) {
+	const orderId = session.metadata.order_id;
+	const response = await axios.put(
+		`${process.env.API_URL}/api/orders/${orderId}`,
+		{
+			payment_received: true,
+			customer: session.customer_details.name,
+			phone_number: session.customer_details.phone,
+			email: session.customer_details.email,
+		},
+	);
+	if (response.status === 200) {
+		res.status(200).json({ received: true });
+	} else {
+		res.status(500).json({ received: false, err: response.data });
+	}
+}
 
 export default async function handler(req, res) {
 	if (req.method === 'POST') {
@@ -15,22 +36,16 @@ export default async function handler(req, res) {
 				process.env.STRIPE_WEBHOOK_SECRET,
 			);
 		} catch (err) {
-			return res.status(400).send(`Webhook Error: ${err.message}`);
+			console.error(err);
+			return res.status(500).send(`Webhook Error: ${err.message}`);
 		}
 		if (event.type === 'checkout.session.completed') {
 			try {
 				const session = event.data.object;
-				console.log(`🚀  file: index.js:23  session =>`, session);
-				// const res = await axios.post('http://31.170.165.239:8000/api/orders', {
-				// 	sessionId: session.id,
-				// 	amount: session.amount_total / 100,
-				// 	currency: session.currency,
-				// 	status: session.payment_status,
-				// 	products: JSON.parse(session.metadata.products),
-				// });
-				res.status(200).json({ received: true });
+				await updateOrder(session, res);
 			} catch (err) {
-				res.status(400).json({ received: false });
+				console.error(err);
+				res.status(500).json({ received: false });
 			}
 		} else {
 			res.status(400).json({ received: false });
@@ -40,6 +55,7 @@ export default async function handler(req, res) {
 		res.status(405).end('Method Not Allowed');
 	}
 }
+
 export const config = {
 	api: {
 		bodyParser: false,

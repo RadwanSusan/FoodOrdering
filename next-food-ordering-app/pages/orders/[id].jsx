@@ -10,6 +10,7 @@ const Order = ({ order }) => {
 		if (index - status === 1) return styles.inProgress;
 		if (index - status > 1) return styles.undone;
 	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.left}>
@@ -139,7 +140,7 @@ const Order = ({ order }) => {
 
 export const getServerSideProps = async ({ params }) => {
 	const res = await axios.get(
-		`http://31.170.165.239:8000/api/orders/${params.id}`,
+		`${process.env.API_URL}/api/orders/${params.id}`,
 	);
 	return {
 		props: { order: res.data },

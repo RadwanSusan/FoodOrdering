@@ -16,7 +16,7 @@ export default function Custom404() {
 					gone missing. We do apologise on it's behalf.
 				</p>
 				<a
-					href='http://31.170.165.239:8000/'
+					href={`${process.env.API_URL}`}
 					rel='noreferrer noopener'
 				>
 					Home

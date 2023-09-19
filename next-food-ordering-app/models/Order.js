@@ -4,13 +4,17 @@ const OrderSchema = new mongoose.Schema(
 	{
 		customer: {
 			type: String,
-			required: true,
 			maxlength: 60,
 		},
 		address: {
 			type: String,
-			required: true,
 			maxlength: 200,
+		},
+		phone_number: {
+			type: Number,
+		},
+		email: {
+			type: String,
 		},
 		total: {
 			type: Number,
@@ -31,6 +35,10 @@ const OrderSchema = new mongoose.Schema(
 		date: {
 			type: Date,
 			default: Date.now,
+		},
+		payment_received: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	{ timestamps: true },

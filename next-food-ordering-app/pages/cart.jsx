@@ -26,7 +26,7 @@
 // 	const createOrder = async (data) => {
 // 		try {
 // 			const res = await axios.post(
-// 				'http://31.170.165.239:8000/api/orders',
+// 				`${process.env.API_URL}/api/orders`,
 // 				data,
 // 			);
 // 			if (res.status === 201) {
@@ -240,9 +240,16 @@ const Cart = () => {
 
 	const createOrder = async (data) => {
 		try {
+			const orderData = {
+				customer: data.customer,
+				address: data.address,
+				total: data.total,
+				method: data.method,
+				cart: data.cart,
+			};
 			const res = await axios.post(
-				'http://31.170.165.239:8000/api/orders',
-				data,
+				`http://31.170.165.239:8000/api/orders`,
+				orderData,
 			);
 			if (res.status === 201) {
 				dispatch(reset());
@@ -251,6 +258,13 @@ const Cart = () => {
 					position: 'center',
 					icon: 'success',
 					title: 'Order Placed',
+					showConfirmButton: false,
+				});
+			} else {
+				Swal.fire({
+					position: 'center',
+					icon: 'error',
+					title: 'Order Failed',
 					showConfirmButton: false,
 				});
 			}
@@ -277,7 +291,10 @@ const Cart = () => {
 						{cart.products.map((product) => (
 							<tr
 								className={styles.tr}
-								key={product._id}
+								key={
+									Date.now().toString(36) +
+									Math.random().toString(36).substr(2)
+								}
 							>
 								<td>
 									<div className={styles.imgContainer}>
