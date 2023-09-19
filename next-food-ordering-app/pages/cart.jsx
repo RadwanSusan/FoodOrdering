@@ -26,7 +26,7 @@
 // 	const createOrder = async (data) => {
 // 		try {
 // 			const res = await axios.post(
-// 				`${process.env.API_URL}/api/orders`,
+// 				'http://31.170.165.239:8000/api/orders',
 // 				data,
 // 			);
 // 			if (res.status === 201) {
@@ -248,7 +248,7 @@ const Cart = () => {
 				cart: data.cart,
 			};
 			const res = await axios.post(
-				`http://31.170.165.239:8000/api/orders`,
+				'http://31.170.165.239:8000/api/orders',
 				orderData,
 			);
 			if (res.status === 201) {

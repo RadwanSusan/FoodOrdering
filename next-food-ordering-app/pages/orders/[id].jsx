@@ -140,7 +140,7 @@ const Order = ({ order }) => {
 
 export const getServerSideProps = async ({ params }) => {
 	const res = await axios.get(
-		`${process.env.API_URL}/api/orders/${params.id}`,
+		'http://31.170.165.239:8000/api/orders/${params.id}',
 	);
 	return {
 		props: { order: res.data },

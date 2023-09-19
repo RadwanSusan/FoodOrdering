@@ -7,7 +7,7 @@ export const CheckoutRedirectButton = ({ children, ...props }) => {
 	const createOrder = async (data) => {
 		try {
 			const res = await axios.post(
-				`${process.env.API_URL}/api/orders`,
+				'http://31.170.165.239:8000/api/orders',
 				data,
 			);
 			if (res.status === 201) {
