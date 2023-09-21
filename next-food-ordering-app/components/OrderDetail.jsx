@@ -17,14 +17,22 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 				title: 'Oops...',
 				text: 'Please enter a location!',
 				showConfirmButton: false,
+				timer: 5000,
+				timerProgressBar: true,
 			});
 			return;
 		}
 
 		Swal.fire({
 			title: 'Processing your order...',
+			icon: 'info',
 			allowOutsideClick: false,
-			onBeforeOpen: () => {
+			showConfirmButton: false,
+			showCancelButton: false,
+			showLoaderOnConfirm: true,
+			timerProgressBar: true,
+			timer: 3000,
+			didOpen: () => {
 				Swal.showLoading();
 			},
 		});
@@ -40,6 +48,8 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 				title: 'Oops...',
 				text: 'Failed to fetch location!',
 				showConfirmButton: false,
+				timer: 5000,
+				timerProgressBar: true,
 			});
 		});
 
@@ -49,6 +59,8 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 				title: 'Oops...',
 				text: 'Invalid location entered!',
 				showConfirmButton: false,
+				timer: 5000,
+				timerProgressBar: true,
 			});
 			return;
 		}
@@ -61,6 +73,8 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 				title: 'Oops...',
 				text: 'Invalid location entered!',
 				showConfirmButton: false,
+				timer: 5000,
+				timerProgressBar: true,
 			});
 			return;
 		}
@@ -70,10 +84,12 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 			data.results[0].components._type === 'town'
 		) {
 			Swal.fire({
-				icon: 'error',
+				icon: 'info',
 				title: 'Oops...',
 				text: 'Please enter a specific location, not just a general area!',
-				showConfirmButton: false,
+				showConfirmButton: true,
+				timer: 5000,
+				timerProgressBar: true,
 			});
 			return;
 		}
@@ -82,11 +98,44 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 
 		const dubaiPolygon = turf.polygon([
 			[
-				[55.117, 24.64],
-				[55.117, 25.35],
-				[56.2, 25.35],
-				[56.2, 24.64],
-				[55.117, 24.64],
+				[54.89837411806178, 24.91100310065002],
+				[55.024901931415, 24.86888299092834],
+				[55.07702925325094, 24.791962093860946],
+				[55.165808169337765, 24.851336140525532],
+				[55.21073752112906, 24.899124983592586],
+				[55.22817909584677, 24.931214235726657],
+				[55.2421226877822, 24.982014915775707],
+				[55.25529130568037, 24.998631659585953],
+				[55.32139426004116, 25.05922906478395],
+				[55.33321337079235, 25.022519625353524],
+				[55.343266048365564, 24.98775979799663],
+				[55.36642190734179, 24.950267354293672],
+				[55.38905781895937, 24.95248082390046],
+				[55.40664455802525, 24.963238532333378],
+				[55.415755760192525, 24.97553190496474],
+				[55.40092357061809, 24.98782404912707],
+				[55.400287905350496, 24.9981945898939],
+				[55.44711524672098, 25.02776502818797],
+				[55.39160032806231, 25.087268281583675],
+				[55.467215497578195, 25.14040731328224],
+				[55.49767999405921, 25.16700269661662],
+				[55.543352640876776, 25.20065486359836],
+				[55.554596702510906, 25.213455656788057],
+				[55.56614548261015, 25.238942718027772],
+				[55.38630045825528, 25.302983199802966],
+				[55.37699756011983, 25.298013327406238],
+				[55.36769466198575, 25.2969938412144],
+				[55.36149272989496, 25.300052274066616],
+				[55.352450128442, 25.297863355730343],
+				[55.3480164099108, 25.306005384870204],
+				[55.34783572703725, 25.31431558322673],
+				[55.353585705755705, 25.321830301365537],
+				[55.35476341224114, 25.327841740128093],
+				[55.34887487981675, 25.32615105314406],
+				[55.292072143124386, 25.3587335024247],
+				[55.1265908138042, 25.25261503362593],
+				[54.87828762129854, 24.94756651286953],
+				[54.89837411806178, 24.91100310065002],
 			],
 		]);
 
@@ -98,6 +147,8 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 				title: 'Delivery unavailable',
 				text: 'We cannot deliver to your address.',
 				showConfirmButton: false,
+				timer: 5000,
+				timerProgressBar: true,
 			});
 			return;
 		}
@@ -131,6 +182,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 			showCancelButton: true,
 			confirmButtonText: 'Yes',
 			cancelButtonText: 'No',
+			showLoaderOnConfirm: true,
 		}).then((result) => {
 			if (result.isConfirmed) {
 				createOrder({
@@ -147,6 +199,8 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 							title: 'Order created',
 							text: 'Your order has been created successfully!',
 							showConfirmButton: false,
+							timer: 3000,
+							timerProgressBar: true,
 						});
 					})
 					.catch((error) => {
@@ -155,6 +209,8 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 							title: 'Order failed, please try again',
 							text: error,
 							showConfirmButton: false,
+							timer: 5000,
+							timerProgressBar: true,
 						});
 					});
 			} else if (result.isDismissed) {
@@ -163,6 +219,8 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 					title: 'Order cancelled',
 					text: 'You have cancelled the order.',
 					showConfirmButton: false,
+					timer: 5000,
+					timerProgressBar: true,
 				});
 			}
 		});
@@ -241,21 +299,24 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 								onChange={(e) => setAddress(e.target.value)}
 							/>
 						</div>
-						<button
-							className={styles.button}
-							onClick={() => getLocation()}
-						>
-							Get My Location
-						</button>
-						<button
-							className={styles.button}
-							disabled={
-								!customer && (!address || !userLocation) && !phone
-							}
-							onClick={handleClick}
-						>
-							Order
-						</button>
+						<div className={styles.item}>
+							<button
+								className={styles.button}
+								onClick={() => getLocation()}
+							>
+								Get My Location
+							</button>
+							<br />
+							<button
+								className={styles.button}
+								disabled={
+									!customer && (!address || !userLocation) && !phone
+								}
+								onClick={handleClick}
+							>
+								Order
+							</button>
+						</div>
 					</div>
 				</div>
 			)}
