@@ -244,6 +244,14 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 					console.error(
 						'Error Code = ' + error.code + ' - ' + error.message,
 					);
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: 'It seems like you have denied location permissions. Please allow location permissions to automatically get your location.',
+						showConfirmButton: false,
+						timer: 5000,
+						timerProgressBar: true,
+					});
 				},
 			);
 		} else {
