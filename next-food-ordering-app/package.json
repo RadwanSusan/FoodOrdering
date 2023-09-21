@@ -2,9 +2,9 @@
 	"name": "restaurant",
 	"private": true,
 	"scripts": {
-		"dev": "next dev -p 8000",
+		"dev": "next dev -p 800",
 		"build": "next build",
-		"start": "next start -p 8000",
+		"start": "next start -p 800",
 		"lint": "next lint"
 	},
 	"dependencies": {
@@ -12,12 +12,14 @@
 		"@reduxjs/toolkit": "^1.9.5",
 		"@stripe/react-stripe-js": "^2.3.0",
 		"@stripe/stripe-js": "^2.1.6",
+		"@turf/turf": "^6.5.0",
 		"axios": "^1.5.0",
 		"cookie": "^0.5.0",
+		"geolib": "^3.3.4",
 		"micro": "^10.0.1",
 		"mongoose": "^7.5.2",
 		"multiparty": "^4.2.3",
-		"next": "13.4.19",
+		"next": "13.5.2",
 		"nextjs-progressbar": "^0.0.16",
 		"react": "18.2.0",
 		"react-bootstrap": "^2.8.0",
@@ -25,7 +27,7 @@
 		"react-icons": "^4.11.0",
 		"react-lottie": "^1.2.3",
 		"react-redux": "^8.1.2",
-		"react-select": "^5.7.4",
+		"react-select": "^5.7.5",
 		"redux": "^4.2.1",
 		"redux-persist": "^6.0.0",
 		"stripe": "^13.6.0",
@@ -35,6 +37,6 @@
 	"devDependencies": {
 		"@netlify/plugin-nextjs": "^4.40.1",
 		"eslint": "8.49.0",
-		"eslint-config-next": "13.4.19"
+		"eslint-config-next": "13.5.2"
 	}
 }
