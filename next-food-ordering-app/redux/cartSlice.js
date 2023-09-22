@@ -27,17 +27,11 @@ const cartSlice = createSlice({
 			);
 
 			if (productToRemove) {
+				state.quantity -= 1;
+				state.total -= productToRemove.price * productToRemove.quantity;
+
 				state.products = state.products.filter(
 					(item) => item.uniqueId !== action.payload,
-				);
-
-				state.total = state.products.reduce(
-					(total, product) => total + product.price * product.quantity,
-					0,
-				);
-				state.quantity = state.products.reduce(
-					(quantity, product) => quantity + product.quantity,
-					0,
 				);
 			}
 		},
