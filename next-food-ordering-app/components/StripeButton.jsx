@@ -15,6 +15,8 @@ export const CheckoutRedirectButton = ({ children, ...props }) => {
 					icon: 'success',
 					title: 'Order Placed',
 					showConfirmButton: false,
+					timer: 3000,
+					timerProgressBar: true,
 				});
 			}
 		} catch (err) {
@@ -23,6 +25,8 @@ export const CheckoutRedirectButton = ({ children, ...props }) => {
 				icon: 'error',
 				title: 'Order Failed',
 				showConfirmButton: false,
+				timer: 3000,
+				timerProgressBar: true,
 			});
 		}
 	};

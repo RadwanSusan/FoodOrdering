@@ -219,6 +219,9 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 				icon: 'error',
 				title: 'Oops...',
 				text: 'Geolocation is not supported by this browser.',
+				showConfirmButton: false,
+				timer: 5000,
+				timerProgressBar: true,
 			});
 		}
 	};

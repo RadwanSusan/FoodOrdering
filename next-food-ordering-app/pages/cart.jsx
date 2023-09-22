@@ -37,6 +37,8 @@ const Cart = () => {
 					icon: 'success',
 					title: 'Order Placed',
 					showConfirmButton: false,
+					timer: 3000,
+					timerProgressBar: true,
 				});
 			} else {
 				Swal.fire({
@@ -44,6 +46,8 @@ const Cart = () => {
 					icon: 'error',
 					title: 'Order Failed',
 					showConfirmButton: false,
+					timer: 3000,
+					timerProgressBar: true,
 				});
 			}
 		} catch (err) {
@@ -145,6 +149,8 @@ const Cart = () => {
 											icon: 'info',
 											title: 'Cart is empty',
 											showConfirmButton: false,
+											timer: 3000,
+											timerProgressBar: true,
 										});
 									setCash(true);
 								}}
@@ -169,6 +175,8 @@ const Cart = () => {
 										icon: 'info',
 										title: 'Cart is empty',
 										showConfirmButton: false,
+										timer: 3000,
+										timerProgressBar: true,
 									});
 								setOpen(true);
 							}}

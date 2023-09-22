@@ -21,7 +21,7 @@ const Index = ({ orders, products }) => {
 				icon: 'error',
 				title: 'Delete Failed',
 				showConfirmButton: false,
-				timer: 1500,
+				timer: 3000,
 				timerProgressBar: true,
 			});
 		}
@@ -48,7 +48,7 @@ const Index = ({ orders, products }) => {
 				icon: 'error',
 				title: 'Status Change Failed',
 				showConfirmButton: false,
-				timer: 1500,
+				timer: 3000,
 				timerProgressBar: true,
 			});
 		}

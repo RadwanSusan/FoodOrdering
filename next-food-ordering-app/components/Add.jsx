@@ -65,6 +65,8 @@ const Add = memo(({ setClose }) => {
 			icon: 'success',
 			title: message,
 			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
 		});
 	}, []);
 
@@ -74,6 +76,8 @@ const Add = memo(({ setClose }) => {
 			icon: 'error',
 			title: message,
 			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
 		});
 	}, []);
 

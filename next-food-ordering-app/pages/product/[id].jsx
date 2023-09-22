@@ -48,6 +48,8 @@ const Product = ({ product }) => {
 				icon: 'error',
 				title: 'Please select a quantity greater than 0',
 				showConfirmButton: false,
+				timer: 3000,
+				timerProgressBar: true,
 			});
 			return;
 		}
@@ -58,6 +60,8 @@ const Product = ({ product }) => {
 				icon: 'error',
 				title: 'Please select a size',
 				showConfirmButton: false,
+				timer: 3000,
+				timerProgressBar: true,
 			});
 			return;
 		}
@@ -77,6 +81,8 @@ const Product = ({ product }) => {
 			icon: 'success',
 			title: 'Product added',
 			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
 		});
 
 		setExtras([]);
