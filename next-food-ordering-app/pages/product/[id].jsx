@@ -1,6 +1,6 @@
 import styles from '../../styles/Product.module.css';
 import Image from 'next/legacy/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../redux/cartSlice';
@@ -17,21 +17,32 @@ const Product = ({ product }) => {
 	const [size, setSize] = useState(0);
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
+	const [checkedExtras, setCheckedExtras] = useState({});
 	const [isOpen, setIsOpen] = useState(false);
 	const dispatch = useDispatch();
 
+	useEffect(() => {
+		const extrasObj = {};
+		product.extraOptions.forEach((option) => {
+			extrasObj[option._id] = false;
+		});
+		setCheckedExtras(extrasObj);
+	}, [product]);
+
 	const changePrice = (number) => {
-		setPrice(price + number);
+		setPrice((prevPrice) => prevPrice + number);
 	};
 
 	const handleSize = (sizeIndex) => {
-		const difference = product.prices[sizeIndex] - product.prices[size];
+		const oldPrice = product.prices[size];
 		setSize(sizeIndex);
-		changePrice(difference);
+		const newPrice = product.prices[sizeIndex];
+		changePrice(newPrice - oldPrice);
 	};
 
 	const handleChange = (e, option) => {
 		const checked = e.target.checked;
+		setCheckedExtras((prev) => ({ ...prev, [option._id]: checked }));
 		if (checked) {
 			changePrice(option.price);
 			setExtras((prev) => [...prev, option]);
@@ -85,12 +96,16 @@ const Product = ({ product }) => {
 			timerProgressBar: true,
 		});
 
+		const resetExtras = { ...checkedExtras };
+		Object.keys(resetExtras).forEach((key) => {
+			resetExtras[key] = false;
+		});
+		setCheckedExtras(resetExtras);
 		setExtras([]);
-		setSize(null);
+		setSize(0);
 		setPrice(product.prices[0]);
 		setQuantity(1);
 	};
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.left}>
@@ -169,6 +184,7 @@ const Product = ({ product }) => {
 								id={option.text}
 								name={option.text}
 								className={styles.checkbox}
+								checked={checkedExtras[option._id] || false}
 								onChange={(e) => handleChange(e, option)}
 							/>
 							<label htmlFor={option.text}>{option.text}</label>
@@ -177,9 +193,15 @@ const Product = ({ product }) => {
 				</div>
 				<div className={styles.add}>
 					<input
-						onChange={(e) => setQuantity(e.target.value)}
+						onChange={(e) => {
+							const value = Number(e.target.value);
+							if (value >= 1) {
+								setQuantity(value);
+							}
+						}}
 						type='number'
-						defaultValue={1}
+						value={quantity}
+						min='1'
 						className={styles.quantity}
 					/>
 					<button
