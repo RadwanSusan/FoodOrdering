@@ -1,4 +1,3 @@
-// const path = require('path');
 module.exports = {
 	images: {
 		domains: [
@@ -10,9 +9,6 @@ module.exports = {
 			'31.170.165.239',
 		],
 	},
-	// sassOptions: {
-	// 	includePaths: [path.join(__dirname, 'styles')],
-	// },
 	async headers() {
 		return [
 			{

@@ -15,12 +15,6 @@ const MenuList = ({ menuListItems }) => {
 
 	const [filteredProducts, setFilteredProducts] = useState(menuListItems);
 
-	// const handleCategoryClick = (selectedCategory) => {
-	// 	const newFilteredProducts = menuListItems.filter(
-	// 		(product) => product.category === selectedCategory,
-	// 	);
-	// 	setFilteredProducts(newFilteredProducts);
-	// };
 	const handleCategoryClick = useCallback(
 		(selectedCategories) => {
 			const newFilteredProducts = menuListItems.filter((product) =>

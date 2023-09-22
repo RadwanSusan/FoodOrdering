@@ -18,7 +18,12 @@ export const CheckoutRedirectButton = ({ children, ...props }) => {
 				});
 			}
 		} catch (err) {
-			console.log(err);
+			Swal.fire({
+				position: 'center',
+				icon: 'error',
+				title: 'Order Failed',
+				showConfirmButton: false,
+			});
 		}
 	};
 	const handleCheckout = async (event) => {

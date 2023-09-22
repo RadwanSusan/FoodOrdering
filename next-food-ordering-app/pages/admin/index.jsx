@@ -2,6 +2,7 @@ import axios from 'axios';
 import Image from 'next/legacy/image';
 import { useState } from 'react';
 import styles from '../../styles/Admin.module.css';
+import Swal from 'sweetalert2';
 
 const Index = ({ orders, products }) => {
 	const [product, setProductList] = useState(products);
@@ -9,15 +10,20 @@ const Index = ({ orders, products }) => {
 	const status = ['preparing', 'on the way', 'delivered'];
 
 	const handleDelete = async (id) => {
-		console.log(id);
 		try {
 			const res = await axios.delete(
 				'http://localhost:800/api/products/' + id,
 			);
-			console.log(`🚀  file: index.jsx:17  res =>`, res);
 			setProductList(product.filter((product) => product._id !== id));
 		} catch (err) {
-			console.log(err);
+			Swal.fire({
+				position: 'center',
+				icon: 'error',
+				title: 'Delete Failed',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+			});
 		}
 	};
 	const handleEdit = (productId) => {
@@ -37,7 +43,14 @@ const Index = ({ orders, products }) => {
 				...orderList.filter((order) => order._id !== id),
 			]);
 		} catch (err) {
-			console.log(err);
+			Swal.fire({
+				position: 'center',
+				icon: 'error',
+				title: 'Status Change Failed',
+				showConfirmButton: false,
+				timer: 1500,
+				timerProgressBar: true,
+			});
 		}
 	};
 

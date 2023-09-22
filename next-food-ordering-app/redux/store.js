@@ -1,12 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from './cartSlice';
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
-const persistConfig = {
-	key: 'root',
-	storage,
-};
+import storage from './custom-storage-engine';
 import {
+	persistReducer,
 	FLUSH,
 	REHYDRATE,
 	PAUSE,
@@ -14,6 +10,11 @@ import {
 	PURGE,
 	REGISTER,
 } from 'redux-persist';
+
+const persistConfig = {
+	key: 'root',
+	storage,
+};
 
 const persistedReducer = persistReducer(persistConfig, cartReducer);
 

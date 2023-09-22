@@ -8,19 +8,6 @@ import { persistStore } from 'redux-persist';
 
 let persistor = persistStore(store);
 
-// function MyApp({ Component, pageProps }) {
-// 	return (
-// 		<Provider store={store}>
-// 			<Layout>
-// 				<NextNProgress color='#8f0900' />
-// 				<Component {...pageProps} />
-// 			</Layout>
-// 		</Provider>
-// 	);
-// }
-
-// export default MyApp;
-
 function MyApp({ Component, pageProps }) {
 	return (
 		<Provider store={store}>
