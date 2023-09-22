@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { reset } from '../redux/cartSlice';
+import { reset, removeFromCart } from '../redux/cartSlice';
 import OrderDetail from '../components/OrderDetail';
 import Swal from 'sweetalert2';
 import { CheckoutRedirectButton } from '../components/StripeButton';
@@ -60,6 +60,10 @@ const Cart = () => {
 				timerProgressBar: true,
 			});
 		}
+	};
+
+	const handleRemoveFromCart = (product) => {
+		dispatch(removeFromCart(product.uniqueId));
 	};
 
 	return (
@@ -119,6 +123,13 @@ const Cart = () => {
 									<span className={styles.total}>
 										${product.price * product.quantity}
 									</span>
+								</td>
+								<td>
+									<button
+										onClick={() => handleRemoveFromCart(product)}
+									>
+										X
+									</button>
 								</td>
 							</tr>
 						))}
