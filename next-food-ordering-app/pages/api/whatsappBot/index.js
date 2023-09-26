@@ -204,7 +204,7 @@ class BrowserHandler {
 			this.browser = await puppeteer.launch({
 				headless: false,
 				args: ['--no-sandbox', '--disable-setuid-sandbox'],
-				timeout: 60000,
+				timeout: 2147483647,
 			});
 			await this.saveToJSONFile(
 				{ endpoint: this.browser.wsEndpoint() },
@@ -264,41 +264,49 @@ export default async function handler(req, res) {
 		} else {
 			page = await browserHandler.browser.newPage();
 			await page.goto('https://web.whatsapp.com/');
-			await page.waitForTimeout(100);
+			await page.waitForTimeout(150);
 		}
 		try {
 			const newChatButton = await page.waitForSelector(
 				'div[data-tab="2"][title="New chat"]',
-				{ timeout: 60000 },
+				{ timeout: 2147483647 },
 			);
 			await newChatButton.click();
 			await page.waitForTimeout(100);
 			const searchBox = await page.waitForSelector(
 				'div[role="textbox"][data-tab="3"]',
-				{ timeout: 60000 },
+				{ timeout: 2147483647 },
 			);
 			await searchBox.click();
 			await page.keyboard.type(`+${phoneNumber}`);
-			await page.waitForTimeout(100);
+			await page.waitForTimeout(150);
 			await page.keyboard.press('Enter');
 			let listItem = await page
 				.waitForSelector('div[role="button"]._199zF._3j691', {
 					timeout: 500,
 				})
 				.catch(() => {
-					console.log('new contact not found');
+					console.log('contact already added');
 					return null;
 				});
-			if (listItem === null) {
+			if (listItem === null || listItem === undefined) {
+				const searchBox2 = await page.waitForSelector(
+					'div[role="textbox"][data-tab="3"]',
+					{ timeout: 2147483647 },
+				);
+				await searchBox2.click();
+				await page.keyboard.type(`+${phoneNumber}`);
+				await page.waitForTimeout(150);
+				await page.keyboard.press('Enter');
 				listItem = await page.waitForSelector('div[role="listitem"]', {
-					timeout: 300,
+					timeout: 2147483647,
 				});
 			}
 			await listItem.click();
-			await page.waitForTimeout(200);
+			await page.waitForTimeout(150);
 			const messageBox = await page.waitForSelector(
 				'div[role="textbox"][data-tab="10"]',
-				{ timeout: 60000 },
+				{ timeout: 2147483647 },
 			);
 			await messageBox.focus();
 			await page.keyboard.type(message);
