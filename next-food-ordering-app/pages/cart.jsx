@@ -17,6 +17,7 @@ const Cart = () => {
 	const router = useRouter();
 
 	const createOrder = async (data) => {
+		console.log(`🚀  file: cart.jsx:20  data =>`, data);
 		try {
 			const orderData = {
 				customer: data.customer,
@@ -24,6 +25,7 @@ const Cart = () => {
 				total: data.total,
 				method: data.method,
 				cart: data.cart,
+				phone_number: data.phone,
 			};
 			const res = await axios.post(
 				'http://localhost:800/api/orders',

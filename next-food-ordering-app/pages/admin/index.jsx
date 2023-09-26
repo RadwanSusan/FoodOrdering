@@ -30,6 +30,29 @@ const Index = ({ orders, products }) => {
 		console.log(productId);
 	};
 
+	// const handleStatus = async (id) => {
+	// 	const item = orderList.filter((order) => order._id === id)[0];
+	// 	const currentStatus = item.status;
+
+	// 	try {
+	// 		const res = await axios.put('http://localhost:800/api/orders/' + id, {
+	// 			status: currentStatus + 1,
+	// 		});
+	// 		setOrderList([
+	// 			res.data,
+	// 			...orderList.filter((order) => order._id !== id),
+	// 		]);
+	// 	} catch (err) {
+	// 		Swal.fire({
+	// 			position: 'center',
+	// 			icon: 'error',
+	// 			title: 'Status Change Failed',
+	// 			showConfirmButton: false,
+	// 			timer: 3000,
+	// 			timerProgressBar: true,
+	// 		});
+	// 	}
+	// };
 	const handleStatus = async (id) => {
 		const item = orderList.filter((order) => order._id === id)[0];
 		const currentStatus = item.status;
@@ -42,6 +65,13 @@ const Index = ({ orders, products }) => {
 				res.data,
 				...orderList.filter((order) => order._id !== id),
 			]);
+
+			const phoneNumber = item.phone_number;
+			console.log(`🚀  file: index.jsx:70  phoneNumber =>`, phoneNumber);
+			const message = `Your order status has been updated to ${
+				status[currentStatus + 1]
+			}`;
+			await axios.post('/api/whatsappBot', { phoneNumber, message });
 		} catch (err) {
 			Swal.fire({
 				position: 'center',
