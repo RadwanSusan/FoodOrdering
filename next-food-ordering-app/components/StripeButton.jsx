@@ -6,7 +6,10 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 export const CheckoutRedirectButton = ({ children, ...props }) => {
 	const createOrder = async (data) => {
 		try {
-			const res = await axios.post('http://localhost:800/api/orders', data);
+			const res = await axios.post(
+				'http://31.170.165.239:800/api/orders',
+				data,
+			);
 			if (res.status === 201) {
 				dispatch(reset());
 				router.push(`/orders/${res.data._id}`);

@@ -17,7 +17,7 @@ module.exports = {
 					{ key: 'Access-Control-Allow-Credentials', value: 'true' },
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: 'localhost:800/*',
+						value: '31.170.165.239:800/*',
 					},
 					{ key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS' },
 					{ key: 'Access-Control-Allow-Headers', value: 'Content-Type' },

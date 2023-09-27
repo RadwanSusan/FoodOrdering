@@ -9,7 +9,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 async function updateOrder(session, res) {
 	const orderId = session.metadata.order_id;
 	const response = await axios.put(
-		`http://localhost:800/api/orders/${orderId}`,
+		`http://31.170.165.239:800/api/orders/${orderId}`,
 		{
 			payment_received: true,
 			customer: session.customer_details.name,

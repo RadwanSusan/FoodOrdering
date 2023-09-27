@@ -50,14 +50,14 @@ const Add = memo(({ setClose }) => {
 		const data = new FormData();
 		data.append('file', file);
 		const uploadRes = await axios.post(
-			'http://localhost:800/api/upload',
+			'http://31.170.165.239:800/api/upload',
 			data,
 		);
 		return uploadRes.data.files.file[0].url;
 	};
 
 	const createProduct = async (product) => {
-		await axios.post('http://localhost:800/api/products', product);
+		await axios.post('http://31.170.165.239:800/api/products', product);
 	};
 	const showSuccessMessage = useCallback((message) => {
 		Swal.fire({

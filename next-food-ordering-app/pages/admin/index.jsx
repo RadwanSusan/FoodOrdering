@@ -12,7 +12,7 @@ const Index = ({ orders, products }) => {
 	const handleDelete = async (id) => {
 		try {
 			const res = await axios.delete(
-				'http://localhost:800/api/products/' + id,
+				'http://31.170.165.239:800/api/products/' + id,
 			);
 			setProductList(product.filter((product) => product._id !== id));
 		} catch (err) {
@@ -35,7 +35,7 @@ const Index = ({ orders, products }) => {
 	// 	const currentStatus = item.status;
 
 	// 	try {
-	// 		const res = await axios.put('http://localhost:800/api/orders/' + id, {
+	// 		const res = await axios.put('http://31.170.165.239:800/api/orders/' + id, {
 	// 			status: currentStatus + 1,
 	// 		});
 	// 		setOrderList([
@@ -58,9 +58,12 @@ const Index = ({ orders, products }) => {
 		const currentStatus = item.status;
 
 		try {
-			const res = await axios.put('http://localhost:800/api/orders/' + id, {
-				status: currentStatus + 1,
-			});
+			const res = await axios.put(
+				'http://31.170.165.239:800/api/orders/' + id,
+				{
+					status: currentStatus + 1,
+				},
+			);
 			setOrderList([
 				res.data,
 				...orderList.filter((order) => order._id !== id),
@@ -185,8 +188,8 @@ export const getServerSideProps = async (ctx) => {
 		};
 	}
 
-	const productRes = await axios.get('http://localhost:800/api/products');
-	const orderRes = await axios.get('http://localhost:800/api/orders');
+	const productRes = await axios.get('http://31.170.165.239:800/api/products');
+	const orderRes = await axios.get('http://31.170.165.239:800/api/orders');
 
 	return {
 		props: {
