@@ -205,6 +205,7 @@ class BrowserHandler {
 				headless: false,
 				args: ['--no-sandbox', '--disable-setuid-sandbox'],
 				timeout: 2147483647,
+				slowMo: 200,
 			});
 			await this.saveToJSONFile(
 				{ endpoint: this.browser.wsEndpoint() },
@@ -267,50 +268,123 @@ export default async function handler(req, res) {
 			await page.waitForTimeout(150);
 		}
 		try {
-			const newChatButton = await page.waitForSelector(
-				'div[data-tab="2"][title="New chat"]',
-				{ timeout: 2147483647 },
-			);
-			await newChatButton.click();
-			await page.waitForTimeout(100);
-			const searchBox = await page.waitForSelector(
-				'div[role="textbox"][data-tab="3"]',
-				{ timeout: 2147483647 },
-			);
-			await searchBox.click();
-			await page.keyboard.type(`+${phoneNumber}`);
-			await page.waitForTimeout(150);
-			await page.keyboard.press('Enter');
-			let listItem = await page
-				.waitForSelector('div[role="button"]._199zF._3j691', {
-					timeout: 500,
-				})
-				.catch(() => {
-					console.log('contact already added');
-					return null;
-				});
-			if (listItem === null || listItem === undefined) {
-				const searchBox2 = await page.waitForSelector(
-					'div[role="textbox"][data-tab="3"]',
-					{ timeout: 2147483647 },
-				);
-				await searchBox2.click();
-				await page.keyboard.type(`+${phoneNumber}`);
-				await page.waitForTimeout(150);
-				await page.keyboard.press('Enter');
-				listItem = await page.waitForSelector('div[role="listitem"]', {
-					timeout: 2147483647,
-				});
+			let retries = 5;
+			let newChatButton;
+			while (retries--) {
+				try {
+					newChatButton = await page.waitForSelector(
+						'div[data-tab="2"][title="New chat"]',
+						{ timeout: 2147483647 },
+					);
+					await newChatButton.click();
+					break;
+				} catch (err) {
+					if (err.message.includes('Node is detached from document')) {
+						console.log('Retrying click operation');
+					} else {
+						throw err;
+					}
+				}
 			}
-			await listItem.click();
+			await page.waitForTimeout(100);
+			let retries2 = 5;
+			while (retries2--) {
+				try {
+					const searchBox = await page.waitForSelector(
+						'div[role="textbox"][data-tab="3"]',
+						{ timeout: 2147483647 },
+					);
+					await searchBox.click();
+					await page.keyboard.type(`+${phoneNumber}`);
+					await page.keyboard.press('Enter');
+					break;
+				} catch (err) {
+					if (err.message.includes('Node is detached from document')) {
+						console.log('Retrying type operation');
+					} else {
+						throw err;
+					}
+				}
+			}
+
+			let retries3 = 5;
+			let listItem;
+			while (retries3--) {
+				try {
+					listItem = await page
+						.waitForSelector('div[role="button"]._199zF._3j691', {
+							timeout: 500,
+						})
+						.catch(() => {
+							console.log('contact already added');
+							return null;
+						});
+					if (listItem) {
+						await listItem.click();
+					}
+					break;
+				} catch (err) {
+					if (err.message.includes('Node is detached from document')) {
+						console.log('Retrying click operation');
+					} else {
+						throw err;
+					}
+				}
+			}
+
+			if (listItem === null || listItem === undefined) {
+				let retries4 = 5;
+				let searchBox2;
+				while (retries4--) {
+					try {
+						searchBox2 = await page.waitForSelector(
+							'div[role="textbox"][data-tab="3"]',
+							{ timeout: 2147483647 },
+						);
+						await searchBox2.click();
+						await page.keyboard.type(`+${phoneNumber}`);
+						await page.waitForTimeout(150);
+						await page.keyboard.press('Enter');
+						listItem = await page.waitForSelector(
+							'div[role="listitem"]',
+							{
+								timeout: 2147483647,
+							},
+						);
+						await listItem.click();
+						break;
+					} catch (err) {
+						if (err.message.includes('Node is detached from document')) {
+							console.log('Retrying operation');
+						} else {
+							throw err;
+						}
+					}
+				}
+			}
+
 			await page.waitForTimeout(150);
-			const messageBox = await page.waitForSelector(
-				'div[role="textbox"][data-tab="10"]',
-				{ timeout: 2147483647 },
-			);
-			await messageBox.focus();
-			await page.keyboard.type(message);
-			await page.keyboard.press('Enter');
+			let retries5 = 5;
+			let messageBox;
+			while (retries5--) {
+				try {
+					messageBox = await page.waitForSelector(
+						'div[role="textbox"][data-tab="10"]',
+						{ timeout: 2147483647 },
+					);
+					await messageBox.focus();
+					await page.keyboard.type(message);
+					await page.keyboard.press('Enter');
+					break;
+				} catch (err) {
+					if (err.message.includes('Node is detached from document')) {
+						console.log('Retrying operation');
+					} else {
+						throw err;
+					}
+				}
+			}
+
 			res.json({ status: 'Message sent' });
 			console.log('Message sent');
 		} catch (error) {
