@@ -4,13 +4,39 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import styles from '../../styles/Admin.module.css';
 import Swal from 'sweetalert2';
 import Add from '../../components/Add';
+import ProductCategoryDropdown from '../../components/ProductCategoryDropdown';
 
 const status = ['preparing', 'on the way', 'delivered'];
+const options = [
+	{ value: 'Best Sellers', label: 'best sellers' },
+	{ value: 'Our Mix Grill', label: 'Our Mix Grill' },
+	{ value: 'Meal for one', label: 'Meal for one' },
+	{ value: 'Meal for two', label: 'Meal for two' },
+	{ value: 'Meal for four', label: 'Meal for four' },
+	{ value: 'Sandwiches', label: 'Sandwiches' },
+	{ value: 'Wrap Sandwiches', label: 'Wrap Sandwiches' },
+	{ value: 'Appetizer', label: 'Appetizer' },
+	{ value: 'Pans', label: 'Pans' },
+	{ value: 'Salad', label: 'Salad' },
+	{ value: 'Australian Lamb', label: 'Australian Lamb' },
+	{ value: 'Local Lamb', label: 'Local Lamb' },
+	{ value: 'Syrian Lamb', label: 'Syrian Lamb' },
+	{ value: 'Mutton', label: 'Mutton' },
+	{ value: 'Australian Beef', label: 'Australian Beef' },
+	{ value: 'Local Beef', label: 'Local Beef' },
+	{ value: 'Fresh Chicken', label: 'Fresh Chicken' },
+	{ value: 'Ready To Cook', label: 'Ready To Cook' },
+	{ value: 'Ready To Grill', label: 'Ready To Grill' },
+	{ value: 'Frozen Item', label: 'Frozen Item' },
+	{ value: 'Soft Drinks', label: 'Soft Drinks' },
+];
+
 const Index = ({ orders, products }) => {
 	const [product, setProductList] = useState(products);
 	const [orderList, setOrderList] = useState(orders);
 	const [editingId, setEditingId] = useState(null);
 	const [close, setClose] = useState(true);
+	const [selectedCategory, setSelectedCategory] = useState(options[0].value);
 	const originalOrderList = useRef(orders);
 
 	useEffect(() => {
@@ -176,6 +202,10 @@ const Index = ({ orders, products }) => {
 			) : (
 				<>
 					<div className={styles.item}>
+						<ProductCategoryDropdown
+							options={options}
+							onCategoryChange={setSelectedCategory}
+						/>
 						<h1 className={styles.title}>Products</h1>
 						<table className={styles.table}>
 							<tbody>
@@ -187,41 +217,45 @@ const Index = ({ orders, products }) => {
 									<th>Action</th>
 								</tr>
 							</tbody>
-							{product.map((product) => (
-								<tbody key={product._id}>
-									<tr className={styles.trTitle}>
-										<td>
-											<Image
-												src={product.img}
-												width={50}
-												height={50}
-												objectFit='cover'
-												alt='product-image'
-											/>
-										</td>
-										<td>{product._id.slice(0, 5)}...</td>
-										<td>{product.title}</td>
-										<td>
-											${product.prices[0]} - ${product.prices[1]} - $
-											{product.prices[2]}
-										</td>
-										<td>
-											<button
-												className={styles.button}
-												onClick={() => handleEdit(product._id)}
-											>
-												Edit
-											</button>
-											<button
-												className={styles.button}
-												onClick={() => handleDelete(product._id)}
-											>
-												Delete
-											</button>
-										</td>
-									</tr>
-								</tbody>
-							))}
+							{product
+								.filter((product) =>
+									product.category.includes(selectedCategory),
+								)
+								.map((product) => (
+									<tbody key={product._id}>
+										<tr className={styles.trTitle}>
+											<td>
+												<Image
+													src={product.img}
+													width={50}
+													height={50}
+													objectFit='cover'
+													alt='product-image'
+												/>
+											</td>
+											<td>{product._id.slice(0, 5)}...</td>
+											<td>{product.title}</td>
+											<td>
+												${product.prices[0]} - ${product.prices[1]}{' '}
+												- ${product.prices[2]}
+											</td>
+											<td>
+												<button
+													className={styles.button}
+													onClick={() => handleEdit(product._id)}
+												>
+													Edit
+												</button>
+												<button
+													className={styles.button}
+													onClick={() => handleDelete(product._id)}
+												>
+													Delete
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								))}
 						</table>
 					</div>
 
@@ -291,6 +325,11 @@ const Index = ({ orders, products }) => {
 
 export const getServerSideProps = async (ctx) => {
 	const myCookie = ctx.req?.cookies || '';
+	let admin = false;
+
+	if (myCookie.token === process.env.TOKEN) {
+		admin = true;
+	}
 
 	if (myCookie.token !== process.env.TOKEN) {
 		return {
@@ -308,6 +347,7 @@ export const getServerSideProps = async (ctx) => {
 		props: {
 			orders: orderRes.data,
 			products: productRes.data,
+			admin,
 		},
 	};
 };

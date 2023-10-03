@@ -161,7 +161,7 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 						color='white'
 					/>
 				</span>
-				<h1>Add a new Product</h1>
+				{productToEdit ? <h1>Edit Product</h1> : <h1>Add Product</h1>}
 				<div className={styles.item}>
 					<label className={styles.label}>Choose an image</label>
 					<input

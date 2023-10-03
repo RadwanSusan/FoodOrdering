@@ -40,6 +40,9 @@ const OrderSchema = new mongoose.Schema(
 			type: Boolean,
 			default: false,
 		},
+		deviceId: {
+			type: String,
+		},
 	},
 	{ timestamps: true },
 );

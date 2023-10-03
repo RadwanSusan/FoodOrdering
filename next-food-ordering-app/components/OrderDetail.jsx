@@ -145,6 +145,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 			showLoaderOnConfirm: true,
 		}).then((result) => {
 			if (result.isConfirmed) {
+				const deviceId = localStorage.getItem('deviceId');
 				createOrder({
 					customer,
 					address,
@@ -152,6 +153,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 					total: newTotal,
 					method: 'Cash on Delivery',
 					cart: JSON.stringify(cart.products),
+					deviceId: deviceId,
 				})
 					.then(() => {
 						Swal.fire({

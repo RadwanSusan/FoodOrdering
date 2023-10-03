@@ -17,7 +17,6 @@ const Cart = () => {
 	const router = useRouter();
 
 	const createOrder = async (data) => {
-		console.log(`🚀  file: cart.jsx:20  data =>`, data);
 		try {
 			const orderData = {
 				customer: data.customer,
@@ -26,6 +25,7 @@ const Cart = () => {
 				method: data.method,
 				cart: data.cart,
 				phone_number: data.phone,
+				deviceId: localStorage.getItem('deviceId'),
 			};
 			const res = await axios.post(
 				'http://localhost:800/api/orders',
@@ -76,11 +76,15 @@ const Cart = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				dispatch(removeFromCart(product.uniqueId));
-				Swal.fire(
-					'Deleted!',
-					'Your item has been removed from the cart.',
-					'success',
-				);
+				Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title: 'Item Removed',
+					text: 'This item has been removed from cart',
+					showConfirmButton: false,
+					timer: 3000,
+					timerProgressBar: true,
+				});
 			}
 		});
 	};
@@ -227,6 +231,21 @@ const Cart = () => {
 			)}
 		</div>
 	);
+};
+
+export const getServerSideProps = async (ctx) => {
+	const myCookie = ctx.req?.cookies || '';
+	let admin = false;
+
+	if (myCookie.token === process.env.TOKEN) {
+		admin = true;
+	}
+
+	return {
+		props: {
+			admin,
+		},
+	};
 };
 
 export default Cart;
