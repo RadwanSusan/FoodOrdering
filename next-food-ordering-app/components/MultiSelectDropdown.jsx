@@ -25,13 +25,20 @@ const options = [
 	{ value: 'Soft Drinks', label: 'Soft Drinks' },
 ];
 
-const MultiSelectDropdown = ({ onChange }) => (
-	<Select
-		options={options}
-		onChange={onChange}
-		menuPlacement='top'
-		isMulti
-	/>
-);
+const MultiSelectDropdown = ({ onChange, value }) => {
+	const selectedOptions = options.filter((option) =>
+		(value || []).includes(option.value),
+	);
+
+	return (
+		<Select
+			options={options}
+			onChange={onChange}
+			value={selectedOptions}
+			menuPlacement='top'
+			isMulti
+		/>
+	);
+};
 
 export default MultiSelectDropdown;

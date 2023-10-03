@@ -33,7 +33,6 @@
    height: 630px;
    background: #fff;
    background-color: #ffffff;
-   background: #fff url("https://codepenworldsfair.com/images/small-worlds-fair.png") center/250px no-repeat;
    border: 12px solid #333;
    border-radius: 36px;
    position: relative;
@@ -86,7 +85,7 @@
    left: 50%;
    transform: translate3d(var(--x), var(--y), var(--z));
    cursor: pointer;
-   z-index: 9999;
+   z-index: 5;
    transition: 0.15s cubic-bezier(0.33, 1, 0.53, 1);
    -webkit-transform: translate3d(var(--x), var(--y), var(--z));
    -moz-transform: translate3d(var(--x), var(--y), var(--z));

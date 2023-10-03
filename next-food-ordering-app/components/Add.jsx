@@ -5,16 +5,21 @@ import Swal from 'sweetalert2';
 import MultiSelectDropdown from './MultiSelectDropdown';
 import { IoClose } from 'react-icons/io5';
 
-const Add = memo(({ setClose }) => {
-	const [product, setProduct] = useState({
-		file: null,
-		title: null,
-		desc: null,
-		prices: [],
-		extraOptions: [],
-		extra: null,
-		category: null,
-	});
+const Add = memo(({ setClose, productToEdit, onCancel }) => {
+	const [product, setProduct] = useState(
+		() =>
+			productToEdit || {
+				file: null,
+				title: null,
+				desc: null,
+				prices: [],
+				extraOptions: [],
+				extra: null,
+				category: null,
+			},
+	);
+
+	const [extra, setExtra] = useState({ text: '', price: '' });
 
 	const changePrice = useCallback((e, index) => {
 		setProduct((prevProduct) => {
@@ -32,32 +37,34 @@ const Add = memo(({ setClose }) => {
 	}, []);
 
 	const handleExtraInput = useCallback((e) => {
-		setProduct((prevProduct) => ({
-			...prevProduct,
-			extra: { ...prevProduct.extra, [e.target.name]: e.target.value },
+		setExtra((prevExtra) => ({
+			...prevExtra,
+			[e.target.name]: e.target.value,
 		}));
 	}, []);
 
 	const handleExtra = useCallback(() => {
-		setProduct((prevProduct) => ({
-			...prevProduct,
-			extraOptions: [...prevProduct.extraOptions, product.extra],
-			extra: null,
-		}));
-	}, [product.extra]);
+		if (extra.text.trim() !== '' && extra.price.trim() !== '') {
+			setProduct((prevProduct) => ({
+				...prevProduct,
+				extraOptions: [...prevProduct.extraOptions, extra],
+			}));
+			setExtra({ text: '', price: '' });
+		}
+	}, [extra]);
 
 	const uploadFile = async (file) => {
 		const data = new FormData();
 		data.append('file', file);
 		const uploadRes = await axios.post(
-			'http://31.170.165.239:800/api/upload',
+			'http://localhost:800/api/upload',
 			data,
 		);
 		return uploadRes.data.files.file[0].url;
 	};
 
 	const createProduct = async (product) => {
-		await axios.post('http://31.170.165.239:800/api/products', product);
+		await axios.post('http://localhost:800/api/products', product);
 	};
 	const showSuccessMessage = useCallback((message) => {
 		Swal.fire({
@@ -94,17 +101,59 @@ const Add = memo(({ setClose }) => {
 			};
 			await createProduct(newProduct);
 			setClose(true);
+			onCancel();
 			showSuccessMessage('Product Added');
 		} catch (err) {
 			showErrorMessage('Something went wrong');
 		}
-	}, [product, setClose, showErrorMessage, showSuccessMessage]);
+	}, [product, setClose, showErrorMessage, showSuccessMessage, onCancel]);
+
+	const handleUpdate = useCallback(async () => {
+		try {
+			let url;
+			if (product.file) {
+				url = await uploadFile(product.file);
+			} else {
+				url = product.img;
+			}
+			const updatedProduct = {
+				_id: product._id,
+				title: product.title,
+				desc: product.desc,
+				prices: product.prices,
+				extraOptions: product.extraOptions,
+				img: url,
+				category: product.category,
+			};
+			await axios.put(
+				'http://localhost:800/api/products/' + product._id,
+				updatedProduct,
+			);
+			setClose(true);
+			onCancel();
+			showSuccessMessage('Product Updated');
+		} catch (err) {
+			showErrorMessage('Something went wrong');
+		}
+	}, [product, setClose, showErrorMessage, showSuccessMessage, onCancel]);
+
+	const handleDeleteExtra = useCallback((optionToDelete) => {
+		setProduct((prevProduct) => ({
+			...prevProduct,
+			extraOptions: prevProduct.extraOptions.filter(
+				(option) => option !== optionToDelete,
+			),
+		}));
+	}, []);
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
 				<span
-					onClick={() => setClose(true)}
+					onClick={() => {
+						setClose(true);
+						onCancel();
+					}}
 					className={styles.close}
 				>
 					<IoClose
@@ -120,6 +169,7 @@ const Add = memo(({ setClose }) => {
 						onChange={(e) =>
 							setProduct({ ...product, file: e.target.files[0] })
 						}
+						accept='image/*'
 					/>
 				</div>
 				<div className={styles.item}>
@@ -130,6 +180,7 @@ const Add = memo(({ setClose }) => {
 						onChange={(e) =>
 							setProduct({ ...product, title: e.target.value })
 						}
+						value={product.title}
 					/>
 				</div>
 				<div className={styles.item}>
@@ -140,6 +191,7 @@ const Add = memo(({ setClose }) => {
 						onChange={(e) =>
 							setProduct({ ...product, desc: e.target.value })
 						}
+						value={product.desc}
 					/>
 				</div>
 				<div className={styles.item}>
@@ -150,18 +202,21 @@ const Add = memo(({ setClose }) => {
 							type='number'
 							placeholder='Small'
 							onChange={(e) => changePrice(e, 0)}
+							value={product.prices[0]}
 						/>
 						<input
 							className={`${styles.input} ${styles.inputSm}`}
 							type='number'
 							placeholder='Medium'
 							onChange={(e) => changePrice(e, 1)}
+							value={product.prices[1]}
 						/>
 						<input
 							className={`${styles.input} ${styles.inputSm}`}
 							type='number'
 							placeholder='Large'
 							onChange={(e) => changePrice(e, 2)}
+							value={product.prices[2]}
 						/>
 					</div>
 				</div>
@@ -175,6 +230,7 @@ const Add = memo(({ setClose }) => {
 							name='text'
 							id='extra'
 							onChange={handleExtraInput}
+							value={extra.text}
 						/>
 						<input
 							className={`${styles.input} ${styles.inputSm}`}
@@ -183,34 +239,41 @@ const Add = memo(({ setClose }) => {
 							name='price'
 							id='extra2'
 							onChange={handleExtraInput}
+							value={extra.price}
 						/>
 						<button
 							className={styles.extraButton}
 							onClick={handleExtra}
 						>
-							Add
+							Add option
 						</button>
 					</div>
 					<div className={styles.extraItems}>
-						{product.extraOptions.map((option) => (
-							<span
-								key={option.text}
+						{product.extraOptions.map((option, index) => (
+							<div
+								key={index}
 								className={styles.extraItem}
 							>
-								{option.text}
-							</span>
+								<span>{option.text}</span>
+								<button onClick={() => handleDeleteExtra(option)}>
+									X
+								</button>
+							</div>
 						))}
 					</div>
 				</div>
 				<div className={styles.item}>
 					<label className={styles.label}>Category</label>
-					<MultiSelectDropdown onChange={handleCategoryChange} />
+					<MultiSelectDropdown
+						onChange={handleCategoryChange}
+						value={product.category}
+					/>
 				</div>
 				<button
 					className={styles.addButton}
-					onClick={handleCreate}
+					onClick={productToEdit ? handleUpdate : handleCreate}
 				>
-					Create
+					{productToEdit ? 'Update' : 'Create'}
 				</button>
 			</div>
 		</div>

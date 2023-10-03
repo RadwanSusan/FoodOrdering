@@ -28,7 +28,7 @@ const Cart = () => {
 				phone_number: data.phone,
 			};
 			const res = await axios.post(
-				'http://31.170.165.239:800/api/orders',
+				'http://localhost:800/api/orders',
 				orderData,
 			);
 			if (res.status === 201) {

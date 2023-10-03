@@ -26,7 +26,7 @@ const MenuList = ({ menuListItems }) => {
 	);
 
 	useEffect(() => {
-		handleCategoryClick('best sellers');
+		handleCategoryClick('Best Sellers');
 	}, [handleCategoryClick]);
 
 	const renderSubMenu = (menuTitle, items) => {
@@ -74,7 +74,7 @@ const MenuList = ({ menuListItems }) => {
 					>
 						<div
 							onClick={() => {
-								handleCategoryClick('best sellers');
+								handleCategoryClick('Best Sellers');
 							}}
 						>
 							best sellers
