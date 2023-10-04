@@ -101,7 +101,7 @@ const Orders = () => {
 		// 	))}
 		// </div>
 		<>
-			<h1 style={{ margin: '40px' }}>Active Orders</h1>
+			<h1 style={{ margin: '40px' }}>My Orders</h1>
 			<div className={styles.container}>
 				{orders.map((order) => (
 					<div
