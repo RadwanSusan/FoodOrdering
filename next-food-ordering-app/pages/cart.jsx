@@ -26,6 +26,7 @@ const Cart = () => {
 				cart: data.cart,
 				phone_number: data.phone,
 				deviceId: localStorage.getItem('deviceId'),
+				shippingCost: data.shippingCost,
 			};
 			const res = await axios.post(
 				'http://localhost:800/api/orders',

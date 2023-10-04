@@ -43,6 +43,10 @@ const OrderSchema = new mongoose.Schema(
 		deviceId: {
 			type: String,
 		},
+		shippingCost: {
+			type: Number,
+			required: true,
+		},
 	},
 	{ timestamps: true },
 );

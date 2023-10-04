@@ -55,13 +55,19 @@ const Orders = () => {
 							>
 								<span>Track Your Order</span>
 							</Link>
-							<h6>{order.method}</h6>
+							<h5>{order.method}</h5>
 							<>
 								<span>
 									Order total:{' '}
 									<strong style={{ textDecoration: 'underline' }}>
 										{order.total} AED
 									</strong>
+								</span>
+							</>
+							<>
+								<span>
+									Shipping costs:{' '}
+									<strong>{order.shippingCost} AED</strong>
 								</span>
 							</>
 							<hr />

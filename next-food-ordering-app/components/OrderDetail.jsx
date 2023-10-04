@@ -154,6 +154,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 					method: 'Cash on Delivery',
 					cart: JSON.stringify(cart.products),
 					deviceId: deviceId,
+					shippingCost,
 				})
 					.then(() => {
 						Swal.fire({
