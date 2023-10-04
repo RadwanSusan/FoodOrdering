@@ -67,13 +67,11 @@ const Orders = () => {
 			.then((response) => response.json())
 			.then((data) => dispatch(setOrders(data)));
 	}, [dispatch]);
-	console.log(orders);
-
 	const getRandomColorClass = () => {
 		const randomIndex = Math.floor(Math.random() * tagColors.length);
 		return styles[tagColors[randomIndex]];
 	};
-
+	console.log(orders);
 	return (
 		// <div className={styles.container}>
 		// 	{orders.map((order) => (
@@ -103,7 +101,7 @@ const Orders = () => {
 		// 	))}
 		// </div>
 		<>
-			<h1>My Orders</h1>
+			<h1 style={{ margin: '40px' }}>Active Orders</h1>
 			<div className={styles.container}>
 				{orders.map((order) => (
 					<div
@@ -113,28 +111,49 @@ const Orders = () => {
 						<div className={styles.cardHeader}>
 							<img
 								src={JSON.parse(orders[0].cart)[0].img}
-								alt='rover'
+								alt='product-image'
 							/>
 						</div>
 						<div className={styles.cardBody}>
-							<span className={`${styles.tag} ${getRandomColorClass()}`}>
-								<Link href={`/orders/${order._id}`}>More Info</Link>
-							</span>
-							<h4>{order.title}</h4>
-							<ul>
-								<li>
-									<span>
-										{order.cart.map((item) => (
-											<div key={JSON.parse(item)[0].uniqueId}>
-												<p>
-													{JSON.parse(item).map((i) => i.title)}
-												</p>
-												<p>{item.description}</p>
-											</div>
-										))}
-									</span>
-								</li>
-							</ul>
+							<Link
+								href={`/orders/${order._id}`}
+								className={`${styles.tag} ${getRandomColorClass()}`}
+							>
+								<span>Track Your Order</span>
+							</Link>
+							<h6>{order.method}</h6>
+							<>
+								<span>
+									Order total:{' '}
+									<strong style={{ textDecoration: 'underline' }}>
+										{order.total} AED
+									</strong>
+								</span>
+							</>
+							<hr />
+							<table className={styles.table}>
+								<thead>
+									<tr>
+										<th>Quantity</th>
+										<th>Product Name</th>
+										<th>Price</th>
+									</tr>
+								</thead>
+								<tbody>
+									{order.cart.map((item, index) => {
+										const parsedItem = JSON.parse(item);
+										return parsedItem.map((i, iIndex) => (
+											<tr key={`${index}-${iIndex}`}>
+												<td>{i.quantity}</td>
+												<td>{i.title}</td>
+												<td>{i.price} AED</td>
+											</tr>
+										));
+									})}
+								</tbody>
+							</table>
+							<h3>Your Order</h3>
+							<hr />
 							<div className={styles.user}>
 								<div className={styles.userInfo}>
 									<h5>{order.customer}</h5>
