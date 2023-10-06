@@ -9,7 +9,8 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	background-color: rgba(197, 197, 197, 0.568);
+	background-color: rgb(49 49 49 / 52%);
+	backdrop-filter: blur(10px);
 }
 
 .wrapper {
@@ -22,6 +23,17 @@
 	align-items: center;
 	justify-content: center;
 	border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+@media screen and (max-width: 620px) {
+	.wrapper {
+		width: 95vw;
+		position: fixed;
+	}
+
+	.container {
+		position: fixed;
+	}
 }
 
 .title {
@@ -76,6 +88,14 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	z-index: 100000;
+}
+
+@media screen and (max-width: 620px) {
+	.closeButton {
+		right: calc(100vw - 100px);
+		top: -249px;
+	}
 }
 
 .closeButton:hover {

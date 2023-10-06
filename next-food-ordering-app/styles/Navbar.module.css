@@ -1,17 +1,20 @@
 .container {
 	height: 100px;
 	padding: 0px 50px;
-	background-color: #d1411e;
+	background-color: #ffffffa3;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
 	z-index: 999;
+	backdrop-filter: blur(15px);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .item {
-	flex: auto;
+	flex: 0.93;
 	display: flex;
 	align-items: center;
 }
@@ -49,7 +52,7 @@
 }
 
 .callButton {
-	background-color: white;
+	background-color: #ff6452;
 	border-radius: 50%;
 	padding: 10px;
 	width: 50px;
@@ -58,7 +61,7 @@
 
 .texts {
 	margin-left: 20px;
-	color: white;
+	color: black;
 }
 
 .text:first-child {
@@ -76,7 +79,7 @@
 	display: flex;
 	align-items: center;
 	list-style: none;
-	color: white;
+	color: black;
 }
 
 .listItem {
@@ -97,21 +100,21 @@
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
-	background-color: white;
+	background-color: #ff6452;
 	padding: 3px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-weight: bold;
-	color: #d1411e;
+	color: #fff;
 }
 
 .active {
 	font-weight: bolder;
-	color: #fff;
+	color: #000;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 620px) {
 	.item:nth-child(2) {
 		display: none;
 	}
@@ -168,7 +171,7 @@
 		bottom: 0;
 		left: 0;
 		right: -15px;
-		background: #d22116;
+		background: #fff;
 		transform-origin: 0 0;
 		transform: skew(-14deg) translateX(-120%);
 		transition: all .275s .1s;
@@ -281,7 +284,7 @@
 	.mainNav i {
 		display: block;
 		padding: 12px 0;
-		color: #ffffff;
+		color: #000;
 		font-size: 1.4em;
 		text-decoration: none;
 		font-weight: bold;
@@ -308,7 +311,7 @@
 		width: 28px;
 		height: 4px;
 		margin: 0 auto;
-		background: #ffffff;
+		background: #000;
 		transform: skew(5deg);
 		transition: all .275s;
 		z-index: 100000;
@@ -327,7 +330,7 @@
 		content: '';
 		display: block;
 		height: 100%;
-		background: #ffffff;
+		background: #000;
 		transition: all .275s;
 		-webkit-transition: all .275s;
 		-moz-transition: all .275s;
@@ -384,7 +387,7 @@
 		text-transform: uppercase;
 		font-weight: 500;
 		text-align: center;
-		color: #ffffff;
+		color: #000;
 	}
 
 	.container {

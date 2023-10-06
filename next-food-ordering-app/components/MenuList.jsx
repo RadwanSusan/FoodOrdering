@@ -65,7 +65,6 @@ const MenuList = ({ menuListItems }) => {
 				OUR MENU
 			</h1>
 			<br />
-			<br />
 			<nav className={barStyles.menu}>
 				<ol>
 					<li

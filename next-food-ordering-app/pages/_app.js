@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }) {
 				persistor={persistor}
 			>
 				<Layout {...pageProps}>
-					<NextNProgress color='#8f0900' />
+					<NextNProgress color='#da0f00' />
 					<Component {...pageProps} />
 				</Layout>
 			</PersistGate>

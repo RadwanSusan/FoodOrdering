@@ -45,6 +45,20 @@
   color: white;
 }
 
+@media screen and (max-width: 620px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .container {
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
+}
+
 .totalTextTitle {
   margin-right: 10px;
 }
@@ -57,7 +71,7 @@
   margin-top: 20px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 620px) {
   .container {
     flex-direction: column;
     padding: 20px;
@@ -102,10 +116,12 @@
     content: "Price: ";
     font-weight: 500;
   }
+
   .quantity::before {
     content: "Quantity: ";
     font-weight: 500;
   }
+
   .total::before {
     content: "Total: ";
     font-weight: 500;
@@ -123,6 +139,7 @@
 }
 
 .payButton {
+  width: 100%;
   padding: 10px 5px;
   cursor: pointer;
   margin-bottom: 5px;

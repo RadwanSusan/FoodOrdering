@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
 					priority
 				/>
 				<h1 className={styles.title}>{product.title}</h1>
-				<span className={styles.price}>${product.prices[0]}</span>
+				<span className={styles.price}>{product.prices[0]} AED</span>
 			</Link>
 			<p className={styles.desc}>{product.desc}</p>
 		</div>

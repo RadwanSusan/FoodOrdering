@@ -135,9 +135,61 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 
 		const newTotal = total + shippingCost;
 
+		// Swal.fire({
+		// 	title: 'Shipping Cost',
+		// 	text: `The shipping cost is ${shippingCost} AED. The new total is ${newTotal} AED. Confirm order?`,
+		// 	icon: 'question',
+		// 	showCancelButton: true,
+		// 	confirmButtonText: 'Yes',
+		// 	cancelButtonText: 'No',
+		// 	showLoaderOnConfirm: true,
+		// }).then((result) => {
+		// 	if (result.isConfirmed) {
+		// 		const deviceId = localStorage.getItem('deviceId');
+		// 		createOrder({
+		// 			customer,
+		// 			address,
+		// 			phone,
+		// 			total: newTotal,
+		// 			method: 'Cash on Delivery',
+		// 			cart: JSON.stringify(cart.products),
+		// 			deviceId: deviceId,
+		// 			shippingCost,
+		// 		})
+		// 			.then(() => {
+		// 				Swal.fire({
+		// 					icon: 'success',
+		// 					title: 'Order created',
+		// 					text: 'Your order has been created successfully!',
+		// 					showConfirmButton: false,
+		// 					timer: 3000,
+		// 					timerProgressBar: true,
+		// 				});
+		// 			})
+		// 			.catch((error) => {
+		// 				Swal.fire({
+		// 					icon: 'error',
+		// 					title: 'Order failed, please try again',
+		// 					text: error,
+		// 					showConfirmButton: false,
+		// 					timer: 5000,
+		// 					timerProgressBar: true,
+		// 				});
+		// 			});
+		// 	} else if (result.isDismissed) {
+		// 		Swal.fire({
+		// 			icon: 'info',
+		// 			title: 'Order cancelled',
+		// 			text: 'You have cancelled the order.',
+		// 			showConfirmButton: false,
+		// 			timer: 5000,
+		// 			timerProgressBar: true,
+		// 		});
+		// 	}
+		// });
 		Swal.fire({
 			title: 'Shipping Cost',
-			text: `The shipping cost is $${shippingCost}. The new total is $${newTotal}. Confirm order?`,
+			text: `The shipping cost is ${shippingCost} AED. The new total is ${newTotal} AED. Confirm order?`,
 			icon: 'question',
 			showCancelButton: true,
 			confirmButtonText: 'Yes',
@@ -154,7 +206,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 					method: 'Cash on Delivery',
 					cart: JSON.stringify(cart.products),
 					deviceId: deviceId,
-					shippingCost,
+					shippingCost: shippingCost || 0,
 				})
 					.then(() => {
 						Swal.fire({
@@ -165,6 +217,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 							timer: 3000,
 							timerProgressBar: true,
 						});
+						setCash(false);
 					})
 					.catch((error) => {
 						Swal.fire({
@@ -243,7 +296,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 						/>
 					</span>
 					<div className={styles.wrapper}>
-						<h1 className={styles.title}>Your total is ${total}</h1>
+						<h1 className={styles.title}>Your total is {total} AED</h1>
 						<div className={styles.item}>
 							<label className={styles.label}>Name Surname</label>
 							<input

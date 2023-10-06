@@ -135,7 +135,7 @@ const Cart = () => {
 								</td>
 								<td>
 									<span className={styles.price}>
-										${product.price}
+										{product.price} AED
 									</span>
 								</td>
 								<td>
@@ -145,7 +145,7 @@ const Cart = () => {
 								</td>
 								<td>
 									<span className={styles.total}>
-										${product.price * product.quantity}
+										{product.price * product.quantity} AED
 									</span>
 								</td>
 								<td>
@@ -163,15 +163,16 @@ const Cart = () => {
 			<div className={styles.right}>
 				<div className={styles.wrapper}>
 					<h2 className={styles.title}>CART TOTAL</h2>
-					<div className={styles.totalText}>
-						<b className={styles.totalTextTitle}>Subtotal:</b>$
-						{cart.total}
+					{/* <div className={styles.totalText}>
+						<b className={styles.totalTextTitle}>Subtotal:</b>
+						{cart.total} AED
 					</div>
 					<div className={styles.totalText}>
-						<b className={styles.totalTextTitle}>Discount:</b>$0.00
-					</div>
+						<b className={styles.totalTextTitle}>Discount:</b>0.00 AED
+					</div> */}
 					<div className={styles.totalText}>
-						<b className={styles.totalTextTitle}>Total:</b>${cart.total}
+						<b className={styles.totalTextTitle}>Total:</b>
+						{cart.total} AED
 					</div>
 					{open ? (
 						<div className={styles.paymentMethods}>
@@ -198,7 +199,7 @@ const Cart = () => {
 								currency='aed'
 								cart={cart}
 							>
-								PAY WITH STRIPE
+								PAY WITH CREDIT/DEBIT CARD
 							</CheckoutRedirectButton>
 						</div>
 					) : (

@@ -32,7 +32,6 @@ const Orders = () => {
 		const randomIndex = Math.floor(Math.random() * tagColors.length);
 		return styles[tagColors[randomIndex]];
 	};
-	console.log(orders);
 	return (
 		<>
 			<h1 style={{ margin: '40px' }}>My Orders</h1>

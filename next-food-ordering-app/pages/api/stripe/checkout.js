@@ -8,7 +8,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 const handler = async (req, res) => {
 	if (req.method === 'POST') {
 		try {
-			const { currency, cart } = req.body;
+			const { currency, cart, shippingCost } = req.body;
+			console.log(`🚀  file: checkout.js:12  req.body =>`, req.body);
 
 			if (!cart?.products || cart.products.length === 0) {
 				return res.status(400).json({ message: 'No cart items found.' });
@@ -25,7 +26,9 @@ const handler = async (req, res) => {
 					unit_amount: product.price * 100,
 				},
 				quantity: product.quantity,
+				shippingCost,
 			}));
+			console.log(`🚀  file: checkout.js:29  lineItems =>`, lineItems);
 
 			const cartData = {
 				method: 'stripe payment',
@@ -60,6 +63,7 @@ const handler = async (req, res) => {
 					success_url: `${req.headers.origin}/success`,
 					cancel_url: `${req.headers.origin}/cancel`,
 				});
+				console.log('Session ID:', session.id);
 				res.status(200).json({ sessionId: session.id });
 			} else {
 				res.status(400).json({ statusCode: response.status });

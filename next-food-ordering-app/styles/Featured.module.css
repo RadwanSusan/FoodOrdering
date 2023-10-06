@@ -1,5 +1,5 @@
 .container {
-  height: calc(100vh - 100px);
+  height: calc(70vh - 100px);
   background-color: #d1411e;
   overflow: hidden;
   position: relative;
@@ -20,7 +20,7 @@
   width: 300vw;
   height: 100%;
   display: flex;
-  transition: all 1.5s ease-in-out ;
+  transition: all 1.5s ease-in-out;
 }
 
 .imgContainer {
@@ -29,8 +29,8 @@
   position: relative;
 }
 
-@media screen and (max-width: 480px) {
-  .container{
+@media screen and (max-width: 620px) {
+  .container {
     height: 50vh;
   }
 }
