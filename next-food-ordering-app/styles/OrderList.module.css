@@ -6,6 +6,7 @@
    flex-wrap: wrap;
    justify-content: flex-start;
    margin: 0 50px 110px 50px;
+   margin-bottom: 20%;
 }
 
 .card {

@@ -26,7 +26,7 @@ const MenuList = ({ menuListItems }) => {
 	);
 
 	useEffect(() => {
-		handleCategoryClick('Best Sellers');
+		handleCategoryClick('Beef');
 	}, [handleCategoryClick]);
 
 	const renderSubMenu = (menuTitle, items) => {
@@ -69,35 +69,38 @@ const MenuList = ({ menuListItems }) => {
 				<ol>
 					<li
 						className={barStyles.menuItem}
-						key='best sellers - mobile'
+						key='Beef - mobile'
 					>
 						<div
 							onClick={() => {
-								handleCategoryClick('Best Sellers');
+								handleCategoryClick('Beef');
 							}}
 						>
-							best sellers
+							Beef
 						</div>
 					</li>
 					<li
 						className={barStyles.menuItem}
-						key={'Our Mix Grill - mobile'}
+						key={'Chicken- mobile'}
 					>
-						<div onClick={() => handleCategoryClick('Our Mix Grill')}>
-							Our Mix Grill
+						<div onClick={() => handleCategoryClick('Chicken')}>
+							Chicken
 						</div>
 					</li>
-					{renderSubMenu('Meals', [
-						'Meal For One',
-						'Meal For Two',
-						'Meal For Three',
-					])}
 					<li
 						className={barStyles.menuItem}
-						key={'Sandwiches - mobile'}
+						key={'Lamb - mobile'}
 					>
-						<div onClick={() => handleCategoryClick('Sandwiches')}>
-							Sandwiches
+						<div onClick={() => handleCategoryClick('Lamb')}>Lamb</div>
+					</li>
+					<li
+						className={barStyles.menuItem}
+						key={'Ready to Cook/Grill - mobile'}
+					>
+						<div
+							onClick={() => handleCategoryClick('Ready to Cook/Grill')}
+						>
+							Ready to Cook/Grill
 						</div>
 					</li>
 					<li
@@ -110,10 +113,21 @@ const MenuList = ({ menuListItems }) => {
 					</li>
 					<li
 						className={barStyles.menuItem}
-						key={'Pans - mobile'}
+						key={'Beverages - mobile'}
 					>
-						<div onClick={() => handleCategoryClick('Pans')}>Pans</div>
+						<div onClick={() => handleCategoryClick('Beverages')}>
+							Beverages
+						</div>
 					</li>
+					<li
+						className={barStyles.menuItem}
+						key={'Cooked in a Pan - mobile'}
+					>
+						<div onClick={() => handleCategoryClick('Cooked in a Pan')}>
+							Cooked in a Pan
+						</div>
+					</li>
+					{renderSubMenu('Grills', ['Kgs', 'Meals'])}
 					<li
 						className={barStyles.menuItem}
 						key={'Salads - mobile'}
@@ -122,27 +136,20 @@ const MenuList = ({ menuListItems }) => {
 							Salads
 						</div>
 					</li>
-					{renderSubMenu('Lambs', [
-						'Australian Lamb',
-						'Local Lamb',
-						'Syrian Lamb',
-					])}
 					<li
 						className={barStyles.menuItem}
-						key={'Mutton - mobile'}
+						key={'Sandwiches - mobile'}
 					>
-						<div onClick={() => handleCategoryClick('Mutton')}>
-							Mutton
+						<div onClick={() => handleCategoryClick('Sandwiches')}>
+							Sandwiches
 						</div>
 					</li>
-					{renderSubMenu('Beef', ['Australian Beef', 'Local Beef'])}
-					{renderSubMenu('Other Meals', [
-						'Fresh Chicken',
-						'Ready To Cook',
-						'Ready To Grill',
-						'Frozen Items',
-						'Soft Drinks',
-					])}
+					<li
+						className={barStyles.menuItem}
+						key={'Wraps - mobile'}
+					>
+						<div onClick={() => handleCategoryClick('Wraps')}>Wraps</div>
+					</li>
 				</ol>
 			</nav>
 			{filteredProducts.length === 0 ? (

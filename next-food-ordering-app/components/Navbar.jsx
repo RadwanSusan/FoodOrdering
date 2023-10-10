@@ -175,6 +175,7 @@ const Navbar = ({ admin }) => {
 						<div className={styles.cart}>
 							<Image
 								src='/img/admin.svg'
+								style={{ filter: 'invert(1)' }}
 								alt='admin'
 								width={35}
 								height={35}

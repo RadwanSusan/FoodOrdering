@@ -20,7 +20,8 @@
 		"fs": "0.0.1-security",
 		"geolib": "^3.3.4",
 		"micro": "^10.0.1",
-		"mongoose": "^7.5.4",
+		"mongodb": "^6.1.0",
+		"mongoose": "^7.6.1",
 		"multiparty": "^4.2.3",
 		"next": "13.5.4",
 		"nextjs-progressbar": "^0.0.16",
@@ -38,11 +39,11 @@
 		"stripe": "^13.9.0",
 		"sweetalert2": "^11.7.32",
 		"uuid": "^9.0.1",
-		"yet-another-react-lightbox": "^3.12.3"
+		"yet-another-react-lightbox": "^3.13.1"
 	},
 	"devDependencies": {
 		"@netlify/plugin-nextjs": "^4.40.2",
-		"eslint": "8.50.0",
+		"eslint": "8.51.0",
 		"eslint-config-next": "13.5.4"
 	}
 }
