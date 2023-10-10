@@ -5,6 +5,11 @@ import styles from '../../styles/Admin.module.css';
 import Swal from 'sweetalert2';
 import Add from '../../components/Add';
 import ProductCategoryDropdown from '../../components/ProductCategoryDropdown';
+import {
+	differenceInHours,
+	differenceInMinutes,
+	differenceInDays,
+} from 'date-fns';
 
 const status = ['preparing', 'on the way', 'delivered'];
 const options = [
@@ -20,15 +25,6 @@ const options = [
 	{ value: 'Salad', label: 'Salad' },
 	{ value: 'Sandwiches', label: 'Sandwiches' },
 	{ value: 'Wraps', label: 'Wraps' },
-	// { value: 'Syrian Lamb', label: 'Syrian Lamb' },
-	// { value: 'Mutton', label: 'Mutton' },
-	// { value: 'Australian Beef', label: 'Australian Beef' },
-	// { value: 'Local Beef', label: 'Local Beef' },
-	// { value: 'Fresh Chicken', label: 'Fresh Chicken' },
-	// { value: 'Ready To Cook', label: 'Ready To Cook' },
-	// { value: 'Ready To Grill', label: 'Ready To Grill' },
-	// { value: 'Frozen Item', label: 'Frozen Item' },
-	// { value: 'Soft Drinks', label: 'Soft Drinks' },
 ];
 
 const Index = ({ orders, products }) => {
@@ -48,6 +44,15 @@ const Index = ({ orders, products }) => {
 
 		return () => clearInterval(interval);
 	}, []);
+
+	const isToday = (someDate) => {
+		const today = new Date();
+		return (
+			someDate.getDate() == today.getDate() &&
+			someDate.getMonth() == today.getMonth() &&
+			someDate.getFullYear() == today.getFullYear()
+		);
+	};
 
 	const handleDelete = useCallback(
 		async (id) => {
@@ -276,11 +281,10 @@ const Index = ({ orders, products }) => {
 							onChange={(e) => handleFilter('customer', e.target.value)}
 							placeholder='Filter by customer'
 						/>
-						<h1 className={styles.title}>Orders</h1>
+						<h1 className={styles.title}> Today's Orders</h1>
 						<table className={styles.table}>
 							<tbody>
 								<tr className={styles.trTitle}>
-									<th>Id</th>
 									<th>Customer</th>
 									<th>Total</th>
 									<th>Payment</th>
@@ -292,7 +296,6 @@ const Index = ({ orders, products }) => {
 							{orderList.map((order) => (
 								<tbody key={order._id}>
 									<tr className={styles.trTitle}>
-										<td>{order._id.slice(0, 5)}...</td>
 										<td>{order.customer}</td>
 										<td>${order.total}</td>
 										<td>
@@ -304,10 +307,41 @@ const Index = ({ orders, products }) => {
 										</td>
 										<td>{status[order.status]}</td>
 										<td>
-											{new Date(order.createdAt).toLocaleString()}
+											{(() => {
+												const diffInDays = differenceInDays(
+													new Date(),
+													new Date(order.createdAt),
+												);
+
+												if (diffInDays >= 1) {
+													return `${diffInDays} day ago`;
+												} else {
+													const diffInHours = differenceInHours(
+														new Date(),
+														new Date(order.createdAt),
+													);
+
+													if (diffInHours < 1) {
+														const diffInMinutes =
+															differenceInMinutes(
+																new Date(),
+																new Date(order.createdAt),
+															);
+														return `${diffInMinutes} minutes ago`;
+													} else {
+														const remainingMinutes =
+															differenceInMinutes(
+																new Date(),
+																new Date(order.createdAt),
+															) % 60;
+														return `${diffInHours} hr ${remainingMinutes} minutes ago`;
+													}
+												}
+											})()}
 										</td>
 										<td>
 											<button
+												className={styles.nextStepButton}
 												onClick={() => handleStatus(order._id)}
 											>
 												Next Stage
