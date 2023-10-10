@@ -9,7 +9,7 @@ if (!mongoUrl) {
 }
 
 let cachedConnection = null;
-let connectionPromise = null;
+// let connectionPromise = null;
 
 async function dbConnect() {
 	if (cachedConnection) {
