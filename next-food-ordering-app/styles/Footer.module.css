@@ -1,7 +1,8 @@
 .container {
-  height: calc(100vh - 100px);
+  height: calc(45vh - 100px);
   background-color: #222;
   display: flex;
+  overflow: hidden;
 }
 
 .item {
@@ -16,7 +17,7 @@
   justify-content: space-between;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 620px) {
   .item:last-child {
     padding: 10px;
   }
@@ -40,7 +41,7 @@
   color: rgb(211, 211, 211);
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 620px) {
   .container {
     height: auto;
     text-align: center;

@@ -59,7 +59,7 @@ const Navbar = ({ admin }) => {
 			<div className={[styles.item, styles.phone].join(' ')}>
 				<div className={styles.callButton}>
 					<Image
-						src='/img/phone.svg'
+						src='/img/phone-white.svg'
 						alt='phone'
 						width='32'
 						height='32'
@@ -78,7 +78,7 @@ const Navbar = ({ admin }) => {
 			</div>
 			<div className={styles.item}>
 				<ul className={styles.list}>
-					<Link
+					{/* <Link
 						href='/'
 						passHref
 						aria-label='link to homepage'
@@ -103,14 +103,14 @@ const Navbar = ({ admin }) => {
 						>
 							Products
 						</li>
-					</Link>
+					</Link> */}
 					<Link
 						href='/'
 						passHref
 						aria-label='link to homepage'
 					>
 						<Image
-							src='/img/pme-svg-logo.svg'
+							src='/img/lahmahAndFahmah/logo.png'
 							alt='restaurant logo'
 							width={80}
 							height={80}
@@ -118,7 +118,7 @@ const Navbar = ({ admin }) => {
 							priority
 						/>
 					</Link>
-					<Link
+					{/* <Link
 						href='#menu'
 						passHref
 						aria-label='link to menu page'
@@ -143,7 +143,7 @@ const Navbar = ({ admin }) => {
 						>
 							Contact
 						</li>
-					</Link>
+					</Link> */}
 				</ul>
 			</div>
 			<Link
@@ -155,7 +155,7 @@ const Navbar = ({ admin }) => {
 				<div className={styles.item}>
 					<div className={styles.cart}>
 						<Image
-							src='/img/orders.svg'
+							src='/img/pastOrders.svg'
 							alt='orders'
 							width={35}
 							height={35}
@@ -175,6 +175,7 @@ const Navbar = ({ admin }) => {
 						<div className={styles.cart}>
 							<Image
 								src='/img/admin.svg'
+								style={{ filter: 'invert(1)' }}
 								alt='admin'
 								width={35}
 								height={35}
@@ -193,7 +194,7 @@ const Navbar = ({ admin }) => {
 				<div className={styles.item}>
 					<div className={styles.cart}>
 						<Image
-							src='/img/cart.svg'
+							src='/img/cart-black.svg'
 							alt='cart'
 							width={30}
 							height={30}

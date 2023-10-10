@@ -137,7 +137,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 
 		Swal.fire({
 			title: 'Shipping Cost',
-			text: `The shipping cost is $${shippingCost}. The new total is $${newTotal}. Confirm order?`,
+			text: `The shipping cost is ${shippingCost} AED. The new total is ${newTotal} AED. Confirm order?`,
 			icon: 'question',
 			showCancelButton: true,
 			confirmButtonText: 'Yes',
@@ -154,6 +154,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 					method: 'Cash on Delivery',
 					cart: JSON.stringify(cart.products),
 					deviceId: deviceId,
+					shippingCost: shippingCost || 0,
 				})
 					.then(() => {
 						Swal.fire({
@@ -164,6 +165,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 							timer: 3000,
 							timerProgressBar: true,
 						});
+						setCash(false);
 					})
 					.catch((error) => {
 						Swal.fire({
@@ -230,69 +232,87 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 
 	return (
 		<>
-			{setCash && (
-				<div className={styles.container}>
-					<span
-						className={styles.closeButton}
-						onClick={() => setCash(false)}
+			<div className={styles.container}>
+				<span
+					className={styles.closeButton}
+					onClick={() => setCash(false)}
+				>
+					<IoClose
+						size={23}
+						color='white'
+					/>
+				</span>
+				<div className={styles.wrapper}>
+					<h1
+						className={styles.title}
+						style={{ color: 'black' }}
 					>
-						<IoClose
-							size={23}
-							color='white'
+						Your total is {total} AED
+					</h1>
+					<div className={styles.item}>
+						<label
+							className={styles.label}
+							style={{ color: 'black' }}
+						>
+							Name Surname
+						</label>
+						<input
+							placeholder='Full Name'
+							type='text'
+							className={styles.input}
+							onChange={(e) => setCustomer(e.target.value)}
 						/>
-					</span>
-					<div className={styles.wrapper}>
-						<h1 className={styles.title}>Your total is ${total}</h1>
-						<div className={styles.item}>
-							<label className={styles.label}>Name Surname</label>
-							<input
-								placeholder='Full Name'
-								type='text'
-								className={styles.input}
-								onChange={(e) => setCustomer(e.target.value)}
-							/>
-						</div>
-						<div className={styles.item}>
-							<label className={styles.label}>Phone Number</label>
-							<input
-								type='text'
-								placeholder='+971(50)0000000'
-								className={styles.input}
-								onChange={(e) => setPhone(e.target.value)}
-							/>
-						</div>
-						<div className={styles.item}>
-							<label className={styles.label}>Address</label>
-							<textarea
-								rows={5}
-								placeholder='Po Box 17918 Jebel Ali Free Zone, Dubai, UAE'
-								type='text'
-								className={styles.textarea}
-								value={address}
-								onChange={(e) => setAddress(e.target.value)}
-							/>
-						</div>
-						<div className={styles.item}>
-							<button
-								className={styles.button}
-								onClick={() => getLocation()}
-							>
-								Get My Location
-							</button>
-							<br />
-							<button
-								className={styles.button}
-								disabled={
-									!customer && (!address || !userLocation) && !phone
-								}
-								onClick={handleClick}
-							>
-								Order
-							</button>
-						</div>
+					</div>
+					<div className={styles.item}>
+						<label
+							className={styles.label}
+							style={{ color: 'black' }}
+						>
+							Phone Number
+						</label>
+						<input
+							type='text'
+							placeholder='+971(50)0000000'
+							className={styles.input}
+							onChange={(e) => setPhone(e.target.value)}
+						/>
+					</div>
+					<div className={styles.item}>
+						<label
+							className={styles.label}
+							style={{ color: 'black' }}
+						>
+							Address
+						</label>
+						<textarea
+							rows={5}
+							placeholder='Po Box 17918 Jebel Ali Free Zone, Dubai, UAE'
+							type='text'
+							className={styles.textarea}
+							value={address}
+							onChange={(e) => setAddress(e.target.value)}
+						/>
+					</div>
+					<div className={styles.item}>
+						<button
+							className={styles.button}
+							onClick={() => getLocation()}
+						>
+							Get My Location
+						</button>
+						<br />
+						<button
+							className={styles.button}
+							disabled={
+								!customer && (!address || !userLocation) && !phone
+							}
+							onClick={handleClick}
+						>
+							Order
+						</button>
 					</div>
 				</div>
-			)}
+			</div>
 		</>
 	);
 };

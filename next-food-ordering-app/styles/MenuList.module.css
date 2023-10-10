@@ -20,7 +20,7 @@
   margin-top: 35px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 620px) {
   .title {
     text-align: center;
   }

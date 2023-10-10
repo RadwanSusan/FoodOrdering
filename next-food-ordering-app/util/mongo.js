@@ -9,10 +9,18 @@ if (!mongoUrl) {
 }
 
 let cachedConnection = null;
+let connectionPromise = null;
 
 async function dbConnect() {
 	if (cachedConnection) {
 		console.log('Using cached database connection');
+		return cachedConnection;
+	}
+
+	if (connectionPromise) {
+		console.log('Waiting for existing database connection');
+		await connectionPromise;
+		console.log('Using existing database connection');
 		return cachedConnection;
 	}
 
@@ -21,9 +29,9 @@ async function dbConnect() {
 		bufferCommands: false,
 	};
 
-	cachedConnection = mongoose
-		.connect(mongoUrl, connectionOptions)
-		.then(() => mongoose);
+	connectionPromise = mongoose.connect(mongoUrl, connectionOptions);
+	cachedConnection = await connectionPromise;
+	connectionPromise = null;
 
 	return cachedConnection;
 }

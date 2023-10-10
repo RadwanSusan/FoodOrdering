@@ -51,149 +51,86 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 					<a
 						href='#menu'
 						key={1}
-						onClick={() => handleCategoryClick('best sellers')}
+						onClick={() => handleCategoryClick('Chicken')}
 					>
-						Best Sellers
+						Chicken
 					</a>
 					<a
 						href='#menu'
 						key={2}
-						onClick={() => handleCategoryClick('Our Mix Grill')}
+						onClick={() => handleCategoryClick('Lamb')}
 					>
-						Our Mix Grill
+						Lamb
 					</a>
 					<a
 						href='#menu'
 						key={3}
-						onClick={() => handleCategoryClick('Meal For One')}
+						onClick={() => handleCategoryClick('Ready to Cook/Grill ')}
 					>
-						Meal For One
+						Ready to Cook/Grill
 					</a>
 					<a
 						href='#menu'
 						key={4}
-						onClick={() => handleCategoryClick('Meal For Two')}
-					>
-						Meal For Two
-					</a>
-					<a
-						href='#menu'
-						key={5}
-						onClick={() => handleCategoryClick('Meal For Three')}
-					>
-						Meal For Three
-					</a>
-					<a
-						href='#menu'
-						key={6}
-						onClick={() => handleCategoryClick('Sandwiches')}
-					>
-						Sandwiches
-					</a>
-					<a
-						href='#menu'
-						key={7}
 						onClick={() => handleCategoryClick('Appetizers')}
 					>
 						Appetizers
 					</a>
 					<a
 						href='#menu'
-						key={8}
-						onClick={() => handleCategoryClick('Pans')}
+						key={5}
+						onClick={() => handleCategoryClick('Beverages')}
 					>
-						Pans
+						Beverages
+					</a>
+					<a
+						href='#menu'
+						key={6}
+						onClick={() => handleCategoryClick('Cooked in a Pan')}
+					>
+						Cooked in a Pan
+					</a>
+					<a
+						href='#menu'
+						key={7}
+						onClick={() => handleCategoryClick('Grills')}
+					>
+						Grills
+					</a>
+					<a
+						href='#menu'
+						key={8}
+						onClick={() => handleCategoryClick('Grills - Kgs')}
+					>
+						Grills - Kgs
 					</a>
 					<a
 						href='#menu'
 						key={9}
+						onClick={() => handleCategoryClick('Grills - Meals')}
+					>
+						Grills - Meals
+					</a>
+					<a
+						href='#menu'
+						key={10}
 						onClick={() => handleCategoryClick('Salads')}
 					>
 						Salads
 					</a>
 					<a
 						href='#menu'
-						key={10}
-						onClick={() => handleCategoryClick('Australian Lamb')}
-					>
-						Australian Lamb
-					</a>
-					<a
-						href='#menu'
 						key={11}
-						onClick={() => handleCategoryClick('Local Lamb')}
+						onClick={() => handleCategoryClick('Sandwiches')}
 					>
-						Local Lamb
+						Sandwiches
 					</a>
 					<a
 						href='#menu'
 						key={12}
-						onClick={() => handleCategoryClick('Syrian Lamb')}
+						onClick={() => handleCategoryClick('Wraps')}
 					>
-						Syrian Lamb
-					</a>
-					<a
-						href='#menu'
-						key={13}
-						onClick={() => handleCategoryClick('Mutton')}
-					>
-						Mutton
-					</a>
-					<a
-						href='#menu'
-						key={14}
-						onClick={() => handleCategoryClick('Australian Beef')}
-					>
-						Australian Beef
-					</a>
-					<a
-						href='#menu'
-						key={15}
-						onClick={() => handleCategoryClick('Local Beef')}
-					>
-						Local Beef
-					</a>
-					<a
-						href='#menu'
-						key={16}
-						onClick={() => handleCategoryClick('Local Lamb')}
-					>
-						Local Lamb
-					</a>
-					<a
-						href='#menu'
-						key={17}
-						onClick={() => handleCategoryClick('Fresh Chicken')}
-					>
-						Fresh Chicken
-					</a>
-					<a
-						href='#menu'
-						key={18}
-						onClick={() => handleCategoryClick('Ready To Cook')}
-					>
-						Ready To Cook
-					</a>
-					<a
-						href='#menu'
-						key={19}
-						onClick={() => handleCategoryClick('Ready To Grill')}
-					>
-						Ready To Grill
-					</a>
-					<a
-						href='#menu'
-						key={20}
-						onClick={() => handleCategoryClick('Frozen Items')}
-					>
-						Frozen Items
-					</a>
-					<a
-						href='#menu'
-						key={21}
-						onClick={() => handleCategoryClick('Soft Drinks')}
-					>
-						Soft Drinks
+						Wraps
 					</a>
 				</div>
 				<div className={styles.menu__contact}>

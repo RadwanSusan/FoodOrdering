@@ -38,7 +38,7 @@ a {
   background-image: -webkit-gradient(linear,
       left bottom,
       left top,
-      color-stop(0.44, #ff691d),
-      color-stop(0.72, rgb(217, 73, 54)),
-      color-stop(0.86, rgb(245, 91, 30)));
+      color-stop(0.44, #ff1d1d),
+      color-stop(0.72, rgb(217, 54, 54)),
+      color-stop(0.86, rgb(245, 30, 30)));
 }
