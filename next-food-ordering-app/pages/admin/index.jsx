@@ -5,6 +5,18 @@ import styles from '../../styles/Admin.module.css';
 import Swal from 'sweetalert2';
 import Add from '../../components/Add';
 import ProductCategoryDropdown from '../../components/ProductCategoryDropdown';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import {
 	differenceInHours,
 	differenceInMinutes,
@@ -13,46 +25,34 @@ import {
 
 const status = ['preparing', 'on the way', 'delivered'];
 const options = [
-	{ value: 'Beef', label: 'Beef' },
-	{ value: 'Chicken', label: 'Chicken' },
-	{ value: 'Lamb', label: 'Lamb' },
-	{ value: 'Ready to Cook/Grill', label: 'Ready to Cook/Grill' },
-	{ value: 'Appetizers', label: 'Appetizers' },
-	{ value: 'Beverages', label: 'Beverages' },
-	{ value: 'Cooked in a Pan', label: 'Cooked in a Pan' },
-	{ value: 'Grills - Kgs', label: 'Grills - Kgs' },
-	{ value: 'Grills - Meals', label: 'Grills - Meals' },
-	{ value: 'Salad', label: 'Salad' },
+	{ value: 'Best Sellers', label: 'best sellers' },
+	{ value: 'Our Mix Grill', label: 'Our Mix Grill' },
+	{ value: 'Meal for one', label: 'Meal for one' },
+	{ value: 'Meal for two', label: 'Meal for two' },
+	{ value: 'Meal for four', label: 'Meal for four' },
 	{ value: 'Sandwiches', label: 'Sandwiches' },
-	{ value: 'Wraps', label: 'Wraps' },
+	{ value: 'Wrap Sandwiches', label: 'Wrap Sandwiches' },
+	{ value: 'Appetizer', label: 'Appetizer' },
+	{ value: 'Pans', label: 'Pans' },
+	{ value: 'Salad', label: 'Salad' },
+	{ value: 'Australian Lamb', label: 'Australian Lamb' },
+	{ value: 'Local Lamb', label: 'Local Lamb' },
+	{ value: 'Syrian Lamb', label: 'Syrian Lamb' },
+	{ value: 'Mutton', label: 'Mutton' },
+	{ value: 'Australian Beef', label: 'Australian Beef' },
+	{ value: 'Local Beef', label: 'Local Beef' },
+	{ value: 'Fresh Chicken', label: 'Fresh Chicken' },
+	{ value: 'Ready To Cook', label: 'Ready To Cook' },
+	{ value: 'Ready To Grill', label: 'Ready To Grill' },
+	{ value: 'Frozen Item', label: 'Frozen Item' },
+	{ value: 'Soft Drinks', label: 'Soft Drinks' },
 ];
 
-const Index = ({ orders, products }) => {
-	const [product, setProductList] = useState(products);
-	const [orderList, setOrderList] = useState(orders);
+const ProductsTab = ({ products, setProductList }) => {
+	const [selectedCategory, setSelectedCategory] = useState(options[0].value);
+	const [product, setProduct] = useState(products);
 	const [editingId, setEditingId] = useState(null);
 	const [close, setClose] = useState(true);
-	const [selectedCategory, setSelectedCategory] = useState(options[0].value);
-	const originalOrderList = useRef(orders);
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			axios.get('http://localhost:800/api/products').then((res) => {
-				setProductList(res.data);
-			});
-		}, 3000);
-
-		return () => clearInterval(interval);
-	}, []);
-
-	const isToday = (someDate) => {
-		const today = new Date();
-		return (
-			someDate.getDate() == today.getDate() &&
-			someDate.getMonth() == today.getMonth() &&
-			someDate.getFullYear() == today.getFullYear()
-		);
-	};
 
 	const handleDelete = useCallback(
 		async (id) => {
@@ -102,41 +102,6 @@ const Index = ({ orders, products }) => {
 		setEditingId(productId);
 	}, []);
 
-	const handleStatus = useCallback(
-		async (id) => {
-			const item = orderList.filter((order) => order._id === id)[0];
-			const currentStatus = item.status;
-
-			try {
-				const res = await axios.put(
-					'http://localhost:800/api/orders/' + id,
-					{
-						status: currentStatus + 1,
-					},
-				);
-				setOrderList([
-					res.data,
-					...orderList.filter((order) => order._id !== id),
-				]);
-				const phoneNumber = item.phone_number;
-				const message = `Your order status has been updated to ${
-					status[currentStatus + 1]
-				}`;
-				await axios.post('/api/whatsappBot', { phoneNumber, message });
-			} catch (err) {
-				Swal.fire({
-					position: 'center',
-					icon: 'error',
-					title: 'Status Change Failed',
-					showConfirmButton: false,
-					timer: 3000,
-					timerProgressBar: true,
-				});
-			}
-		},
-		[orderList, status],
-	);
-
 	const handleUpdate = useCallback(
 		async (updatedProduct) => {
 			try {
@@ -163,38 +128,6 @@ const Index = ({ orders, products }) => {
 		},
 		[product],
 	);
-	const handleSort = (key) => {
-		let sortedOrders;
-
-		if (key === 'newest') {
-			sortedOrders = [...orderList].sort(
-				(a, b) => new Date(b.createdAt) - new Date(a.createdAt),
-			);
-		} else if (key === 'oldest') {
-			sortedOrders = [...orderList].sort(
-				(a, b) => new Date(a.createdAt) - new Date(b.createdAt),
-			);
-		} else {
-			sortedOrders = [...orderList].sort((a, b) => {
-				if (a[key] < b[key]) return -1;
-				if (a[key] > b[key]) return 1;
-				return 0;
-			});
-		}
-
-		setOrderList(sortedOrders);
-	};
-
-	const handleFilter = (key, value) => {
-		const filteredOrders = originalOrderList.current.filter((order) => {
-			if (order[key] && typeof order[key] === 'string') {
-				return order[key].toLowerCase().includes(value.toLowerCase());
-			}
-			return false;
-		});
-		setOrderList(filteredOrders);
-	};
-
 	return (
 		<div className={styles.container}>
 			{editingId ? (
@@ -232,13 +165,13 @@ const Index = ({ orders, products }) => {
 											<td>
 												<Image
 													src={product.img}
-													width={50}
-													height={50}
+													width={110}
+													height={110}
 													objectFit='cover'
 													alt='product-image'
 												/>
 											</td>
-											<td>{product._id.slice(0, 5)}...</td>
+											<td>{product._id.slice(0, 7)}...</td>
 											<td>{product.title}</td>
 											<td>
 												{product.prices[0]} AED -{' '}
@@ -264,97 +197,508 @@ const Index = ({ orders, products }) => {
 								))}
 						</table>
 					</div>
-
-					<div className={styles.item}>
-						<select onChange={(e) => handleSort(e.target.value)}>
-							<option value='newest'>Sort by Newest</option>
-							<option value='oldest'>Sort by Oldest</option>
-							<option value='id'>Sort by ID</option>
-							<option value='customer'>Sort by Customer</option>
-							<option value='total'>Sort by Total</option>
-							<option value='payment'>Sort by Payment</option>
-							<option value='status'>Sort by Status</option>
-						</select>
-
-						<input
-							type='text'
-							onChange={(e) => handleFilter('customer', e.target.value)}
-							placeholder='Filter by customer'
-						/>
-						<h1 className={styles.title}> Today's Orders</h1>
-						<table className={styles.table}>
-							<tbody>
-								<tr className={styles.trTitle}>
-									<th>Customer</th>
-									<th>Total</th>
-									<th>Payment</th>
-									<th>Status</th>
-									<th>Order Date</th>
-									<th>Action</th>
-								</tr>
-							</tbody>
-							{orderList.map((order) => (
-								<tbody key={order._id}>
-									<tr className={styles.trTitle}>
-										<td>{order.customer}</td>
-										<td>${order.total}</td>
-										<td>
-											{order.method === 0 ? (
-												<span>cash</span>
-											) : (
-												<span>paid</span>
-											)}
-										</td>
-										<td>{status[order.status]}</td>
-										<td>
-											{(() => {
-												const diffInDays = differenceInDays(
-													new Date(),
-													new Date(order.createdAt),
-												);
-
-												if (diffInDays >= 1) {
-													return `${diffInDays} day ago`;
-												} else {
-													const diffInHours = differenceInHours(
-														new Date(),
-														new Date(order.createdAt),
-													);
-
-													if (diffInHours < 1) {
-														const diffInMinutes =
-															differenceInMinutes(
-																new Date(),
-																new Date(order.createdAt),
-															);
-														return `${diffInMinutes} minutes ago`;
-													} else {
-														const remainingMinutes =
-															differenceInMinutes(
-																new Date(),
-																new Date(order.createdAt),
-															) % 60;
-														return `${diffInHours} hr ${remainingMinutes} minutes ago`;
-													}
-												}
-											})()}
-										</td>
-										<td>
-											<button
-												className={styles.nextStepButton}
-												onClick={() => handleStatus(order._id)}
-											>
-												Next Stage
-											</button>
-										</td>
-									</tr>
-								</tbody>
-							))}
-						</table>
-					</div>
 				</>
 			)}
 		</div>
+	);
+};
+
+const TodaysOrdersTab = ({
+	orderList,
+	handleSort,
+	handleFilter,
+	handleStatus,
+}) => {
+	const [sortValue, setSortValue] = useState('newest');
+	const [sortOrder, setSortOrder] = useState();
+
+	return (
+		<div className={styles.item}>
+			<h1 className={styles.title}>Filter</h1>
+			<div>
+				<Select
+					value={sortValue}
+					onChange={(e) => {
+						handleSort(e.target.value);
+						setSortValue(e.target.value);
+					}}
+					size='small'
+					className={styles.filterOrders}
+				>
+					<MenuItem value='newest'>Sort by Newest</MenuItem>
+					<MenuItem value='oldest'>Sort by Oldest</MenuItem>
+					<MenuItem value='id'>Sort by ID</MenuItem>
+					<MenuItem value='customer'>Sort by Customer</MenuItem>
+					<MenuItem value='total'>Sort by Total</MenuItem>
+					<MenuItem value='payment'>Sort by Payment Method</MenuItem>
+					<MenuItem value='status'>Sort by Status</MenuItem>
+				</Select>
+				<TextField
+					type='text'
+					onChange={(e) => handleFilter('customer', e.target.value)}
+					placeholder='Filter by customer'
+					size='small'
+				/>
+				<FormControl
+					component='fieldset'
+					size='small'
+					style={{ marginLeft: '10px' }}
+				>
+					<RadioGroup
+						row
+						value={sortOrder}
+						onChange={(e) => {
+							handleSort(sortValue, e.target.value);
+							setSortOrder(e.target.value);
+						}}
+					>
+						<FormControlLabel
+							value='asc'
+							control={<Radio />}
+							label='Ascending'
+						/>
+						<FormControlLabel
+							value='desc'
+							control={<Radio />}
+							label='Descending'
+						/>
+					</RadioGroup>
+				</FormControl>
+			</div>
+			<h1 className={styles.title}> Today's Orders</h1>
+			<table className={styles.table}>
+				<tbody>
+					<tr className={styles.trTitle}>
+						<th>Customer</th>
+						<th>Total</th>
+						<th>Payment Method</th>
+						<th>Status</th>
+						<th>Order Date</th>
+						<th>Action</th>
+					</tr>
+				</tbody>
+				{orderList.map((order) => (
+					<tbody key={order._id}>
+						<tr className={styles.trTitle}>
+							<td>{order.customer}</td>
+							<td>${order.total}</td>
+							<td>
+								{order.method === 0 ? (
+									<span>cash</span>
+								) : (
+									<span>credit card</span>
+								)}
+							</td>
+							<td>{status[order.status]}</td>
+							<td>
+								{(() => {
+									const diffInDays = differenceInDays(
+										new Date(),
+										new Date(order.createdAt),
+									);
+
+									if (diffInDays >= 1) {
+										return `${diffInDays} day ago`;
+									} else {
+										const diffInHours = differenceInHours(
+											new Date(),
+											new Date(order.createdAt),
+										);
+
+										if (diffInHours < 1) {
+											const diffInMinutes = differenceInMinutes(
+												new Date(),
+												new Date(order.createdAt),
+											);
+											return `${diffInMinutes} minutes ago`;
+										} else {
+											const remainingMinutes =
+												differenceInMinutes(
+													new Date(),
+													new Date(order.createdAt),
+												) % 60;
+											return `${diffInHours} hr ${remainingMinutes} minutes ago`;
+										}
+									}
+								})()}
+							</td>
+							<td>
+								<button
+									className={styles.nextStepButton}
+									onClick={() => handleStatus(order._id)}
+								>
+									Next Stage
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				))}
+			</table>
+		</div>
+	);
+};
+
+const AllOrdersTab = ({
+	orderList,
+	handleSort,
+	handleFilter,
+	handleStatus,
+}) => {
+	const [sortValue, setSortValue] = useState('newest');
+	const [sortOrder, setSortOrder] = useState('asc');
+	const [orderLimit, setOrderLimit] = useState(100);
+
+	return (
+		<div className={styles.item}>
+			<h1 className={styles.title}>Filter</h1>
+			<div>
+				<Select
+					value={sortValue}
+					onChange={(e) => {
+						handleSort(e.target.value);
+						setSortValue(e.target.value);
+					}}
+					size='small'
+					className={styles.filterOrders}
+				>
+					<MenuItem value='newest'>Sort by Newest</MenuItem>
+					<MenuItem value='oldest'>Sort by Oldest</MenuItem>
+					<MenuItem value='id'>Sort by ID</MenuItem>
+					<MenuItem value='customer'>Sort by Customer</MenuItem>
+					<MenuItem value='total'>Sort by Total</MenuItem>
+					<MenuItem value='payment'>Sort by Payment Method</MenuItem>
+					<MenuItem value='status'>Sort by Status</MenuItem>
+				</Select>
+				<TextField
+					type='text'
+					onChange={(e) => handleFilter('customer', e.target.value)}
+					placeholder='Filter by customer'
+					size='small'
+				/>
+				<FormControl
+					component='fieldset'
+					size='small'
+					style={{ marginLeft: '10px' }}
+				>
+					<RadioGroup
+						row
+						value={sortOrder}
+						onChange={(e) => {
+							handleSort(sortValue, e.target.value);
+							setSortOrder(e.target.value);
+						}}
+					>
+						<FormControlLabel
+							value='asc'
+							control={<Radio />}
+							label='Ascending'
+						/>
+						<FormControlLabel
+							value='desc'
+							control={<Radio />}
+							label='Descending'
+						/>
+					</RadioGroup>
+				</FormControl>
+			</div>
+			<h1 className={styles.title}> All Orders</h1>
+			<table className={styles.table}>
+				<tbody>
+					<tr className={styles.trTitle}>
+						<th>Customer</th>
+						<th>Total</th>
+						<th>Payment Method</th>
+						<th>Status</th>
+						<th>Order Date</th>
+						<th>Action</th>
+					</tr>
+				</tbody>
+				{orderList.slice(0, orderLimit).map((order) => (
+					<tbody key={order._id}>
+						<tr className={styles.trTitle}>
+							<td>{order.customer}</td>
+							<td>${order.total}</td>
+							<td>
+								{order.method === 0 ? (
+									<span>cash</span>
+								) : (
+									<span>credit card</span>
+								)}
+							</td>
+							<td>{status[order.status]}</td>
+							<td>
+								{(() => {
+									const diffInDays = differenceInDays(
+										new Date(),
+										new Date(order.createdAt),
+									);
+
+									if (diffInDays >= 1) {
+										return `${diffInDays} day ago`;
+									} else {
+										const diffInHours = differenceInHours(
+											new Date(),
+											new Date(order.createdAt),
+										);
+
+										if (diffInHours < 1) {
+											const diffInMinutes = differenceInMinutes(
+												new Date(),
+												new Date(order.createdAt),
+											);
+											return `${diffInMinutes} minutes ago`;
+										} else {
+											const remainingMinutes =
+												differenceInMinutes(
+													new Date(),
+													new Date(order.createdAt),
+												) % 60;
+											return `${diffInHours} hr ${remainingMinutes} minutes ago`;
+										}
+									}
+								})()}
+							</td>
+							<td>
+								<button
+									className={styles.nextStepButton}
+									onClick={() => handleStatus(order._id)}
+								>
+									Next Stage
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				))}
+			</table>
+			{orderList.length > orderLimit && (
+				<div className={styles.showMoreOrders}>
+					<Button
+						variant='outlined'
+						onClick={() => setOrderLimit(orderLimit + 50)}
+					>
+						Show More Orders
+					</Button>
+				</div>
+			)}
+		</div>
+	);
+};
+
+const Index = ({ initialOrders, products }) => {
+	const [orders, setOrders] = useState(initialOrders);
+	const [orderList, setOrderList] = useState(orders);
+	const originalOrderList = useRef(orders);
+	const [value, setValue] = useState(0);
+	const [product, setProductList] = useState(products);
+	const [todaysOrders, setTodaysOrders] = useState([]);
+	const [sortedAndFilteredTodaysOrders, setSortedAndFilteredTodaysOrders] =
+		useState([]);
+
+	useEffect(() => {
+		const intervalId = setInterval(async () => {
+			const orderRes = await axios.get('http://localhost:800/api/orders');
+			setOrders(orderRes.data);
+		}, 5000);
+
+		const currentDate = new Date();
+		const currentDay = currentDate.getDate();
+		const currentMonth = currentDate.getMonth() + 1;
+		const currentYear = currentDate.getFullYear();
+
+		const filteredOrders = orderList.filter((order) => {
+			const orderDate = new Date(order.createdAt);
+			return (
+				orderDate.getDate() === currentDay &&
+				orderDate.getMonth() + 1 === currentMonth &&
+				orderDate.getFullYear() === currentYear
+			);
+		});
+
+		setTodaysOrders(filteredOrders);
+
+		return () => clearInterval(intervalId);
+	}, [orderList]);
+
+	useEffect(() => {
+		setSortedAndFilteredTodaysOrders(todaysOrders);
+	}, [todaysOrders]);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			axios.get('http://localhost:800/api/products').then((res) => {
+				setProductList(res.data);
+			});
+		}, 5000);
+
+		return () => clearInterval(interval);
+	}, []);
+
+	let theme = useTheme();
+	theme = createTheme(theme, {
+		components: {
+			MuiTab: {
+				styleOverrides: {
+					root: {
+						'&.Mui-selected': {
+							color: 'red',
+						},
+					},
+				},
+			},
+		},
+	});
+
+	const handleChange = (event, newValue) => {
+		setValue(newValue);
+	};
+
+	const handleStatus = useCallback(
+		async (id) => {
+			const item = orderList.filter((order) => order._id === id)[0];
+			const currentStatus = item.status;
+
+			try {
+				const res = await axios.put(
+					'http://localhost:800/api/orders/' + id,
+					{
+						status: currentStatus + 1,
+					},
+				);
+				setOrderList([
+					res.data,
+					...orderList.filter((order) => order._id !== id),
+				]);
+				const phoneNumber = item.phone_number;
+				const message = `Your order status has been updated to ${
+					status[currentStatus + 1]
+				}`;
+				await axios.post('/api/whatsappBot', { phoneNumber, message });
+			} catch (err) {
+				Swal.fire({
+					position: 'center',
+					icon: 'error',
+					title: 'Status Change Failed',
+					showConfirmButton: false,
+					timer: 3000,
+					timerProgressBar: true,
+				});
+			}
+		},
+		[orderList, status],
+	);
+
+	const handleSort = (sortValue, sortOrder) => {
+		let sortedList;
+		switch (sortValue) {
+			case 'newest':
+				sortedList = [...orderList].sort((a, b) => {
+					return sortOrder === 'desc'
+						? new Date(b.createdAt) - new Date(a.createdAt)
+						: new Date(a.createdAt) - new Date(b.createdAt);
+				});
+				break;
+			case 'oldest':
+				sortedList = [...orderList].sort((a, b) => {
+					const dateA = new Date(a.date);
+					const dateB = new Date(b.date);
+					return sortOrder === 'asc' ? dateB - dateA : dateA - dateB;
+				});
+				break;
+			case 'customer':
+				sortedList = [...orderList].sort((a, b) => {
+					const nameA = a.customer ? a.customer.toUpperCase() : '';
+					const nameB = b.customer ? b.customer.toUpperCase() : '';
+					return sortOrder === 'desc'
+						? nameA.localeCompare(nameB)
+						: nameB.localeCompare(nameA);
+				});
+				break;
+			case 'total':
+				sortedList = [...orderList].sort((a, b) => {
+					return sortOrder === 'desc'
+						? a.total - b.total
+						: b.total - a.total;
+				});
+				break;
+			case 'payment':
+				sortedList = [...orderList].sort((a, b) => {
+					const paymentA = a.method.toUpperCase();
+					const paymentB = b.method.toUpperCase();
+					return sortOrder === 'desc'
+						? paymentA.localeCompare(paymentB)
+						: paymentB.localeCompare(paymentA);
+				});
+				break;
+			case 'status':
+				sortedList = [...orderList].sort((a, b) => {
+					return sortOrder === 'desc'
+						? a.status - b.status
+						: b.status - a.status;
+				});
+				break;
+			default:
+				sortedList = orderList;
+		}
+		setOrderList(sortedList);
+		setSortedAndFilteredTodaysOrders(sortedList);
+	};
+
+	const handleFilter = (key, value) => {
+		const filteredOrders = originalOrderList.current.filter((order) => {
+			if (order[key] && typeof order[key] === 'string') {
+				return order[key].toLowerCase().includes(value.toLowerCase());
+			}
+			return false;
+		});
+		setOrderList(filteredOrders);
+		setSortedAndFilteredTodaysOrders(filteredOrders);
+	};
+
+	return (
+		<ThemeProvider theme={theme}>
+			<Box className={styles.container}>
+				<Tabs
+					value={value}
+					onChange={handleChange}
+					textColor='secondary'
+					TabIndicatorProps={{ style: { background: 'red' } }}
+					indicatorColor='secondary'
+					variant='fullWidth'
+					className={styles.tabs}
+					classes={{ indicator: styles.indicator }}
+					TabScrollButtonProps={{
+						style: { background: 'red' },
+						className: styles.scrollButton,
+					}}
+				>
+					<Tab label='Products' />
+					<Tab label="Today's Orders" />
+					<Tab label='All Orders' />
+				</Tabs>
+				{value === 0 && (
+					<ProductsTab
+						products={product}
+						setProductList={setProductList}
+					/>
+				)}
+				{value === 1 && (
+					<TodaysOrdersTab
+						orderList={todaysOrders}
+						handleSort={handleSort}
+						handleFilter={handleFilter}
+						handleStatus={handleStatus}
+					/>
+				)}
+				{value === 2 && (
+					<AllOrdersTab
+						orderList={orderList}
+						handleSort={handleSort}
+						handleFilter={handleFilter}
+						handleStatus={handleStatus}
+					/>
+				)}
+			</Box>
+		</ThemeProvider>
 	);
 };
 
@@ -378,9 +722,13 @@ export const getServerSideProps = async (ctx) => {
 	const productRes = await axios.get('http://localhost:800/api/products');
 	const orderRes = await axios.get('http://localhost:800/api/orders');
 
+	orderRes.data.sort((a, b) => {
+		return new Date(b.createdAt) - new Date(a.createdAt);
+	});
+
 	return {
 		props: {
-			orders: orderRes.data,
+			initialOrders: orderRes.data,
 			products: productRes.data,
 			admin,
 		},

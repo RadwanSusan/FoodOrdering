@@ -6,7 +6,7 @@ const options = [
 	{ value: 'Our Mix Grill', label: 'Our Mix Grill' },
 	{ value: 'Meal for one', label: 'Meal for one' },
 	{ value: 'Meal for two', label: 'Meal for two' },
-	{ value: 'Meal for four', label: 'Meal for four' },
+	{ value: 'Meal for three', label: 'Meal for three' },
 	{ value: 'Sandwiches', label: 'Sandwiches' },
 	{ value: 'Wrap Sandwiches', label: 'Wrap Sandwiches' },
 	{ value: 'Appetizer', label: 'Appetizer' },

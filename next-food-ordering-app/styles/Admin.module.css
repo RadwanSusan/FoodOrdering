@@ -1,6 +1,6 @@
 .container {
   padding: 1vw;
-  display: flex;
+  /* display: flex; */
   margin-bottom: 12%;
 }
 
@@ -60,4 +60,16 @@
 .nextStepButton:hover {
   background-color: rgb(255, 244, 182);
   color: rgb(0, 0, 0);
+}
+
+.filterOrders {
+  margin-right: 10px;
+}
+
+.showMoreOrders {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
