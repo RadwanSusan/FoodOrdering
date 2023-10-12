@@ -5,5 +5,5 @@ next-food-ordering-app/pnpm-lock.yaml
 next-food-ordering-app/yarn.lock
 *.yaml
 next-food-ordering-app/pnpm-lock.yaml
-# next-food-ordering-app/public/uploads
+next-food-ordering-app/public/uploads
 .vscode/extensions.json
