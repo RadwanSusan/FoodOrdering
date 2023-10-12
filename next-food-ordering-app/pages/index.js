@@ -10,7 +10,7 @@ export default function Home({ productsList, admin }) {
 	const [close, setClose] = useState(true);
 	let counter = 0;
 	return (
-		<div className={styles.container}>
+		<div>
 			<Head>
 				<title>Pizza Restaurant in Dubai</title>
 				<meta

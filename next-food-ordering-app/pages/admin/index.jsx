@@ -126,7 +126,7 @@ const ProductsTab = ({ products, setProductList }) => {
 				});
 			}
 		},
-		[product],
+		[product, setProductList],
 	);
 	return (
 		<div className={styles.container}>
@@ -265,7 +265,7 @@ const TodaysOrdersTab = ({
 					</RadioGroup>
 				</FormControl>
 			</div>
-			<h1 className={styles.title}> Today's Orders</h1>
+			<h1 className={styles.title}> Today&apos;s Orders</h1>
 			<table className={styles.table}>
 				<tbody>
 					<tr className={styles.trTitle}>
@@ -584,7 +584,7 @@ const Index = ({ initialOrders, products }) => {
 				});
 			}
 		},
-		[orderList, status],
+		[orderList],
 	);
 
 	const handleSort = (sortValue, sortOrder) => {
