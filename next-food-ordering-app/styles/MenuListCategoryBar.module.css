@@ -12,7 +12,6 @@
    }
 }
 
-
 .menu div {
    color: #fff;
    text-decoration: none;
@@ -26,6 +25,7 @@
 
 .menu > ol {
    margin-inline-end: 16px;
+   list-style-type: none;
 }
 
 .menu > ol,
@@ -2370,6 +2370,10 @@
       -o-transition: 250ms cubic-bezier(.42, .83, .49, 1.35) transform;
    }
 
+   .menu > ol > li > ol > li:first-child {
+      margin-top: 0
+   }
+
    .menu > ol > li > ol > li > div {
       display: block;
       border-radius: 0.2rem;
@@ -2563,5 +2567,11 @@
    z-index: 50;
    background: #ff22004f;
    backdrop-filter: blur(23px);
-   border-radius: 10px 10px 10px 10px;
+   border-radius: 2px;
+   list-style-type: none;
+   padding-inline-start: 0px;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   -ms-border-radius: 2px;
+   -o-border-radius: 2px;
 }

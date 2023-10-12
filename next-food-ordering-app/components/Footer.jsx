@@ -11,6 +11,7 @@ const Footer = () => {
 					style={{ border: '0' }}
 					allowFullScreen={false}
 					loading='lazy'
+					title='Restaurant Location'
 					referrerPolicy='no-referrer-when-downgrade'
 				/>
 			</div>
