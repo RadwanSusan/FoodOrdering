@@ -3,17 +3,13 @@ import Image from 'next/image';
 import styles from '../styles/Navbar.module.css';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 const Navbar = ({ admin }) => {
 	let quantity = useSelector((state) => state.cart?.quantity);
-	const router = useRouter();
 
 	if (quantity == undefined) {
 		quantity = 0;
 	}
-
-	const isActive = (href) => router.pathname === href;
 
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -78,32 +74,6 @@ const Navbar = ({ admin }) => {
 			</div>
 			<div className={styles.item}>
 				<ul className={styles.list}>
-					{/* <Link
-						href='/'
-						passHref
-						aria-label='link to homepage'
-					>
-						<li
-							className={`${styles.listItem} ${
-								isActive('/') ? styles.active : ''
-							}`}
-						>
-							Homepage
-						</li>
-					</Link>
-					<Link
-						href='/'
-						passHref
-						aria-label='link to products page'
-					>
-						<li
-							className={`${styles.listItem} ${
-								isActive('/products') ? styles.active : ''
-							}`}
-						>
-							Products
-						</li>
-					</Link> */}
 					<Link
 						href='/'
 						passHref
@@ -118,32 +88,6 @@ const Navbar = ({ admin }) => {
 							priority
 						/>
 					</Link>
-					{/* <Link
-						href='#menu'
-						passHref
-						aria-label='link to menu page'
-					>
-						<li
-							className={`${styles.listItem} ${
-								isActive('/menu') ? styles.active : ''
-							}`}
-						>
-							Menu
-						</li>
-					</Link>
-					<Link
-						href='/'
-						passHref
-						aria-label='link to contact page'
-					>
-						<li
-							className={`${styles.listItem} ${
-								isActive('/contact') ? styles.active : ''
-							}`}
-						>
-							Contact
-						</li>
-					</Link> */}
 				</ul>
 			</div>
 			<Link

@@ -1,12 +1,10 @@
 import { loadStripe } from '@stripe/stripe-js';
-import CheckoutFormData from './CheckoutFormData';
 import styles from '../styles/Cart.module.css';
 import { useState } from 'react';
 import OrderDetail from './OrderDetail';
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 export const CheckoutRedirectButton = ({ children, ...props }) => {
-	console.log(`🚀  file: StripeButton.jsx:9  props =>`, props);
 	const [showOrderDetail, setShowOrderDetail] = useState(false);
 
 	const handleCheckout = async (data) => {
@@ -21,7 +19,6 @@ export const CheckoutRedirectButton = ({ children, ...props }) => {
 			deviceId: localStorage.getItem('deviceId'),
 			shippingCost: data.shippingCost,
 		};
-		console.log(`🚀  file: StripeButton.jsx:24  orderData =>`, orderData);
 
 		const response = await fetch('/api/stripe/checkout', {
 			method: 'POST',
@@ -53,24 +50,6 @@ export const CheckoutRedirectButton = ({ children, ...props }) => {
 	};
 
 	return (
-		// <form onSubmit={(e) => e.preventDefault()}>
-		// 	{showOrderDetail && (
-		// 		<OrderDetail
-		// 			total={props.amount / 100}
-		// 			createOrder={handleCheckout}
-		// 			cart={props.cart}
-		// 			setCash={setShowOrderDetail}
-		// 		/>
-		// 	)}
-		// 	<button
-		// 		className={styles.payButton}
-		// 		type='button'
-		// 		disabled={props.disabled}
-		// 		onClick={() => setShowOrderDetail(true)}
-		// 	>
-		// 		{children}
-		// 	</button>
-		// </form>
 		<form onSubmit={(e) => e.preventDefault()}>
 			{showOrderDetail && (
 				<OrderDetail

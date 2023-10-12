@@ -6,15 +6,6 @@ const handler = async (req, res) => {
 
 	await dbConnect();
 
-	// if (method === 'GET') {
-	// 	try {
-	// 		const orders = await Order.find();
-	// 		res.status(200).json(orders);
-	// 	} catch (err) {
-	// 		console.log(err, 'error');
-	// 		res.status(500).json(err);
-	// 	}
-	// }
 	if (method === 'GET') {
 		try {
 			const deviceId = req.query.deviceId;
@@ -28,20 +19,11 @@ const handler = async (req, res) => {
 		}
 	}
 
-	// if (method === 'POST') {
-	// 	try {
-	// 		const order = await Order.create(req.body);
-	// 		res.status(201).json(order);
-	// 	} catch (err) {
-	// 		console.log(err, 'error');
-	// 		res.status(500).json(err);
-	// 	}
-	// }
 	if (method === 'POST') {
 		try {
 			const order = await Order.create({
 				...req.body,
-				deviceId: req.body.deviceId, // Add this line
+				deviceId: req.body.deviceId,
 			});
 			res.status(201).json(order);
 		} catch (err) {

@@ -10,12 +10,6 @@ import { useEffect } from 'react';
 
 let persistor = persistStore(store);
 
-// let deviceId = localStorage.getItem('deviceId');
-// if (!deviceId) {
-// 	deviceId = uuidv4();
-// 	localStorage.setItem('deviceId', deviceId);
-// }
-
 function MyApp({ Component, pageProps }) {
 	useEffect(() => {
 		let deviceId = localStorage.getItem('deviceId');

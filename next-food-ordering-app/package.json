@@ -40,10 +40,10 @@
 		"react-table": "^7.8.0",
 		"redux": "^4.2.1",
 		"redux-persist": "^6.0.0",
-		"stripe": "^13.9.0",
+		"stripe": "^13.10.0",
 		"sweetalert2": "^11.7.32",
 		"uuid": "^9.0.1",
-		"yet-another-react-lightbox": "^3.13.1"
+		"yet-another-react-lightbox": "^3.14.0"
 	},
 	"devDependencies": {
 		"@netlify/plugin-nextjs": "^4.40.2",

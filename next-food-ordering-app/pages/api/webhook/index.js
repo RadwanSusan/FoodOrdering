@@ -12,7 +12,6 @@ async function updateOrder(session, res) {
 		`http://localhost:800/api/orders/${orderId}`,
 		{
 			payment_received: true,
-			// email: session.customer_details.email,
 		},
 	);
 	if (response.status === 200) {
@@ -59,47 +58,3 @@ export const config = {
 		bodyParser: false,
 	},
 };
-
-// // /api/webhooks.js
-
-// import Stripe from 'stripe';
-// import { buffer } from 'micro';
-
-// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-// 	apiVersion: '2020-08-27',
-// });
-
-// export default async function handler(req, res) {
-// 	if (req.method === 'POST') {
-// 		let event;
-// 		try {
-// 			const rawBody = await buffer(req);
-// 			const signature = req.headers['stripe-signature'];
-// 			event = stripe.webhooks.constructEvent(
-// 				rawBody.toString('utf8'),
-// 				signature,
-// 				process.env.STRIPE_WEBHOOK_SECRET,
-// 			);
-// 		} catch (err) {
-// 			console.error(err);
-// 			return res.status(400).send(`Webhook Error: ${err.message}`);
-// 		}
-
-// 		if (event.type === 'checkout.session.completed') {
-// 			const session = event.data.object;
-// 			// You can add additional logic here to handle the successful checkout session
-// 			// For example, you could dispatch a request to another API route that handles the cart reset
-// 		}
-
-// 		res.status(200).json({ received: true });
-// 	} else {
-// 		res.setHeader('Allow', 'POST');
-// 		res.status(405).end('Method Not Allowed');
-// 	}
-// }
-
-// export const config = {
-// 	api: {
-// 		bodyParser: false,
-// 	},
-// };

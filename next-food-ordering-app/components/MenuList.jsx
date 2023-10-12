@@ -26,7 +26,7 @@ const MenuList = ({ menuListItems }) => {
 	);
 
 	useEffect(() => {
-		handleCategoryClick('Beef');
+		handleCategoryClick('Best Sellers');
 	}, [handleCategoryClick]);
 
 	const renderSubMenu = (menuTitle, items) => {

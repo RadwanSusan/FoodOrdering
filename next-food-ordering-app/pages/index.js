@@ -5,7 +5,6 @@ import Add from '../components/Add';
 import AddButton from '../components/AddButton';
 import Featured from '../components/Featured';
 import MenuList from '../components/MenuList';
-import styles from '../styles/Home.module.css';
 
 export default function Home({ productsList, admin }) {
 	const [close, setClose] = useState(true);

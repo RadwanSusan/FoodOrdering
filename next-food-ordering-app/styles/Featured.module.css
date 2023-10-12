@@ -21,6 +21,10 @@
   height: 100%;
   display: flex;
   transition: all 1.5s ease-in-out;
+  -webkit-transition: all 1.5s ease-in-out;
+  -moz-transition: all 1.5s ease-in-out;
+  -ms-transition: all 1.5s ease-in-out;
+  -o-transition: all 1.5s ease-in-out;
 }
 
 .imgContainer {

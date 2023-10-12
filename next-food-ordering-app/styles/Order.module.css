@@ -30,6 +30,7 @@
   flex-direction: column;
   align-items: center;
   animation: inProgress 1s ease infinite alternate;
+  -webkit-animation: inProgress 1s ease infinite alternate;
 }
 
 @keyframes inProgress {

@@ -64,7 +64,11 @@
       border-radius: .5rem;
       z-index: 0;
       transition: 350ms cubic-bezier(1, .49, .09, 1.29) all;
-      pointer-events: none
+      pointer-events: none;
+      -webkit-transition: 350ms cubic-bezier(1, .49, .09, 1.29) all;
+      -moz-transition: 350ms cubic-bezier(1, .49, .09, 1.29) all;
+      -ms-transition: 350ms cubic-bezier(1, .49, .09, 1.29) all;
+      -o-transition: 350ms cubic-bezier(1, .49, .09, 1.29) all;
    }
 
    .menu > ol > li:first-child:nth-last-child(1) ~ li:last-child:after {
@@ -2359,7 +2363,11 @@
    .menu > ol > li > ol > li {
       margin-top: .5rem;
       transition: 250ms cubic-bezier(.42, .83, .49, 1.35) transform;
-      transform: scale(0)
+      transform: scale(0);
+      -webkit-transition: 250ms cubic-bezier(.42, .83, .49, 1.35) transform;
+      -moz-transition: 250ms cubic-bezier(.42, .83, .49, 1.35) transform;
+      -ms-transition: 250ms cubic-bezier(.42, .83, .49, 1.35) transform;
+      -o-transition: 250ms cubic-bezier(.42, .83, .49, 1.35) transform;
    }
 
    .menu > ol > li > ol > li > div {
@@ -2393,7 +2401,11 @@
    .menu > ol > li:focus-within > ol > li,
    .menu > ol > li:focus > ol > li,
    .menu > ol > li:hover > ol > li {
-      transform: scale(1)
+      transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
    }
 
    .menu > ol > li:focus-within > ol > li:first-child,
@@ -2514,7 +2526,11 @@
    .menu > ol > li > div:focus-within:nth-last-child(2):after,
    .menu > ol > li > div:focus:nth-last-child(2):after,
    .menu > ol > li > div:hover:nth-last-child(2):after {
-      transform: rotate(180deg)
+      transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
    }
 
    .menu > ol > li:focus + ol,

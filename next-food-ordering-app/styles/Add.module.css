@@ -15,15 +15,6 @@
 }
 
 .container {
-	/* width: 100vw;
-	height: 100vh;
-	background-color: rgba(245, 240, 240, 0.52);
-	position: fixed;
-	top: 0;
-	z-index: 999;
-	display: flex;
-	align-items: center;
-	justify-content: center; */
 	width: 100vw;
 	height: 100vh;
 	background-color: rgb(26 26 26 / 52%);

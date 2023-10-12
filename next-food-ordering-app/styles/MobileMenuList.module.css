@@ -51,6 +51,10 @@
    left: 50%;
    transform: translatex(-50%);
    z-index: 1000;
+   -webkit-transform: translatex(-50%);
+   -moz-transform: translatex(-50%);
+   -ms-transform: translatex(-50%);
+   -o-transform: translatex(-50%);
 }
 
 .hero__phone:after {
@@ -64,6 +68,10 @@
    left: 50%;
    transform: translatex(-50%);
    z-index: 1000;
+   -webkit-transform: translatex(-50%);
+   -moz-transform: translatex(-50%);
+   -ms-transform: translatex(-50%);
+   -o-transform: translatex(-50%);
 }
 
 .menu__button {
@@ -92,6 +100,10 @@
    -ms-transform: translate3d(var(--x), var(--y), var(--z));
    -o-transform: translate3d(var(--x), var(--y), var(--z));
    border: none;
+   -webkit-transition: 0.15s cubic-bezier(0.33, 1, 0.53, 1);
+   -moz-transition: 0.15s cubic-bezier(0.33, 1, 0.53, 1);
+   -ms-transition: 0.15s cubic-bezier(0.33, 1, 0.53, 1);
+   -o-transition: 0.15s cubic-bezier(0.33, 1, 0.53, 1);
 }
 
 @media only screen and (max-width: 850px) {
@@ -144,6 +156,14 @@
    z-index: 105;
    transform: translate3d(var(--x), var(--y), var(--z));
    transition: 0.2s cubic-bezier(0.33, 1, 0.53, 1);
+   -webkit-transform: translate3d(var(--x), var(--y), var(--z));
+   -moz-transform: translate3d(var(--x), var(--y), var(--z));
+   -ms-transform: translate3d(var(--x), var(--y), var(--z));
+   -o-transform: translate3d(var(--x), var(--y), var(--z));
+   -webkit-transition: 0.2s cubic-bezier(0.33, 1, 0.53, 1);
+   -moz-transition: 0.2s cubic-bezier(0.33, 1, 0.53, 1);
+   -ms-transition: 0.2s cubic-bezier(0.33, 1, 0.53, 1);
+   -o-transition: 0.2s cubic-bezier(0.33, 1, 0.53, 1);
 }
 
 .menu__body[hidden] {
@@ -179,6 +199,10 @@
    top: 100%;
    left: 50%;
    transform: translateX(-50%);
+   -webkit-transform: translateX(-50%);
+   -moz-transform: translateX(-50%);
+   -ms-transform: translateX(-50%);
+   -o-transform: translateX(-50%);
 }
 
 .menu__header p {
@@ -226,6 +250,10 @@
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+   -webkit-transform: translate(-50%, -50%);
+   -moz-transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   -o-transform: translate(-50%, -50%);
 }
 
 .menu__links {
