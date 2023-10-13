@@ -4,11 +4,7 @@ import { useState } from 'react';
 
 const Featured = () => {
 	const [index, setIndex] = useState(0);
-	const images = [
-		'/img/featured.png',
-		'/img/featured2.png',
-		'/img/featured3.png',
-	];
+	const images = ['/img/1.jpg', '/img/2.jpg', '/img/3.jpg'];
 
 	const handleArrow = (direction) => {
 		if (direction === 'l') {
@@ -47,7 +43,7 @@ const Featured = () => {
 							src={img}
 							alt='featured-image'
 							layout='fill'
-							objectFit='contain'
+							objectFit='cover'
 							priority
 						/>
 					</div>
