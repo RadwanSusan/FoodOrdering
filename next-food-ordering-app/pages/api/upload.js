@@ -45,7 +45,7 @@ export const config = {
 	},
 };
 
-export default async (req, res) => {
+const uploadFile = async (req, res) => {
 	const form = new multiparty.Form();
 
 	form.parse(req, async (error, fields, files) => {
@@ -60,3 +60,5 @@ export default async (req, res) => {
 		res.status(200).json({ data: `/uploads/${originalFilename}` });
 	});
 };
+
+export default uploadFile;
