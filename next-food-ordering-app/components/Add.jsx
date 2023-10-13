@@ -53,14 +53,20 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 		}
 	}, [extra]);
 
+	// const uploadFile = async (file) => {
+	// 	const data = new FormData();
+	// 	data.append('file', file);
+	// 	const uploadRes = await axios.post(
+	// 		'http://31.170.165.239:765/api/upload',
+	// 		data,
+	// 	);
+	// 	return uploadRes.data.files.file[0].url;
+	// };
 	const uploadFile = async (file) => {
 		const data = new FormData();
 		data.append('file', file);
-		const uploadRes = await axios.post(
-			'http://31.170.165.239:765/api/upload',
-			data,
-		);
-		return uploadRes.data.files.file[0].url;
+		const uploadRes = await axios.post('/api/upload', data);
+		return uploadRes.data.data;
 	};
 
 	const createProduct = async (product) => {
