@@ -69,7 +69,7 @@ const ProductsTab = ({ products, setProductList }) => {
 
 				if (result.isConfirmed) {
 					const res = await axios.delete(
-						'http://localhost:800/api/products/' + id,
+						'http://31.170.165.239:800/api/products/' + id,
 					);
 					if (res.status >= 200 && res.status < 300) {
 						const newProduct = product.filter(
@@ -106,7 +106,7 @@ const ProductsTab = ({ products, setProductList }) => {
 		async (updatedProduct) => {
 			try {
 				const res = await axios.put(
-					'http://localhost:800/api/products/' + updatedProduct._id,
+					'http://31.170.165.239:800/api/products/' + updatedProduct._id,
 					updatedProduct,
 				);
 				setProductList(
@@ -496,7 +496,9 @@ const Index = ({ initialOrders, products }) => {
 
 	useEffect(() => {
 		const intervalId = setInterval(async () => {
-			const orderRes = await axios.get('http://localhost:800/api/orders');
+			const orderRes = await axios.get(
+				'http://31.170.165.239:800/api/orders',
+			);
 			setOrders(orderRes.data);
 		}, 5000);
 
@@ -525,7 +527,7 @@ const Index = ({ initialOrders, products }) => {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			axios.get('http://localhost:800/api/products').then((res) => {
+			axios.get('http://31.170.165.239:800/api/products').then((res) => {
 				setProductList(res.data);
 			});
 		}, 5000);
@@ -559,7 +561,7 @@ const Index = ({ initialOrders, products }) => {
 
 			try {
 				const res = await axios.put(
-					'http://localhost:800/api/orders/' + id,
+					'http://31.170.165.239:800/api/orders/' + id,
 					{
 						status: currentStatus + 1,
 					},
@@ -719,8 +721,8 @@ export const getServerSideProps = async (ctx) => {
 		};
 	}
 
-	const productRes = await axios.get('http://localhost:800/api/products');
-	const orderRes = await axios.get('http://localhost:800/api/orders');
+	const productRes = await axios.get('http://31.170.165.239:800/api/products');
+	const orderRes = await axios.get('http://31.170.165.239:800/api/orders');
 
 	orderRes.data.sort((a, b) => {
 		return new Date(b.createdAt) - new Date(a.createdAt);

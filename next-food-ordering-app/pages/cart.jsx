@@ -29,7 +29,7 @@ const Cart = () => {
 				shippingCost: data.shippingCost,
 			};
 			const res = await axios.post(
-				'http://localhost:800/api/orders',
+				'http://31.170.165.239:800/api/orders',
 				orderData,
 			);
 			if (res.status === 201) {
@@ -191,7 +191,6 @@ const Cart = () => {
 								amount={cart.total * 100}
 								currency='aed'
 								cart={cart}
-
 							>
 								PAY WITH CREDIT/DEBIT CARD
 							</CheckoutRedirectButton>
