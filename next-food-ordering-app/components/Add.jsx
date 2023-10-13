@@ -57,14 +57,14 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 		const data = new FormData();
 		data.append('file', file);
 		const uploadRes = await axios.post(
-			'http://31.170.165.239:800/api/upload',
+			'http://31.170.165.239:765/api/upload',
 			data,
 		);
 		return uploadRes.data.files.file[0].url;
 	};
 
 	const createProduct = async (product) => {
-		await axios.post('http://31.170.165.239:800/api/products', product);
+		await axios.post('http://31.170.165.239:765/api/products', product);
 	};
 	const showSuccessMessage = useCallback((message) => {
 		Swal.fire({
@@ -126,7 +126,7 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 				category: product.category,
 			};
 			await axios.put(
-				'http://31.170.165.239:800/api/products/' + product._id,
+				'http://31.170.165.239:765/api/products/' + product._id,
 				updatedProduct,
 			);
 			setClose(true);

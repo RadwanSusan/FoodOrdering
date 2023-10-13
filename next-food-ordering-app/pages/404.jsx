@@ -16,7 +16,7 @@ export default function Custom404() {
 					have gone missing. We do apologise on it&apos;s behalf.
 				</p>
 				<a
-					href={'http://31.170.165.239:800'}
+					href={'http://31.170.165.239:765'}
 					rel='noreferrer noopener'
 				>
 					Home

@@ -23,7 +23,7 @@ const Orders = () => {
 
 	useEffect(() => {
 		fetch(
-			`http://31.170.165.239:800/api/orders?deviceId=${localStorage.getItem(
+			`http://31.170.165.239:765/api/orders?deviceId=${localStorage.getItem(
 				'deviceId',
 			)}`,
 		)

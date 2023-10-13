@@ -218,7 +218,7 @@ const Product = ({ product }) => {
 
 export const getServerSideProps = async ({ params }) => {
 	const res = await axios.get(
-		`http://31.170.165.239:800/api/products/${params.id}`,
+		`http://31.170.165.239:765/api/products/${params.id}`,
 	);
 	return {
 		props: {

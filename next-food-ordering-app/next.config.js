@@ -2,10 +2,10 @@ module.exports = {
 	images: {
 		domains: [
 			'res.cloudinary.com',
-			'localhost:800',
-			'localhost:800',
+			'localhost:765',
+			'localhost:765',
 			'localhost',
-			'31.170.165.239:800',
+			'31.170.165.239:765',
 			'31.170.165.239',
 		],
 	},
@@ -17,7 +17,7 @@ module.exports = {
 					{ key: 'Access-Control-Allow-Credentials', value: 'true' },
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: '31.170.165.239:800/*',
+						value: '31.170.165.239:765/*',
 					},
 					{ key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS' },
 					{ key: 'Access-Control-Allow-Headers', value: 'Content-Type' },

@@ -39,7 +39,7 @@ const handler = async (req, res) => {
 			};
 
 			const response = await axios.post(
-				'http://31.170.165.239:800/api/orders',
+				'http://31.170.165.239:765/api/orders',
 				cartData,
 			);
 
