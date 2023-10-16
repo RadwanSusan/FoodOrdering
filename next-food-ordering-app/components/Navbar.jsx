@@ -11,18 +11,19 @@ const Navbar = ({ admin }) => {
 		quantity = 0;
 	}
 
-	const [isOpen, setIsOpen] = useState(false);
+	// const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<nav className={styles.container}>
-			<button
+			{/* The Burger Menu Button */}
+			{/* <button
 				id='burger'
 				className={styles.openMainNav}
 				onClick={() => setIsOpen(!isOpen)}
 			>
 				<span className={styles.burger}></span>
-			</button>
-			<nav
+			</button> */}
+			{/* <nav
 				className={`${styles.mainNav} ${
 					isOpen ? styles.mainNavIsOpen : ''
 				}`}
@@ -50,8 +51,7 @@ const Navbar = ({ admin }) => {
 						</Link>
 					</li>
 				</ul>
-			</nav>
-
+			</nav> */}
 			<div className={[styles.item, styles.phone].join(' ')}>
 				<div className={styles.callButton}>
 					<Image
@@ -94,6 +94,7 @@ const Navbar = ({ admin }) => {
 				href='/orders'
 				passHref
 				aria-label='link to orders page'
+				className={styles.cartItem}
 				style={{ marginLeft: '20px' }}
 			>
 				<div className={styles.item}>
