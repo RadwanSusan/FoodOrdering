@@ -8,6 +8,7 @@ import { reset, removeFromCart } from '../redux/cartSlice';
 import OrderDetail from '../components/OrderDetail';
 import Swal from 'sweetalert2';
 import { CheckoutRedirectButton } from '../components/StripeButton';
+import Head from 'next/head';
 
 const Cart = () => {
 	const cart = useSelector((state) => state.cart);
@@ -91,91 +92,165 @@ const Cart = () => {
 	};
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.left}>
-				<table className={styles.table}>
-					<tbody>
-						<tr className={styles.trTitle}>
-							<th>Product</th>
-							<th>Name</th>
-							<th>Extras</th>
-							<th>Price</th>
-							<th>Quantity</th>
-							<th>Total</th>
-						</tr>
-					</tbody>
-					<tbody>
-						{cart.products.map((product) => (
-							<tr
-								className={styles.tr}
-								key={
-									Date.now().toString(36) +
-									Math.random().toString(36).substr(2)
-								}
-							>
-								<td>
-									<div className={styles.imgContainer}>
-										<Image
-											src={`http://31.170.165.239:3000${product.img}`}
-											width={200}
-											height={150}
-											style={{ objectFit: 'contain' }}
-											alt='product-image'
-											loading='lazy'
-											placeholder='blur'
-											blurDataURL={`http://31.170.165.239:3000${product.img}`}
-											quality={90}
-										/>
-									</div>
-								</td>
-								<td>
-									<span className={styles.name}>{product.title}</span>
-								</td>
-								<td>
-									<span className={styles.extras}>
-										{product.extras.map((extra) => (
-											<span key={extra._id}>{extra.text}, </span>
-										))}
-									</span>
-								</td>
-								<td>
-									<span className={styles.price}>
-										{product.price} AED
-									</span>
-								</td>
-								<td>
-									<span className={styles.quantity}>
-										{product.quantity}
-									</span>
-								</td>
-								<td>
-									<span className={styles.total}>
-										{product.price * product.quantity} AED
-									</span>
-								</td>
-								<td>
-									<button
-										onClick={() => handleRemoveFromCart(product)}
-									>
-										X
-									</button>
-								</td>
+		<>
+			<Head>
+				<title>Lahamah & Fahmah</title>
+				<link
+					rel='apple-touch-icon'
+					sizes='180x180'
+					href='/apple-touch-icon.png'
+				/>
+				<link
+					rel='icon'
+					type='image/png'
+					sizes='32x32'
+					href='/favicon-32x32.png'
+				/>
+				<link
+					rel='icon'
+					type='image/png'
+					sizes='16x16'
+					href='/favicon-16x16.png'
+				/>
+				<link
+					rel='manifest'
+					href='/site.webmanifest'
+				/>
+				<link
+					rel='mask-icon'
+					href='/safari-pinned-tab.svg'
+					color='#5bbad5'
+				/>
+				<meta
+					name='apple-mobile-web-app-title'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
+					name='application-name'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
+					name='msapplication-TileColor'
+					content='#b91d47'
+				/>
+				<meta
+					name='theme-color'
+					content='#ffffff'
+				/>
+			</Head>
+			<div className={styles.container}>
+				<div className={styles.left}>
+					<table className={styles.table}>
+						<tbody>
+							<tr className={styles.trTitle}>
+								<th>Product</th>
+								<th>Name</th>
+								<th>Extras</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Total</th>
 							</tr>
-						))}
-					</tbody>
-				</table>
-			</div>
-			<div className={styles.right}>
-				<div className={styles.wrapper}>
-					<h2 className={styles.title}>CART TOTAL</h2>
-					<div className={styles.totalText}>
-						<b className={styles.totalTextTitle}>Total:</b>
-						{cart.total} AED
-					</div>
-					{open ? (
-						<div className={styles.paymentMethods}>
+						</tbody>
+						<tbody>
+							{cart.products.map((product) => (
+								<tr
+									className={styles.tr}
+									key={
+										Date.now().toString(36) +
+										Math.random().toString(36).substr(2)
+									}
+								>
+									<td>
+										<div className={styles.imgContainer}>
+											<Image
+												src={`http://31.170.165.239:3000${product.img}`}
+												width={200}
+												height={150}
+												style={{ objectFit: 'contain' }}
+												alt='product-image'
+												loading='lazy'
+												placeholder='blur'
+												blurDataURL={`http://31.170.165.239:3000${product.img}`}
+												quality={90}
+											/>
+										</div>
+									</td>
+									<td>
+										<span className={styles.name}>
+											{product.title}
+										</span>
+									</td>
+									<td>
+										<span className={styles.extras}>
+											{product.extras.map((extra) => (
+												<span key={extra._id}>{extra.text}, </span>
+											))}
+										</span>
+									</td>
+									<td>
+										<span className={styles.price}>
+											{product.price} AED
+										</span>
+									</td>
+									<td>
+										<span className={styles.quantity}>
+											{product.quantity}
+										</span>
+									</td>
+									<td>
+										<span className={styles.total}>
+											{product.price * product.quantity} AED
+										</span>
+									</td>
+									<td>
+										<button
+											onClick={() => handleRemoveFromCart(product)}
+										>
+											X
+										</button>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+				<div className={styles.right}>
+					<div className={styles.wrapper}>
+						<h2 className={styles.title}>CART TOTAL</h2>
+						<div className={styles.totalText}>
+							<b className={styles.totalTextTitle}>Total:</b>
+							{cart.total} AED
+						</div>
+						{open ? (
+							<div className={styles.paymentMethods}>
+								<button
+									className={styles.payButton}
+									onClick={() => {
+										if (cart.total === 0)
+											return Swal.fire({
+												position: 'center',
+												icon: 'info',
+												title: 'Cart is empty',
+												showConfirmButton: false,
+												timer: 3000,
+												timerProgressBar: true,
+											});
+										setCash(true);
+									}}
+								>
+									CASH ON DELIVERY
+								</button>
+								<CheckoutRedirectButton
+									disabled={cart.total === 0}
+									amount={cart.total * 100}
+									currency='aed'
+									cart={cart}
+								>
+									PAY WITH CREDIT/DEBIT CARD
+								</CheckoutRedirectButton>
+							</div>
+						) : (
 							<button
-								className={styles.payButton}
 								onClick={() => {
 									if (cart.total === 0)
 										return Swal.fire({
@@ -186,50 +261,25 @@ const Cart = () => {
 											timer: 3000,
 											timerProgressBar: true,
 										});
-									setCash(true);
+									setOpen(true);
 								}}
+								className={styles.button}
 							>
-								CASH ON DELIVERY
+								CHECKOUT NOW!
 							</button>
-							<CheckoutRedirectButton
-								disabled={cart.total === 0}
-								amount={cart.total * 100}
-								currency='aed'
-								cart={cart}
-							>
-								PAY WITH CREDIT/DEBIT CARD
-							</CheckoutRedirectButton>
-						</div>
-					) : (
-						<button
-							onClick={() => {
-								if (cart.total === 0)
-									return Swal.fire({
-										position: 'center',
-										icon: 'info',
-										title: 'Cart is empty',
-										showConfirmButton: false,
-										timer: 3000,
-										timerProgressBar: true,
-									});
-								setOpen(true);
-							}}
-							className={styles.button}
-						>
-							CHECKOUT NOW!
-						</button>
-					)}
+						)}
+					</div>
 				</div>
+				{cash && (
+					<OrderDetail
+						total={cart.total}
+						createOrder={createOrder}
+						cart={cart}
+						setCash={setCash}
+					/>
+				)}
 			</div>
-			{cash && (
-				<OrderDetail
-					total={cart.total}
-					createOrder={createOrder}
-					cart={cart}
-					setCash={setCash}
-				/>
-			)}
-		</div>
+		</>
 	);
 };
 

@@ -1,27 +1,75 @@
 import styles from '../styles/Custom404.module.css';
+import Head from 'next/head';
 
 export default function Custom404() {
 	return (
-		<div className={styles.container}>
-			<h1>404</h1>
-			<div className={styles.cloakWrapper}>
-				<div className={styles.cloakContainer}>
-					<div className={styles.cloak}></div>
+		<>
+			<Head>
+				<title>Lahamah & Fahmah</title>
+				<link
+					rel='apple-touch-icon'
+					sizes='180x180'
+					href='/apple-touch-icon.png'
+				/>
+				<link
+					rel='icon'
+					type='image/png'
+					sizes='32x32'
+					href='/favicon-32x32.png'
+				/>
+				<link
+					rel='icon'
+					type='image/png'
+					sizes='16x16'
+					href='/favicon-16x16.png'
+				/>
+				<link
+					rel='manifest'
+					href='/site.webmanifest'
+				/>
+				<link
+					rel='mask-icon'
+					href='/safari-pinned-tab.svg'
+					color='#5bbad5'
+				/>
+				<meta
+					name='apple-mobile-web-app-title'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
+					name='application-name'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
+					name='msapplication-TileColor'
+					content='#b91d47'
+				/>
+				<meta
+					name='theme-color'
+					content='#ffffff'
+				/>
+			</Head>
+			<div className={styles.container}>
+				<h1>404</h1>
+				<div className={styles.cloakWrapper}>
+					<div className={styles.cloakContainer}>
+						<div className={styles.cloak}></div>
+					</div>
+				</div>
+				<div className={styles.info}>
+					<h2>We can&apos;t find that page</h2>
+					<p>
+						We&apos;re fairly sure that page used to be here, but seems to
+						have gone missing. We do apologise on it&apos;s behalf.
+					</p>
+					<a
+						href={'http://31.170.165.239:765'}
+						rel='noreferrer noopener'
+					>
+						Home
+					</a>
 				</div>
 			</div>
-			<div className={styles.info}>
-				<h2>We can&apos;t find that page</h2>
-				<p>
-					We&apos;re fairly sure that page used to be here, but seems to
-					have gone missing. We do apologise on it&apos;s behalf.
-				</p>
-				<a
-					href={'http://31.170.165.239:765'}
-					rel='noreferrer noopener'
-				>
-					Home
-				</a>
-			</div>
-		</div>
+		</>
 	);
 }

@@ -1,6 +1,7 @@
 import styles from '../../styles/Order.module.css';
 import Image from 'next/image';
 import axios from 'axios';
+import Head from 'next/head';
 
 const Order = ({ order }) => {
 	const status = order.status;
@@ -12,134 +13,186 @@ const Order = ({ order }) => {
 	};
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.left}>
-				<div className={styles.row}>
-					<table className={styles.table}>
-						<thead className={styles.thead}>
-							<tr className={styles.trTitle}>
-								<th>Order ID</th>
-								<th>Customer</th>
-								<th>Address</th>
-								<th>Total</th>
-							</tr>
-						</thead>
-						<tbody className={styles.tbody}>
-							<tr className={styles.tr}>
-								<td>
-									<span className={styles.id}>{order._id}</span>
-								</td>
-								<td>
-									<span className={styles.name}>{order.customer}</span>
-								</td>
-								<td>
-									<span className={styles.address}>
-										{order.address}
-									</span>
-								</td>
-								<td>
-									<span className={styles.total}>${order.total}</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+		<>
+			<Head>
+				<title>Lahamah & Fahmah</title>
+				<link
+					rel='apple-touch-icon'
+					sizes='180x180'
+					href='/apple-touch-icon.png'
+				/>
+				<link
+					rel='icon'
+					type='image/png'
+					sizes='32x32'
+					href='/favicon-32x32.png'
+				/>
+				<link
+					rel='icon'
+					type='image/png'
+					sizes='16x16'
+					href='/favicon-16x16.png'
+				/>
+				<link
+					rel='manifest'
+					href='/site.webmanifest'
+				/>
+				<link
+					rel='mask-icon'
+					href='/safari-pinned-tab.svg'
+					color='#5bbad5'
+				/>
+				<meta
+					name='apple-mobile-web-app-title'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
+					name='application-name'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
+					name='msapplication-TileColor'
+					content='#b91d47'
+				/>
+				<meta
+					name='theme-color'
+					content='#ffffff'
+				/>
+			</Head>
+			<div className={styles.container}>
+				<div className={styles.left}>
+					<div className={styles.row}>
+						<table className={styles.table}>
+							<thead className={styles.thead}>
+								<tr className={styles.trTitle}>
+									<th>Order ID</th>
+									<th>Customer</th>
+									<th>Address</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody className={styles.tbody}>
+								<tr className={styles.tr}>
+									<td>
+										<span className={styles.id}>{order._id}</span>
+									</td>
+									<td>
+										<span className={styles.name}>
+											{order.customer}
+										</span>
+									</td>
+									<td>
+										<span className={styles.address}>
+											{order.address}
+										</span>
+									</td>
+									<td>
+										<span className={styles.total}>
+											${order.total}
+										</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div className={styles.row}>
+						<div className={statusClass(0)}>
+							<Image
+								src='/img/paid.png'
+								width={30}
+								height={30}
+								alt='Payment'
+							/>
+							<span>Payment</span>
+							<div className={styles.checkedIcon}>
+								<Image
+									className={styles.checkedIcon}
+									src='/img/checked.png'
+									width={20}
+									height={20}
+									alt='checked'
+								/>
+							</div>
+						</div>
+						<div className={statusClass(1)}>
+							<Image
+								src='/img/bake.png'
+								width={30}
+								height={30}
+								alt='Preparing'
+							/>
+							<span>Preparing</span>
+							<div className={styles.checkedIcon}>
+								<Image
+									className={styles.checkedIcon}
+									src='/img/checked.png'
+									width={20}
+									height={20}
+									alt='checked'
+								/>
+							</div>
+						</div>
+						<div className={statusClass(2)}>
+							<Image
+								src='/img/bike.png'
+								width={30}
+								height={30}
+								alt='On the way'
+							/>
+							<span>On the way</span>
+							<div className={styles.checkedIcon}>
+								<Image
+									className={styles.checkedIcon}
+									src='/img/checked.png'
+									width={20}
+									height={20}
+									alt='checked'
+								/>
+							</div>
+						</div>
+						<div className={statusClass(3)}>
+							<Image
+								src='/img/delivered.png'
+								width={30}
+								height={30}
+								alt='Delivered'
+							/>
+							<span>Delivered</span>
+							<div className={styles.checkedIcon}>
+								<Image
+									className={styles.checkedIcon}
+									src='/img/checked.png'
+									width={20}
+									height={20}
+									alt='checked'
+								/>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div className={styles.row}>
-					<div className={statusClass(0)}>
-						<Image
-							src='/img/paid.png'
-							width={30}
-							height={30}
-							alt='Payment'
-						/>
-						<span>Payment</span>
-						<div className={styles.checkedIcon}>
-							<Image
-								className={styles.checkedIcon}
-								src='/img/checked.png'
-								width={20}
-								height={20}
-								alt='checked'
-							/>
+				<div className={styles.right}>
+					<div className={styles.wrapper}>
+						<h2 className={styles.title}>CART TOTAL</h2>
+						<div className={styles.totalText}>
+							<b className={styles.totalTextTitle}>Total:</b>$
+							{order.total}
 						</div>
+						<button
+							disabled
+							className={styles.button}
+						>
+							PAID
+						</button>
 					</div>
-					<div className={statusClass(1)}>
-						<Image
-							src='/img/bake.png'
-							width={30}
-							height={30}
-							alt='Preparing'
-						/>
-						<span>Preparing</span>
-						<div className={styles.checkedIcon}>
-							<Image
-								className={styles.checkedIcon}
-								src='/img/checked.png'
-								width={20}
-								height={20}
-								alt='checked'
-							/>
-						</div>
-					</div>
-					<div className={statusClass(2)}>
-						<Image
-							src='/img/bike.png'
-							width={30}
-							height={30}
-							alt='On the way'
-						/>
-						<span>On the way</span>
-						<div className={styles.checkedIcon}>
-							<Image
-								className={styles.checkedIcon}
-								src='/img/checked.png'
-								width={20}
-								height={20}
-								alt='checked'
-							/>
-						</div>
-					</div>
-					<div className={statusClass(3)}>
-						<Image
-							src='/img/delivered.png'
-							width={30}
-							height={30}
-							alt='Delivered'
-						/>
-						<span>Delivered</span>
-						<div className={styles.checkedIcon}>
-							<Image
-								className={styles.checkedIcon}
-								src='/img/checked.png'
-								width={20}
-								height={20}
-								alt='checked'
-							/>
-						</div>
-					</div>
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
 				</div>
 			</div>
-			<div className={styles.right}>
-				<div className={styles.wrapper}>
-					<h2 className={styles.title}>CART TOTAL</h2>
-					<div className={styles.totalText}>
-						<b className={styles.totalTextTitle}>Total:</b>${order.total}
-					</div>
-					<button
-						disabled
-						className={styles.button}
-					>
-						PAID
-					</button>
-				</div>
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-			</div>
-		</div>
+		</>
 	);
 };
 

@@ -17,6 +17,7 @@ import Radio from '@mui/material/Radio';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import Image from 'next/image';
+import Head from 'next/head';
 import {
 	differenceInHours,
 	differenceInMinutes,
@@ -129,77 +130,128 @@ const ProductsTab = ({ products, setProductList }) => {
 		[product, setProductList],
 	);
 	return (
-		<div className={styles.container}>
-			{editingId ? (
-				<Add
-					productToEdit={product.find((p) => p._id === editingId)}
-					onUpdate={handleUpdate}
-					onCancel={() => setEditingId(null)}
-					setClose={setClose}
+		<>
+			<Head>
+				<title>Lahamah & Fahmah</title>
+				<link
+					rel='apple-touch-icon'
+					sizes='180x180'
+					href='/apple-touch-icon.png'
 				/>
-			) : (
-				<>
-					<div className={styles.item}>
-						<ProductCategoryDropdown
-							options={options}
-							onCategoryChange={setSelectedCategory}
-						/>
-						<h1 className={styles.title}>Products</h1>
-						<table className={styles.table}>
-							<tbody>
-								<tr className={styles.trTitle}>
-									<th>Image</th>
-									<th>Id</th>
-									<th>Title</th>
-									<th>Prices</th>
-									<th>Action</th>
-								</tr>
-							</tbody>
-							{product
-								.filter((product) =>
-									product.category.includes(selectedCategory),
-								)
-								.map((product) => (
-									<tbody key={product._id}>
-										<tr className={styles.trTitle}>
-											<td>
-												<Image
-													src={`http://31.170.165.239:3000${product.img}`}
-													width={110}
-													height={110}
-													style={{ objectFit: 'cover' }}
-													alt='product-image'
-												/>
-											</td>
-											<td>{product._id.slice(0, 7)}...</td>
-											<td>{product.title}</td>
-											<td>
-												{product.prices[0]} AED -{' '}
-												{product.prices[1]} AED -{' '}
-												{product.prices[2]} AED
-											</td>
-											<td>
-												<button
-													className={styles.button}
-													onClick={() => handleEdit(product._id)}
-												>
-													Edit
-												</button>
-												<button
-													className={styles.button}
-													onClick={() => handleDelete(product._id)}
-												>
-													Delete
-												</button>
-											</td>
-										</tr>
-									</tbody>
-								))}
-						</table>
-					</div>
-				</>
-			)}
-		</div>
+				<link
+					rel='icon'
+					type='image/png'
+					sizes='32x32'
+					href='/favicon-32x32.png'
+				/>
+				<link
+					rel='icon'
+					type='image/png'
+					sizes='16x16'
+					href='/favicon-16x16.png'
+				/>
+				<link
+					rel='manifest'
+					href='/site.webmanifest'
+				/>
+				<link
+					rel='mask-icon'
+					href='/safari-pinned-tab.svg'
+					color='#5bbad5'
+				/>
+				<meta
+					name='apple-mobile-web-app-title'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
+					name='application-name'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
+					name='msapplication-TileColor'
+					content='#b91d47'
+				/>
+				<meta
+					name='theme-color'
+					content='#ffffff'
+				/>
+			</Head>
+			<div className={styles.container}>
+				{editingId ? (
+					<Add
+						productToEdit={product.find((p) => p._id === editingId)}
+						onUpdate={handleUpdate}
+						onCancel={() => setEditingId(null)}
+						setClose={setClose}
+					/>
+				) : (
+					<>
+						<div className={styles.item}>
+							<ProductCategoryDropdown
+								options={options}
+								onCategoryChange={setSelectedCategory}
+							/>
+							<h1 className={styles.title}>Products</h1>
+							<table className={styles.table}>
+								<tbody>
+									<tr className={styles.trTitle}>
+										<th>Image</th>
+										<th>Id</th>
+										<th>Title</th>
+										<th>Prices</th>
+										<th>Action</th>
+									</tr>
+								</tbody>
+								{product
+									.filter((product) =>
+										product.category.includes(selectedCategory),
+									)
+									.map((product) => (
+										<tbody key={product._id}>
+											<tr className={styles.trTitle}>
+												<td>
+													<Image
+														src={`http://31.170.165.239:3000${product.img}`}
+														width={110}
+														height={110}
+														style={{ objectFit: 'cover' }}
+														alt='product-image'
+													/>
+												</td>
+												<td>{product._id.slice(0, 7)}...</td>
+												<td>{product.title}</td>
+												<td>
+													{product.prices[0]} AED -{' '}
+													{product.prices[1]} AED -{' '}
+													{product.prices[2]} AED
+												</td>
+												<td>
+													<button
+														className={styles.button}
+														onClick={() =>
+															handleEdit(product._id)
+														}
+													>
+														Edit
+													</button>
+													<button
+														className={styles.button}
+														onClick={() =>
+															handleDelete(product._id)
+														}
+													>
+														Delete
+													</button>
+												</td>
+											</tr>
+										</tbody>
+									))}
+							</table>
+						</div>
+					</>
+				)}
+			</div>
+		</>
 	);
 };
 

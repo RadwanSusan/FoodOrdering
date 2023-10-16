@@ -7,6 +7,7 @@ import { addProduct } from '../../redux/cartSlice';
 import Swal from 'sweetalert2';
 import 'yet-another-react-lightbox/styles.css';
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 
 const Lightbox = dynamic(() => import('yet-another-react-lightbox'), {
 	ssr: false,
@@ -107,97 +108,146 @@ const Product = ({ product }) => {
 		setQuantity(1);
 	};
 	return (
-		<div className={styles.container}>
-			<div className={styles.left}>
-				<div
-					className={styles.imgContainer}
-					onClick={() => setIsOpen(true)}
-				>
-					<Image
-						src={`http://31.170.165.239:3000${product.img}`}
-						alt='product-image'
-						fill
-						style={{ cursor: 'pointer', objectFit: 'contain' }}
-						quality={90}
-						placeholder='blur'
-						blurDataURL={`http://31.170.165.239:3000${product.img}`}
-						loading='lazy'
-					/>
-					{isOpen && (
-						<Lightbox
-							open={isOpen}
-							close={() => setIsOpen(false)}
-							slides={[
-								{ src: 'http://31.170.165.239:3000' + product.img },
-							]}
-						/>
-					)}
-				</div>
-			</div>
-			<div className={styles.right}>
-				<h1 className={styles.title}>{product.title}</h1>
-				<span className={styles.price}>{price} AED</span>
-				<p className={styles.desc}>{product.desc}</p>
-				<h3 className={styles.choose}>Choose the size</h3>
-				<div className={styles.sizes}>
-					{product.prices.map((price, index) => (
-						<div
-							key={index}
-							className={styles.size}
-							onClick={() => handleSize(index)}
-						>
-							<Image
-								src='/img/size.png'
-								alt='product-size'
-								fill
-							/>
-							<span className={styles.number}>{`${price} AED`}</span>
-						</div>
-					))}
-				</div>
-				{product.extraOptions.length > 0 && (
-					<h3 className={styles.choose}>Choose additional ingredients</h3>
-				)}
-				<div className={styles.ingredients}>
-					{product.extraOptions.map((option) => (
-						<div
-							className={styles.option}
-							key={option._id}
-						>
-							<input
-								type='checkbox'
-								id={option.text}
-								name={option.text}
-								className={styles.checkbox}
-								checked={checkedExtras[option._id] || false}
-								onChange={(e) => handleChange(e, option)}
-							/>
-							<label htmlFor={option.text}>{option.text}</label>
-						</div>
-					))}
-				</div>
-				<div className={styles.add}>
-					<input
-						onChange={(e) => {
-							const value = Number(e.target.value);
-							if (value >= 1) {
-								setQuantity(value);
-							}
-						}}
-						type='number'
-						value={quantity}
-						min='1'
-						className={styles.quantity}
-					/>
-					<button
-						className={styles.button}
-						onClick={handleClick}
+		<>
+			<Head>
+				<title>Lahamah & Fahmah</title>
+				<link
+					rel='apple-touch-icon'
+					sizes='180x180'
+					href='/apple-touch-icon.png'
+				/>
+				<link
+					rel='icon'
+					type='image/png'
+					sizes='32x32'
+					href='/favicon-32x32.png'
+				/>
+				<link
+					rel='icon'
+					type='image/png'
+					sizes='16x16'
+					href='/favicon-16x16.png'
+				/>
+				<link
+					rel='manifest'
+					href='/site.webmanifest'
+				/>
+				<link
+					rel='mask-icon'
+					href='/safari-pinned-tab.svg'
+					color='#5bbad5'
+				/>
+				<meta
+					name='apple-mobile-web-app-title'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
+					name='application-name'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
+					name='msapplication-TileColor'
+					content='#b91d47'
+				/>
+				<meta
+					name='theme-color'
+					content='#ffffff'
+				/>
+			</Head>
+			<div className={styles.container}>
+				<div className={styles.left}>
+					<div
+						className={styles.imgContainer}
+						onClick={() => setIsOpen(true)}
 					>
-						Add to Cart
-					</button>
+						<Image
+							src={`http://31.170.165.239:3000${product.img}`}
+							alt='product-image'
+							fill
+							style={{ cursor: 'pointer', objectFit: 'contain' }}
+							quality={90}
+							placeholder='blur'
+							blurDataURL={`http://31.170.165.239:3000${product.img}`}
+							loading='lazy'
+						/>
+						{isOpen && (
+							<Lightbox
+								open={isOpen}
+								close={() => setIsOpen(false)}
+								slides={[
+									{ src: 'http://31.170.165.239:3000' + product.img },
+								]}
+							/>
+						)}
+					</div>
+				</div>
+				<div className={styles.right}>
+					<h1 className={styles.title}>{product.title}</h1>
+					<span className={styles.price}>{price} AED</span>
+					<p className={styles.desc}>{product.desc}</p>
+					<h3 className={styles.choose}>Choose the size</h3>
+					<div className={styles.sizes}>
+						{product.prices.map((price, index) => (
+							<div
+								key={index}
+								className={styles.size}
+								onClick={() => handleSize(index)}
+							>
+								<Image
+									src='/img/size.png'
+									alt='product-size'
+									fill
+								/>
+								<span className={styles.number}>{`${price} AED`}</span>
+							</div>
+						))}
+					</div>
+					{product.extraOptions.length > 0 && (
+						<h3 className={styles.choose}>
+							Choose additional ingredients
+						</h3>
+					)}
+					<div className={styles.ingredients}>
+						{product.extraOptions.map((option) => (
+							<div
+								className={styles.option}
+								key={option._id}
+							>
+								<input
+									type='checkbox'
+									id={option.text}
+									name={option.text}
+									className={styles.checkbox}
+									checked={checkedExtras[option._id] || false}
+									onChange={(e) => handleChange(e, option)}
+								/>
+								<label htmlFor={option.text}>{option.text}</label>
+							</div>
+						))}
+					</div>
+					<div className={styles.add}>
+						<input
+							onChange={(e) => {
+								const value = Number(e.target.value);
+								if (value >= 1) {
+									setQuantity(value);
+								}
+							}}
+							type='number'
+							value={quantity}
+							min='1'
+							className={styles.quantity}
+						/>
+						<button
+							className={styles.button}
+							onClick={handleClick}
+						>
+							Add to Cart
+						</button>
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

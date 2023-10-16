@@ -12,11 +12,7 @@ export default function Home({ productsList, admin }) {
 	return (
 		<div>
 			<Head>
-				<title>Lahamah And Fahmah</title>
-				<meta
-					name='description'
-					content='Lahamah And Fahmah is a restaurant that serves delicious food'
-				/>
+				<title>Lahamah & Fahmah</title>
 				<link
 					rel='apple-touch-icon'
 					sizes='180x180'
@@ -44,13 +40,21 @@ export default function Home({ productsList, admin }) {
 					color='#5bbad5'
 				/>
 				<meta
+					name='apple-mobile-web-app-title'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
+					name='application-name'
+					content='Lahmah &amp; Fahmah'
+				/>
+				<meta
 					name='msapplication-TileColor'
-					content='#da532c'
+					content='#b91d47'
 				/>
 				<meta
 					name='theme-color'
 					content='#ffffff'
-				></meta>
+				/>
 			</Head>
 			<Featured />
 			{admin ? <AddButton setClose={setClose} /> : null}
