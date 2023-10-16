@@ -1,5 +1,5 @@
 import styles from '../styles/Featured.module.css';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { useState } from 'react';
 
 const Featured = () => {
@@ -29,8 +29,8 @@ const Featured = () => {
 				<Image
 					src='/img/arrowl.png'
 					alt='left-arrow'
-					layout='fill'
-					objectFit='contain'
+					style={{ objectFit: 'cover' }}
+					fill={true}
 					priority
 				/>
 			</div>
@@ -46,8 +46,8 @@ const Featured = () => {
 						<Image
 							src={img}
 							alt='featured-image'
-							layout='fill'
-							objectFit='cover'
+							style={{ objectFit: 'cover' }}
+							fill={true}
 							priority
 						/>
 					</div>
@@ -60,9 +60,9 @@ const Featured = () => {
 			>
 				<Image
 					src='/img/arrowr.png'
-					layout='fill'
 					alt='right-arrow'
-					objectFit='contain'
+					style={{ objectFit: 'cover' }}
+					fill
 					priority
 				/>
 			</div>

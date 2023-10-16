@@ -1,5 +1,5 @@
 import styles from '../../styles/Product.module.css';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -115,10 +115,9 @@ const Product = ({ product }) => {
 				>
 					<Image
 						src={product.img}
-						objectFit='contain'
-						layout='fill'
 						alt='product-image'
-						style={{ cursor: 'pointer' }}
+						fill
+						style={{ cursor: 'pointer', objectFit: 'contain' }}
 						priority
 					/>
 					{isOpen && (
@@ -142,8 +141,8 @@ const Product = ({ product }) => {
 					>
 						<Image
 							src='/img/size.png'
-							layout='fill'
 							alt='product-size'
+							fill
 						/>
 						<span className={styles.number}>Small</span>
 					</div>
@@ -153,8 +152,8 @@ const Product = ({ product }) => {
 					>
 						<Image
 							src='/img/size.png'
-							layout='fill'
 							alt='product-size'
+							fill
 						/>
 						<span className={styles.number}>Medium</span>
 					</div>
@@ -164,8 +163,8 @@ const Product = ({ product }) => {
 					>
 						<Image
 							src='/img/size.png'
-							layout='fill'
 							alt='product-size'
+							fill
 						/>
 						<span className={styles.number}>Large</span>
 					</div>

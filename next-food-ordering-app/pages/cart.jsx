@@ -1,5 +1,5 @@
 import styles from '../styles/Cart.module.css';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import axios from 'axios';
@@ -117,8 +117,8 @@ const Cart = () => {
 									<div className={styles.imgContainer}>
 										<Image
 											src={product.img}
-											layout='fill'
-											objectFit='cover'
+											fill
+											style={{ objectFit: 'contain' }}
 											alt='product-image'
 										/>
 									</div>

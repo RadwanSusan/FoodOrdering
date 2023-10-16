@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import styles from '../../styles/Admin.module.css';
 import Swal from 'sweetalert2';
@@ -167,7 +167,7 @@ const ProductsTab = ({ products, setProductList }) => {
 													src={product.img}
 													width={110}
 													height={110}
-													objectFit='cover'
+													style={{ objectFit: 'cover' }}
 													alt='product-image'
 												/>
 											</td>

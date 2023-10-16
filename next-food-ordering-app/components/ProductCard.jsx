@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import styles from '../styles/ProductCard.module.css';
 import Link from 'next/link';
 
@@ -14,11 +14,13 @@ const ProductCard = ({ product }) => {
 				<Image
 					src={product.img}
 					alt='product-image'
-					width='500'
-					height='500'
-					objectFit='cover'
-					style={{ borderRadius: '8px' }}
-					priority
+					width='250'
+					height='250'
+					style={{ borderRadius: '8px', objectFit: 'cover' }}
+					quality={90}
+					placeholder='blur'
+					blurDataURL={product.img}
+					loading='lazy'
 				/>
 				<h1 className={styles.title}>{product.title}</h1>
 				<span className={styles.price}>{product.prices[0]} AED</span>

@@ -1,6 +1,6 @@
 import styles from '../styles/MobileMenuList.module.css';
 import { useState } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 
 const MobileMenuList = ({ handleCategoryClick }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
