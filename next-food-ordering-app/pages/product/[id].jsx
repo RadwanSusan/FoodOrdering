@@ -128,7 +128,9 @@ const Product = ({ product }) => {
 						<Lightbox
 							open={isOpen}
 							close={() => setIsOpen(false)}
-							slides={[{ src: product.img }]}
+							slides={[
+								{ src: 'http://31.170.165.239:3000' + product.img },
+							]}
 						/>
 					)}
 				</div>
