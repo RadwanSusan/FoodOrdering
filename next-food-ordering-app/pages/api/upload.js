@@ -57,7 +57,7 @@ const uploadFile = async (req, res) => {
 			originalFilename,
 		);
 		await fs.copyFile(tempPath, filePath);
-		res.status(200).json({ data: `/uploads/${originalFilename}` });
+		res.status(200).json({ data: `/images/${originalFilename}` });
 	});
 };
 

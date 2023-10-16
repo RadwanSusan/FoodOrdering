@@ -115,12 +115,16 @@ const Cart = () => {
 							>
 								<td>
 									<div className={styles.imgContainer}>
-										<img
-											src={product.img}
+										<Image
+											src={`http://31.170.165.239:3000/${product.img}`}
 											width={200}
 											height={150}
 											style={{ objectFit: 'contain' }}
 											alt='product-image'
+											loading='lazy'
+											placeholder='blur'
+											blurDataURL={`http://31.170.165.239:3000/${product.img}`}
+											quality={90}
 										/>
 									</div>
 								</td>

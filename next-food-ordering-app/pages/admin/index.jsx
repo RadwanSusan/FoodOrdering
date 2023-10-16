@@ -16,6 +16,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
+import Image from 'next/image';
 import {
 	differenceInHours,
 	differenceInMinutes,
@@ -162,8 +163,8 @@ const ProductsTab = ({ products, setProductList }) => {
 									<tbody key={product._id}>
 										<tr className={styles.trTitle}>
 											<td>
-												<img
-													src={product.img}
+												<Image
+													src={`http://31.170.165.239:3000/${product.img}`}
 													width={110}
 													height={110}
 													style={{ objectFit: 'cover' }}
