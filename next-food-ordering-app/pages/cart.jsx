@@ -115,9 +115,10 @@ const Cart = () => {
 							>
 								<td>
 									<div className={styles.imgContainer}>
-										<Image
+										<img
 											src={product.img}
-											fill
+											width={200}
+											height={150}
 											style={{ objectFit: 'contain' }}
 											alt='product-image'
 										/>

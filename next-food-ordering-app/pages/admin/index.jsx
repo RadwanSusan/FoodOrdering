@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Image from 'next/image';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import styles from '../../styles/Admin.module.css';
 import Swal from 'sweetalert2';
@@ -163,7 +162,7 @@ const ProductsTab = ({ products, setProductList }) => {
 									<tbody key={product._id}>
 										<tr className={styles.trTitle}>
 											<td>
-												<Image
+												<img
 													src={product.img}
 													width={110}
 													height={110}

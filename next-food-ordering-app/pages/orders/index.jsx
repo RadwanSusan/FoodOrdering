@@ -4,7 +4,6 @@ import { setOrders, selectOrders } from '../../redux/ordersSlice';
 import { formatDistanceToNow } from 'date-fns';
 import styles from '../../styles/OrderList.module.css';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const tagColors = [
 	'tagTeal',
@@ -60,7 +59,7 @@ const Orders = () => {
 							key={order._id}
 						>
 							<div className={styles.cardHeader}>
-								<Image
+								<img
 									src={JSON.parse(orders[0].cart)[0].img}
 									alt='product-image'
 								/>

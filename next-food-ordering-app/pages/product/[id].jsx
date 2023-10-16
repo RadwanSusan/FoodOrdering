@@ -113,12 +113,10 @@ const Product = ({ product }) => {
 					className={styles.imgContainer}
 					onClick={() => setIsOpen(true)}
 				>
-					<Image
+					<img
 						src={product.img}
 						alt='product-image'
-						fill
 						style={{ cursor: 'pointer', objectFit: 'contain' }}
-						priority
 					/>
 					{isOpen && (
 						<Lightbox
