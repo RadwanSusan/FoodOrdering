@@ -116,8 +116,7 @@ const Product = ({ product }) => {
 					<Image
 						src={`http://31.170.165.239:3000${product.img}`}
 						alt='product-image'
-						width={600}
-						height={400}
+						fill
 						style={{ cursor: 'pointer', objectFit: 'contain' }}
 						quality={90}
 						placeholder='blur'
