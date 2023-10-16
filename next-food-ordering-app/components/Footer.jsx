@@ -17,7 +17,7 @@ const Footer = () => {
 				<div className={styles.item}>
 					<div className={styles.card}>
 						<h2 className={styles.motto}>
-							GET YOUR DAILY DOSE OF HAPPINESS WITH OUR PIZZA!.
+							GET YOUR DAILY DOSE OF HAPPINESS FROM OUR KITCHEN!.
 						</h2>
 					</div>
 					<div className={styles.card}>
@@ -32,12 +32,7 @@ const Footer = () => {
 					<div className={styles.card}>
 						<h1 className={styles.title}>WORKING HOURS</h1>
 						<p className={styles.text}>
-							MONDAY UNTIL FRIDAY
-							<br /> 9:00 – 22:00
-						</p>
-						<p className={styles.text}>
-							SATURDAY - SUNDAY
-							<br /> 12:00 – 24:00
+							Everyday from 8:00 AM - 02:00 AM
 						</p>
 					</div>
 				</div>
