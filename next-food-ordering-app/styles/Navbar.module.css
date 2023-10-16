@@ -20,7 +20,7 @@
 }
 
 .item:nth-child(2) {
-	flex: 2;
+	flex: 0.9 1;
 }
 
 .item:nth-child(3) {
