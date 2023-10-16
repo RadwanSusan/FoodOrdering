@@ -25,7 +25,7 @@
 		"geolib": "^3.3.4",
 		"micro": "^10.0.1",
 		"mongodb": "^6.1.0",
-		"mongoose": "^7.6.1",
+		"mongoose": "^7.6.2",
 		"multiparty": "^4.2.3",
 		"next": "13.5.4",
 		"nextjs-progressbar": "^0.0.16",
