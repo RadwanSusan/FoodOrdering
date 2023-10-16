@@ -164,7 +164,7 @@ const ProductsTab = ({ products, setProductList }) => {
 										<tr className={styles.trTitle}>
 											<td>
 												<Image
-													src={`http://31.170.165.239:3000/${product.img}`}
+													src={`http://31.170.165.239:3000${product.img}`}
 													width={110}
 													height={110}
 													style={{ objectFit: 'cover' }}

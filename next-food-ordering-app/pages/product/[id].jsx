@@ -114,14 +114,14 @@ const Product = ({ product }) => {
 					onClick={() => setIsOpen(true)}
 				>
 					<Image
-						src={`http://31.170.165.239:3000/${product.img}`}
+						src={`http://31.170.165.239:3000${product.img}`}
 						alt='product-image'
 						width={600}
 						height={400}
 						style={{ cursor: 'pointer', objectFit: 'contain' }}
 						quality={90}
 						placeholder='blur'
-						blurDataURL={`http://31.170.165.239:3000/${product.img}`}
+						blurDataURL={`http://31.170.165.239:3000${product.img}`}
 						loading='lazy'
 					/>
 					{isOpen && (

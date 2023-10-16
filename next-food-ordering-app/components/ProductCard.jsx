@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
 				style={{ textAlign: 'center' }}
 			>
 				<Image
-					src={`http://31.170.165.239:3000/${product.img}`}
+					src={`http://31.170.165.239:3000${product.img}`}
 					alt='product-image'
 					width='250'
 					height='250'

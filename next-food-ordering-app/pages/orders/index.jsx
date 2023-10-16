@@ -61,10 +61,16 @@ const Orders = () => {
 						>
 							<div className={styles.cardHeader}>
 								<Image
-									src={`http://31.170.165.239:3000/${
+									src={`http://31.170.165.239:3000${
 										JSON.parse(orders[0].cart)[0].img
 									}`}
 									alt='product-image'
+									quality={90}
+									placeholder='blur'
+									blurDataURL={`http://31.170.165.239:3000${
+										JSON.parse(orders[0].cart)[0].img
+									}`}
+									loading='lazy'
 								/>
 							</div>
 							<div className={styles.cardBody}>
