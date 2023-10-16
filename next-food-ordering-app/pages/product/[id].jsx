@@ -140,39 +140,20 @@ const Product = ({ product }) => {
 				<p className={styles.desc}>{product.desc}</p>
 				<h3 className={styles.choose}>Choose the size</h3>
 				<div className={styles.sizes}>
-					<div
-						className={styles.size}
-						onClick={() => handleSize(0)}
-					>
-						<Image
-							src='/img/size.png'
-							alt='product-size'
-							fill
-						/>
-						<span className={styles.number}>Small</span>
-					</div>
-					<div
-						className={styles.size}
-						onClick={() => handleSize(1)}
-					>
-						<Image
-							src='/img/size.png'
-							alt='product-size'
-							fill
-						/>
-						<span className={styles.number}>Medium</span>
-					</div>
-					<div
-						className={styles.size}
-						onClick={() => handleSize(2)}
-					>
-						<Image
-							src='/img/size.png'
-							alt='product-size'
-							fill
-						/>
-						<span className={styles.number}>Large</span>
-					</div>
+					{product.prices.map((price, index) => (
+						<div
+							key={index}
+							className={styles.size}
+							onClick={() => handleSize(index)}
+						>
+							<Image
+								src='/img/size.png'
+								alt='product-size'
+								fill
+							/>
+							<span className={styles.number}>{`${price} AED`}</span>
+						</div>
+					))}
 				</div>
 				{product.extraOptions.length > 0 && (
 					<h3 className={styles.choose}>Choose additional ingredients</h3>

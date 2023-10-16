@@ -12,7 +12,7 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 				file: null,
 				title: null,
 				desc: null,
-				prices: [],
+				prices: [null],
 				extraOptions: [],
 				extra: null,
 				category: null,
@@ -53,15 +53,6 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 		}
 	}, [extra]);
 
-	// const uploadFile = async (file) => {
-	// 	const data = new FormData();
-	// 	data.append('file', file);
-	// 	const uploadRes = await axios.post(
-	// 		'http://31.170.165.239:765/api/upload',
-	// 		data,
-	// 	);
-	// 	return uploadRes.data.files.file[0].url;
-	// };
 	const uploadFile = async (file) => {
 		const data = new FormData();
 		data.append('file', file);
@@ -203,27 +194,28 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 				<div className={styles.item}>
 					<label className={styles.label}>Prices</label>
 					<div className={styles.priceContainer}>
-						<input
-							className={`${styles.input} ${styles.inputSm}`}
-							type='number'
-							placeholder='Small'
-							onChange={(e) => changePrice(e, 0)}
-							value={product.prices[0]}
-						/>
-						<input
-							className={`${styles.input} ${styles.inputSm}`}
-							type='number'
-							placeholder='Medium'
-							onChange={(e) => changePrice(e, 1)}
-							value={product.prices[1]}
-						/>
-						<input
-							className={`${styles.input} ${styles.inputSm}`}
-							type='number'
-							placeholder='Large'
-							onChange={(e) => changePrice(e, 2)}
-							value={product.prices[2]}
-						/>
+						{product.prices.map((price, index) => (
+							<input
+								key={index}
+								className={`${styles.input} ${styles.inputSm}`}
+								type='number'
+								placeholder={`Price ${index + 1}`}
+								onChange={(e) => changePrice(e, index)}
+								value={price}
+							/>
+						))}
+						{product.prices.length < 3 && (
+							<button
+								onClick={() =>
+									setProduct((prevProduct) => ({
+										...prevProduct,
+										prices: [...prevProduct.prices, null],
+									}))
+								}
+							>
+								+
+							</button>
+						)}
 					</div>
 				</div>
 				<div className={styles.item}>
