@@ -116,6 +116,8 @@ const Product = ({ product }) => {
 					<img
 						src={product.img}
 						alt='product-image'
+						width={600}
+						height={400}
 						style={{ cursor: 'pointer', objectFit: 'contain' }}
 					/>
 					{isOpen && (
