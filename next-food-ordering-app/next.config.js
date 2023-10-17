@@ -1,4 +1,8 @@
-module.exports = {
+const withPWA = require('@ducanh2912/next-pwa').default({
+	dest: 'public',
+});
+
+module.exports = withPWA({
 	images: {
 		domains: [
 			'res.cloudinary.com',
@@ -37,4 +41,4 @@ module.exports = {
 		locales: ['en-US'],
 		defaultLocale: 'en-US',
 	},
-};
+});

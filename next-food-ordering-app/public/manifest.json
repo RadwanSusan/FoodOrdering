@@ -1,0 +1,28 @@
+{
+	"name": "Lahmah & Fahmah",
+	"short_name": "L&F",
+	"icons": [
+		{
+			"src": "/img/lahmahAndFahmah/logo.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/img/lahmahAndFahmah/icon-384x384.png",
+			"sizes": "384x384",
+			"type": "image/png"
+		},
+		{
+			"src": "/img/lahmahAndFahmah/icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"theme_color": "#FFFFFF",
+	"background_color": "#FFFFFF",
+	"start_url": "/",
+	"display": "standalone",
+	"orientation": "portrait",
+	"workboxOptions.mode": "production"
+}
