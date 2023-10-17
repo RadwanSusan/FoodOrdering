@@ -65,10 +65,10 @@ const Navbar = ({ admin }) => {
 				<div className={styles.texts}>
 					<div className={styles.text}>ORDER NOW!</div>
 					<a
-						href='tel:+971(4)8811784'
+						href='tel:+971(04) 280 1585'
 						className={styles.text}
 					>
-						+971(4)8811784
+						+971(04)2801585
 					</a>
 				</div>
 			</div>
