@@ -7,12 +7,12 @@ body {
   scroll-behavior: smooth;
 }
 
+
 img {
-  user-select: none;
-  -webkit-user-drag: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  user-select: none;
 }
 
 a {
@@ -22,6 +22,8 @@ a {
 
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(0, 100%, 56%) transparent;
 }
 
 ::-webkit-scrollbar-track {
@@ -36,7 +38,7 @@ a {
   background-image: -webkit-gradient(linear,
       left bottom,
       left top,
-      color-stop(0.44, #ff1d1d),
-      color-stop(0.72, rgb(217, 54, 54)),
+      color-stop(0.44, hsl(0, 100%, 56%)),
+      color-stop(0.72, hsl(0, 68%, 53%)),
       color-stop(0.86, rgb(245, 30, 30)));
 }
