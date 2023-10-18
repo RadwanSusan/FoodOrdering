@@ -3,28 +3,13 @@ import Image from 'next/image';
 import styles from '../styles/Navbar.module.css';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
-import useInstallPrompt from './useInstallPrompt';
 
 const Navbar = ({ admin }) => {
 	let quantity = useSelector((state) => state.cart?.quantity);
-	const { prompt } = useInstallPrompt();
 
 	if (quantity == undefined) {
 		quantity = 0;
 	}
-
-	const handleInstallClick = () => {
-		console.log(prompt);
-		if (!prompt) return;
-		prompt.prompt();
-		prompt.userChoice.then((choiceResult) => {
-			if (choiceResult.outcome === 'accepted') {
-				console.log('User accepted the install prompt');
-			} else {
-				console.log('User dismissed the install prompt');
-			}
-		});
-	};
 
 	// const [isOpen, setIsOpen] = useState(false);
 
@@ -164,9 +149,6 @@ const Navbar = ({ admin }) => {
 					</div>
 				</div>
 			</Link>
-			<div className={styles.item}>
-				<button onClick={handleInstallClick}>Install App</button>
-			</div>
 		</nav>
 	);
 };

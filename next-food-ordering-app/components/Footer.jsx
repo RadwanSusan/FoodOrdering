@@ -1,6 +1,23 @@
 import styles from '../styles/Footer.module.css';
+import useInstallPrompt from './useInstallPrompt';
+import Image from 'next/image';
 
 const Footer = () => {
+	const { prompt } = useInstallPrompt();
+
+	const handleInstallClick = () => {
+		console.log(prompt);
+		if (!prompt) return;
+		prompt.prompt();
+		prompt.userChoice.then((choiceResult) => {
+			if (choiceResult.outcome === 'accepted') {
+				console.log('User accepted the install prompt');
+			} else {
+				console.log('User dismissed the install prompt');
+			}
+		});
+	};
+
 	return (
 		<>
 			<div className={styles.container}>
@@ -17,7 +34,40 @@ const Footer = () => {
 				<div className={styles.item}>
 					<div className={styles.card}>
 						<h2 className={styles.motto}>
-							GET YOUR DAILY DOSE OF HAPPINESS FROM OUR KITCHEN!.
+							<div className={styles.item}>
+								<div className={styles.PWA}>
+									<div
+										className={styles.apple}
+										onClick={handleInstallClick}
+									>
+										<Image
+											src='/img/apple.svg'
+											alt='app-store'
+											width='40'
+											height='40'
+										/>
+										<div>
+											<h3>Download On</h3>
+											<p>Apple Store</p>
+										</div>
+									</div>
+									<div
+										className={styles.android}
+										onClick={handleInstallClick}
+									>
+										<Image
+											src='/img/android.svg'
+											alt='play-store'
+											width='40'
+											height='40'
+										/>
+										<div>
+											<h3>Android App On</h3>
+											<p>Google Play</p>
+										</div>
+									</div>
+								</div>
+							</div>
 						</h2>
 					</div>
 					<div className={styles.card}>
