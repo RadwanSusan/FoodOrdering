@@ -9,6 +9,35 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 1200px) {
+  .productsImage {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .productsImage {
+    width: 190px;
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .productsImage {
+    width: 145px;
+    height: 145px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .productsImage {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+
 .title {
   font-size: 18px;
   font-weight: bold;

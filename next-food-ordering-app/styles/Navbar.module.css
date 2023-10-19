@@ -63,11 +63,12 @@
 }
 
 .callButton {
-	background-color: #ff6452;
+	background-color: #d63e2e;
 	border-radius: 50%;
 	padding: 10px;
 	width: 50px;
 	height: 50px;
+	font-family: 'Quicksand', serif;
 }
 
 .texts {

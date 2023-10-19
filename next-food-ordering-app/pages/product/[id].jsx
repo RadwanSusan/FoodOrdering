@@ -8,7 +8,6 @@ import Swal from 'sweetalert2';
 import 'yet-another-react-lightbox/styles.css';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-
 const Lightbox = dynamic(() => import('yet-another-react-lightbox'), {
 	ssr: false,
 });
@@ -292,10 +291,9 @@ const Product = ({ product }) => {
 							alt='product-image'
 							fill
 							style={{ cursor: 'pointer', objectFit: 'contain' }}
-							quality={90}
+							quality={100}
 							placeholder='blur'
 							blurDataURL={`http://31.170.165.239:3000${product.img}`}
-							loading='lazy'
 						/>
 						{isOpen && (
 							<Lightbox

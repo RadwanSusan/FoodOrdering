@@ -12,6 +12,7 @@ module.exports = withPWA({
 			'31.170.165.239:765',
 			'31.170.165.239',
 		],
+		minimumCacheTTL: 60,
 	},
 	async headers() {
 		return [

@@ -3,7 +3,7 @@
    border-radius: .5rem;
    text-transform: uppercase;
    box-shadow: inset .1rem .1rem .5rem rgba(0, 0, 0, .15);
-   width: 98%;
+   width: 100%;
 }
 
 @media screen and (max-width: 850px) {
@@ -15,7 +15,6 @@
 .menu div {
    color: #fff;
    text-decoration: none;
-   font-weight: 300
 }
 
 .menu div:focus,
@@ -2340,12 +2339,13 @@
 
    .menu > ol > li > div {
       padding: 0.5rem 0;
-      font-size: 1.15vw;
-      font-weight: 600;
+      font-size: 1.10vw;
+      font-weight: 500;
       position: relative;
       width: 100%;
       z-index: 1;
       opacity: .7;
+      font-family: "Quicksand", sans-serif;
    }
 
    .menu > ol > li > ol {
@@ -2378,7 +2378,7 @@
       display: block;
       border-radius: 0.2rem;
       padding: 1rem 0.5rem;
-      font-size: 1.5vw;
+      font-size: 1.3vw;
       background: #cf392582;
       color: rgb(255 255 255)
    }
@@ -2491,7 +2491,7 @@
    }
 
    .menu div {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       padding: 1rem .5rem
    }
 

@@ -12,15 +12,16 @@ const ProductCard = ({ product }) => {
 				style={{ textAlign: 'center' }}
 			>
 				<Image
+					className={styles.productsImage}
 					src={`http://31.170.165.239:3000${product.img}`}
 					alt='product-image'
-					width='250'
-					height='250'
 					style={{ borderRadius: '8px', objectFit: 'cover' }}
-					quality={90}
+					quality={95}
 					placeholder='blur'
-					blurDataURL={product.img}
+					blurDataURL={`http://31.170.165.239:3000${product.img}`}
 					loading='lazy'
+					width={300}
+					height={300}
 				/>
 				<h1 className={styles.title}>{product.title}</h1>
 				<span className={styles.price}>{product.prices[0]} AED</span>
