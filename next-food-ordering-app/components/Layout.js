@@ -8,8 +8,6 @@ const quicksand = Quicksand({
 });
 
 const Layout = ({ admin, children }) => {
-	console.log(admin);
-	console.log(children);
 	return (
 		<div className={quicksand.className}>
 			<Navbar admin={admin} />
