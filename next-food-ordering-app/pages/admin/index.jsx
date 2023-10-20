@@ -32,7 +32,7 @@ const options = [
 	{ value: 'Meal for two', label: 'Meal for two' },
 	{ value: 'Meal for four', label: 'Meal for four' },
 	{ value: 'Sandwiches', label: 'Sandwiches' },
-	{ value: 'Wrap Sandwiches', label: 'Wrap Sandwiches' },
+	{ value: 'Wraps', label: 'Wraps' },
 	{ value: 'Appetizer', label: 'Appetizer' },
 	{ value: 'Pans', label: 'Pans' },
 	{ value: 'Salad', label: 'Salad' },

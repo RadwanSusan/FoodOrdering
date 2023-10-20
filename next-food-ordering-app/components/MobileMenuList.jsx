@@ -93,9 +93,9 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 					<a
 						href='#menu'
 						key={66}
-						onClick={() => handleCategoryClick('Wrap Sandwiches')}
+						onClick={() => handleCategoryClick('Wraps')}
 					>
-						Wrap Sandwiches
+						Wraps
 					</a>
 					<a
 						href='#menu'
