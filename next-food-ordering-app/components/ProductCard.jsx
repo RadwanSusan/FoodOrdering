@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
 					src={`http://31.170.165.239:3000${product.img}`}
 					alt='product-image'
 					style={{ borderRadius: '8px', objectFit: 'cover' }}
-					quality={95}
+					quality={100}
 					placeholder='blur'
 					blurDataURL={`http://31.170.165.239:3000${product.img}`}
 					loading='lazy'

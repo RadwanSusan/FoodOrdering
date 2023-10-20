@@ -225,7 +225,7 @@ const Order = ({ order }) => {
 					<div className={styles.row}>
 						<div className={statusClass(0)}>
 							<Image
-								src='/img/paid.png'
+								src='/img/paid.svg'
 								width={30}
 								height={30}
 								alt='Payment'
@@ -234,7 +234,7 @@ const Order = ({ order }) => {
 							<div className={styles.checkedIcon}>
 								<Image
 									className={styles.checkedIcon}
-									src='/img/checked.png'
+									src='/img/checked.svg'
 									width={20}
 									height={20}
 									alt='checked'
@@ -243,7 +243,7 @@ const Order = ({ order }) => {
 						</div>
 						<div className={statusClass(1)}>
 							<Image
-								src='/img/bake.png'
+								src='/img/bake.svg'
 								width={30}
 								height={30}
 								alt='Preparing'
@@ -252,7 +252,7 @@ const Order = ({ order }) => {
 							<div className={styles.checkedIcon}>
 								<Image
 									className={styles.checkedIcon}
-									src='/img/checked.png'
+									src='/img/checked.svg'
 									width={20}
 									height={20}
 									alt='checked'
@@ -261,7 +261,7 @@ const Order = ({ order }) => {
 						</div>
 						<div className={statusClass(2)}>
 							<Image
-								src='/img/bike.png'
+								src='/img/bike.svg'
 								width={30}
 								height={30}
 								alt='On the way'
@@ -270,7 +270,7 @@ const Order = ({ order }) => {
 							<div className={styles.checkedIcon}>
 								<Image
 									className={styles.checkedIcon}
-									src='/img/checked.png'
+									src='/img/checked.svg'
 									width={20}
 									height={20}
 									alt='checked'
@@ -279,7 +279,7 @@ const Order = ({ order }) => {
 						</div>
 						<div className={statusClass(3)}>
 							<Image
-								src='/img/delivered.png'
+								src='/img/delivered.svg'
 								width={30}
 								height={30}
 								alt='Delivered'
@@ -288,7 +288,7 @@ const Order = ({ order }) => {
 							<div className={styles.checkedIcon}>
 								<Image
 									className={styles.checkedIcon}
-									src='/img/checked.png'
+									src='/img/checked.svg'
 									width={20}
 									height={20}
 									alt='checked'

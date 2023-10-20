@@ -292,8 +292,7 @@ const Product = ({ product }) => {
 							fill
 							style={{ cursor: 'pointer', objectFit: 'contain' }}
 							quality={100}
-							placeholder='blur'
-							blurDataURL={`http://31.170.165.239:3000${product.img}`}
+							priority
 						/>
 						{isOpen && (
 							<Lightbox
@@ -319,7 +318,7 @@ const Product = ({ product }) => {
 								onClick={() => handleSize(index)}
 							>
 								<Image
-									src='/img/size.png'
+									src='/img/size.svg'
 									alt='product-size'
 									fill
 								/>
