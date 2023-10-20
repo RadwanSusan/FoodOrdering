@@ -13,8 +13,6 @@
 }
 
 .imgContainer {
-  width: 100px;
-  height: 100px;
   position: relative;
 }
 
@@ -97,11 +95,6 @@
     margin-bottom: 20px;
   }
 
-  .imgContainer {
-    width: 35vw;
-    height: 35vw;
-  }
-
   .name,
   .total {
     font-size: 24px;
@@ -147,4 +140,8 @@
   background-color: white;
   color: teal;
   font-weight: bold;
+}
+
+.trTitle {
+  text-align: left;
 }
