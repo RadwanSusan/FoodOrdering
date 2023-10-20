@@ -141,6 +141,7 @@ const MenuList = ({ menuListItems }) => {
 						'Ready To Grill',
 						'Frozen Items',
 						'Soft Drinks',
+						'Wrap Sandwiches',
 					])}
 				</ol>
 			</nav>
