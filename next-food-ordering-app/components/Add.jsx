@@ -61,7 +61,7 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 	};
 
 	const createProduct = async (product) => {
-		await axios.post('http://31.170.165.239:765/api/products', product);
+		await axios.post(`${process.env.API_URL}/api/products`, product);
 	};
 	const showSuccessMessage = useCallback((message) => {
 		Swal.fire({
@@ -123,7 +123,7 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 				category: product.category,
 			};
 			await axios.put(
-				'http://31.170.165.239:765/api/products/' + product._id,
+				`${process.env.API_URL}/api/products/` + product._id,
 				updatedProduct,
 			);
 			setClose(true);

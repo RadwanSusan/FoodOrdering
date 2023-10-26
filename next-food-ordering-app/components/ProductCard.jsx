@@ -13,12 +13,12 @@ const ProductCard = ({ product }) => {
 			>
 				<Image
 					className={styles.productsImage}
-					src={`http://31.170.165.239:3000${product.img}`}
+					src={`${process.env.API_URL_MEDIA}${product.img}`}
 					alt='product-image'
 					style={{ borderRadius: '8px', objectFit: 'cover' }}
 					quality={100}
 					placeholder='blur'
-					blurDataURL={`http://31.170.165.239:3000${product.img}`}
+					blurDataURL={`${process.env.API_URL_MEDIA}${product.img}`}
 					loading='lazy'
 					width={300}
 					height={300}

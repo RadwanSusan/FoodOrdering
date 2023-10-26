@@ -2,7 +2,6 @@ import styles from '../styles/MenuList.module.css';
 import barStyles from '../styles/MenuListCategoryBar.module.css';
 import ProductCard from './ProductCard';
 import { useState, useEffect, useCallback } from 'react';
-
 import Lottie from 'react-lottie';
 import MobileMenuList from './MobileMenuList';
 

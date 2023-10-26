@@ -7,6 +7,10 @@ body {
   scroll-behavior: smooth;
 }
 
+body.ar {
+  direction: rtl;
+}
+
 img {
   -webkit-user-select: none;
   -moz-user-select: none;

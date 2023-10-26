@@ -33,9 +33,9 @@
 		"@ducanh2912/next-pwa": "^9.7.2",
 		"@emotion/react": "^11.11.1",
 		"@emotion/styled": "^11.11.0",
-		"@mui/material": "^5.14.14",
+		"@mui/material": "^5.14.15",
 		"@reduxjs/toolkit": "^1.9.7",
-		"@stripe/stripe-js": "^2.1.9",
+		"@stripe/stripe-js": "^2.1.10",
 		"@turf/turf": "^6.5.0",
 		"axios": "^1.5.1",
 		"cookie": "^0.5.0",
@@ -46,8 +46,9 @@
 		"mongoose": "^7.6.3",
 		"multiparty": "^4.2.3",
 		"next": "13.5.6",
+		"next-translate": "^2.6.1",
 		"nextjs-progressbar": "^0.0.16",
-		"puppeteer": "^21.4.0",
+		"puppeteer": "^21.4.1",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-icons": "^4.11.0",
@@ -65,6 +66,7 @@
 	"devDependencies": {
 		"eslint": "8.52.0",
 		"eslint-config-next": "13.5.6",
+		"next-translate-plugin": "^2.6.1",
 		"webpack": "^5.89.0"
 	}
 }
