@@ -52,12 +52,12 @@ const config = {
 			{
 				protocol: 'http',
 				hostname: 'lahmahandfahmah.com',
-				port: '765',
+				port: '80',
 			},
 			{
 				protocol: 'https',
 				hostname: 'lahmahandfahmah.com',
-				port: '765',
+				port: '80',
 			},
 		],
 		minimumCacheTTL: 60,
@@ -70,7 +70,7 @@ const config = {
 					{ key: 'Access-Control-Allow-Credentials', value: 'true' },
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: '*',
+						value: '31.170.165.239:765/*',
 					},
 					{
 						key: 'Access-Control-Allow-Methods',
