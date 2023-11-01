@@ -9,6 +9,7 @@ import Head from 'next/head';
 export default function Home({ productsList, admin }) {
 	const [close, setClose] = useState(true);
 	let counter = 0;
+
 	return (
 		<>
 			<Head>

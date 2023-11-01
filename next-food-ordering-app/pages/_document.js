@@ -16,6 +16,10 @@ class MyDocument extends Document {
 						name='description'
 						content='Best PWA app in the world!'
 					/>
+					<meta
+						httpEquiv='Content-Security-Policy'
+						content='upgrade-insecure-requests'
+					/>
 					<link
 						rel='shortcut icon'
 						href='/favicon.ico'

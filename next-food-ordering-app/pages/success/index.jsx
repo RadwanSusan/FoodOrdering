@@ -1,6 +1,7 @@
-import Lottie from 'react-lottie';
 import Link from 'next/link';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
+const Lottie = dynamic(() => import('react-lottie'), { ssr: false });
 
 const Success = () => {
 	const animationOptions = {

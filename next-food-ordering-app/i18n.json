@@ -3,14 +3,14 @@
 	"defaultLocale": "en",
 	"pages": {
 		"*": ["common"],
-		"/": ["home"],
-		"/cart": ["cart"],
-		"/admin": ["admin"],
-		"/checkout": ["checkout"],
-		"/orders": ["orders"],
-		"/order": ["order"],
-		"/product": ["product"],
-		"/signin": ["signin"],
-		"/404": ["404"]
+		"/": ["common"],
+		"/cart": ["common"],
+		"/admin": ["common"],
+		"/checkout": ["common"],
+		"/orders": ["common"],
+		"/order": ["common"],
+		"/product": ["common"],
+		"/signin": ["common"],
+		"/404": ["common"]
 	}
 }

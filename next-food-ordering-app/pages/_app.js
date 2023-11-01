@@ -6,8 +6,8 @@ import NextNProgress from 'nextjs-progressbar';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import { v4 as uuidv4 } from 'uuid';
-import { useEffect } from 'react';
 import Head from 'next/head';
+import { useEffect } from 'react';
 
 const persistor = persistStore(store);
 

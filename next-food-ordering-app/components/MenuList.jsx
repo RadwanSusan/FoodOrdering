@@ -2,10 +2,12 @@ import styles from '../styles/MenuList.module.css';
 import barStyles from '../styles/MenuListCategoryBar.module.css';
 import ProductCard from './ProductCard';
 import { useState, useEffect, useCallback } from 'react';
-import Lottie from 'react-lottie';
 import MobileMenuList from './MobileMenuList';
-
+import dynamic from 'next/dynamic';
+import useTranslation from 'next-translate/useTranslation';
+const Lottie = dynamic(() => import('react-lottie'), { ssr: false });
 const MenuList = ({ menuListItems }) => {
+	const { t, lang } = useTranslation('common');
 	const animationOptions = {
 		loop: false,
 		autoplay: true,
@@ -15,9 +17,9 @@ const MenuList = ({ menuListItems }) => {
 	const [filteredProducts, setFilteredProducts] = useState(menuListItems);
 
 	const handleCategoryClick = useCallback(
-		(selectedCategories) => {
+		(selectedCategory) => {
 			const newFilteredProducts = menuListItems.filter((product) =>
-				selectedCategories.includes(product.category),
+				product.category.includes(selectedCategory),
 			);
 			setFilteredProducts(newFilteredProducts);
 		},
@@ -34,8 +36,8 @@ const MenuList = ({ menuListItems }) => {
 				className={barStyles.menuItem}
 				key={menuTitle}
 			>
-				<div onClick={() => handleCategoryClick(menuTitle)}>
-					{menuTitle}
+				<div onClick={() => handleCategoryClick(items[0])}>
+					{t(menuTitle)}
 				</div>
 				<ol className={barStyles.subMenu}>
 					{items.map((item) => (
@@ -43,13 +45,16 @@ const MenuList = ({ menuListItems }) => {
 							key={`${menuTitle}-${item}`}
 							className={barStyles.menuItem}
 						>
-							<div onClick={() => handleCategoryClick(item)}>{item}</div>
+							<div onClick={() => handleCategoryClick(item)}>
+								{t(item)}
+							</div>
 						</li>
 					))}
 				</ol>
 			</li>
 		);
 	};
+
 	return (
 		<div
 			id='menu'
@@ -60,7 +65,7 @@ const MenuList = ({ menuListItems }) => {
 				id='menu'
 				className={styles.title}
 			>
-				OUR MENU
+				{t('menu')}
 			</h1>
 			<br />
 			<nav className={barStyles.menu}>
@@ -74,7 +79,7 @@ const MenuList = ({ menuListItems }) => {
 								handleCategoryClick('Best Sellers');
 							}}
 						>
-							best sellers
+							{t('Best Sellers')}
 						</div>
 					</li>
 					<li
@@ -82,28 +87,28 @@ const MenuList = ({ menuListItems }) => {
 						key={'Our Mix Grill - mobile'}
 					>
 						<div onClick={() => handleCategoryClick('Our Mix Grill')}>
-							Our Mix Grill
+							{t('Our Mix Grill')}
 						</div>
 					</li>
 					{renderSubMenu('Meals', [
-						'Meal For One',
-						'Meal For Two',
-						'Meal For Three',
+						'Meal for one',
+						'Meal for two',
+						'Meal for three',
 					])}
 					<li
 						className={barStyles.menuItem}
 						key={'Sandwiches - mobile'}
 					>
 						<div onClick={() => handleCategoryClick('Sandwiches')}>
-							Sandwiches
+							{t('Sandwiches')}
 						</div>
 					</li>
 					<li
 						className={barStyles.menuItem}
 						key={'Appetizers - mobile'}
 					>
-						<div onClick={() => handleCategoryClick('Appetizers')}>
-							Appetizers
+						<div onClick={() => handleCategoryClick('Appetizer')}>
+							{t('Appetizers')}
 						</div>
 					</li>
 					<li
@@ -116,8 +121,8 @@ const MenuList = ({ menuListItems }) => {
 						className={barStyles.menuItem}
 						key={'Salads - mobile'}
 					>
-						<div onClick={() => handleCategoryClick('Salads')}>
-							Salads
+						<div onClick={() => handleCategoryClick('Salad')}>
+							{t('Salads')}
 						</div>
 					</li>
 					{renderSubMenu('Lambs', [
@@ -130,7 +135,7 @@ const MenuList = ({ menuListItems }) => {
 						key={'Mutton - mobile'}
 					>
 						<div onClick={() => handleCategoryClick('Mutton')}>
-							Mutton
+							{t('Mutton')}
 						</div>
 					</li>
 					{renderSubMenu('Beef', ['Australian Beef', 'Local Beef'])}
@@ -151,7 +156,7 @@ const MenuList = ({ menuListItems }) => {
 						height={400}
 						width={400}
 					/>
-					<h3>This category is empty.</h3>
+					<h3>{t('emptyMenu')}</h3>
 				</>
 			) : (
 				<div className={styles.wrapper}>

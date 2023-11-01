@@ -1,4 +1,31 @@
 {
 	"welcome": "Welcome",
-	"cart": "Cart"
- }
+	"cart": "Cart",
+	"menu": "Our Menu",
+	"Best Sellers": "Best Sellers",
+	"Our Mix Grill": "Our Mix Grill",
+	"Meals": "Meals",
+	"Meal For One": "Meal For One",
+	"Meal For Two": "Meal For Two",
+	"Meal For Three": "Meal For Three",
+	"Sandwiches": "Sandwiches",
+	"Appetizers": "Appetizers",
+	"Pans": "Pans",
+	"Salads": "Salads",
+	"Lambs": "Lambs",
+	"Australian Lamb": "Australian Lamb",
+	"Local Lamb": "Local Lamb",
+	"Syrian Lamb": "Syrian Lamb",
+	"Mutton": "Mutton",
+	"Beef": "Beef",
+	"Australian Beef": "Australian Beef",
+	"Local Beef": "Local Beef",
+	"Other Meals": "Other Meals",
+	"Fresh Chicken": "Fresh Chicken",
+	"Ready To Cook": "Ready To Cook",
+	"Ready To Grill": "Ready To Grill",
+	"Frozen Items": "Frozen Items",
+	"Soft Drinks": "Soft Drinks",
+	"Wraps": "Wraps",
+	"emptyMenu": "empty category"
+}

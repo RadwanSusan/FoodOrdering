@@ -10,7 +10,7 @@
 		"type": "git",
 		"url": "https://github.com/RadwanSusan/FoodOrdering"
 	},
-	"homepage": "http://31.170.165.239:765/",
+	"homepage": "https://lahmahandfahmah.com",
 	"keywords": [
 		"next",
 		"react",
@@ -24,28 +24,28 @@
 		"payment-gateway-stripe"
 	],
 	"scripts": {
-		"dev": "next dev -p 765",
+		"dev": "next dev -p 80",
 		"build": "next build",
-		"start": "next start -p 765",
+		"start": "next start -p 80",
 		"lint": "next lint"
 	},
 	"dependencies": {
 		"@ducanh2912/next-pwa": "^9.7.2",
 		"@emotion/react": "^11.11.1",
 		"@emotion/styled": "^11.11.0",
-		"@mui/material": "^5.14.15",
+		"@mui/material": "^5.14.16",
 		"@reduxjs/toolkit": "^1.9.7",
 		"@stripe/stripe-js": "^2.1.10",
 		"@turf/turf": "^6.5.0",
-		"axios": "^1.5.1",
+		"axios": "^1.6.0",
 		"cookie": "^0.5.0",
 		"date-fns": "^2.30.0",
 		"express": "^4.18.2",
 		"fs": "0.0.1-security",
 		"micro": "^10.0.1",
-		"mongoose": "^7.6.3",
+		"mongoose": "^8.0.0",
 		"multiparty": "^4.2.3",
-		"next": "13.5.6",
+		"next": "14.0.1",
 		"next-translate": "^2.6.1",
 		"nextjs-progressbar": "^0.0.16",
 		"puppeteer": "^21.4.1",
@@ -58,14 +58,14 @@
 		"redux": "^4.2.1",
 		"redux-persist": "^6.0.0",
 		"sharp": "^0.32.6",
-		"stripe": "^14.1.0",
-		"sweetalert2": "^11.7.32",
+		"stripe": "^14.2.0",
+		"sweetalert2": "^11.9.0",
 		"uuid": "^9.0.1",
 		"yet-another-react-lightbox": "^3.14.0"
 	},
 	"devDependencies": {
 		"eslint": "8.52.0",
-		"eslint-config-next": "13.5.6",
+		"eslint-config-next": "14.0.1",
 		"next-translate-plugin": "^2.6.1",
 		"webpack": "^5.89.0"
 	}
