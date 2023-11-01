@@ -30,7 +30,7 @@ const config = {
 				port: '765',
 			},
 			{
-				protocol: 'https',
+				protocol: 'http',
 				hostname: '31.170.165.239',
 				port: '765',
 			},
@@ -45,7 +45,7 @@ const config = {
 				port: '3333',
 			},
 			{
-				protocol: 'https',
+				protocol: 'http',
 				hostname: 'localhost',
 				port: '3333',
 			},
@@ -55,7 +55,7 @@ const config = {
 				port: '80',
 			},
 			{
-				protocol: 'https',
+				protocol: 'http',
 				hostname: 'lahmahandfahmah.com',
 				port: '80',
 			},
