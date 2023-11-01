@@ -4,6 +4,7 @@ const withPWA = require('@ducanh2912/next-pwa').default({
 const nextTranslate = require('next-translate-plugin');
 
 const config = {
+	assetPrefix: 'http://31.170.165.239:765',
 	reactStrictMode: true,
 	env: {
 		API_URL: process.env.API_URL,
@@ -21,7 +22,7 @@ const config = {
 	images: {
 		remotePatterns: [
 			{
-				protocol: 'https',
+				protocol: 'http',
 				hostname: 'res.cloudinary.com',
 			},
 			{
