@@ -27,17 +27,17 @@ const config = {
 			{
 				protocol: 'http',
 				hostname: 'localhost',
-				port: '80',
+				port: '765',
 			},
 			{
 				protocol: 'https',
 				hostname: '31.170.165.239',
-				port: '80',
+				port: '765',
 			},
 			{
 				protocol: 'http',
 				hostname: '31.170.165.239',
-				port: '80',
+				port: '765',
 			},
 			{
 				protocol: 'http',
@@ -52,12 +52,12 @@ const config = {
 			{
 				protocol: 'http',
 				hostname: 'lahmahandfahmah.com',
-				port: '80',
+				port: '765',
 			},
 			{
 				protocol: 'https',
 				hostname: 'lahmahandfahmah.com',
-				port: '80',
+				port: '765',
 			},
 		],
 		minimumCacheTTL: 60,
