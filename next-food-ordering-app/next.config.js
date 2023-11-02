@@ -4,8 +4,8 @@ const withPWA = require('@ducanh2912/next-pwa').default({
 const nextTranslate = require('next-translate-plugin');
 
 const config = {
-	// assetPrefix: 'http://31.170.165.239:765',
-	reactStrictMode: true,
+	reactStrictMode: false,
+	compress: true,
 	env: {
 		API_URL: process.env.API_URL,
 		API_URL_MEDIA: process.env.API_URL_MEDIA,
@@ -114,34 +114,34 @@ const config = {
 		locales: ['en', 'ar'],
 		defaultLocale: 'en',
 	},
-	async rewrites() {
-		return [
-			{
-				source: '/api/:path*',
-				destination: 'http://31.170.165.239:765/api/:path*',
-			},
-			{
-				source: '/:path*',
-				destination: 'http://31.170.165.239:765/:path*',
-			},
-			{
-				source: '/admin/:path*',
-				destination: 'http://31.170.165.239:765/admin/:path*',
-			},
-			{
-				source: '/images/:path*',
-				destination: 'http://31.170.165.239:765/images/:path*',
-			},
-			{
-				source: '/uploads/:path*',
-				destination: 'http://31.170.165.239:765/uploads/:path*',
-			},
-			{
-				source: '/api',
-				destination: 'http://31.170.165.239:765/api',
-			},
-		];
-	},
+	// async rewrites() {
+	// 	return [
+	// 		{
+	// 			source: '/api/:path*',
+	// 			destination: 'https://31.170.165.239:765/api/:path*',
+	// 		},
+	// 		{
+	// 			source: '/:path*',
+	// 			destination: 'https://31.170.165.239:765/:path*',
+	// 		},
+	// 		{
+	// 			source: '/admin/:path*',
+	// 			destination: 'https://31.170.165.239:765/admin/:path*',
+	// 		},
+	// 		{
+	// 			source: '/images/:path*',
+	// 			destination: 'https://31.170.165.239:765/images/:path*',
+	// 		},
+	// 		{
+	// 			source: '/uploads/:path*',
+	// 			destination: 'https://31.170.165.239:765/uploads/:path*',
+	// 		},
+	// 		{
+	// 			source: '/api',
+	// 			destination: 'https://31.170.165.239:765/api',
+	// 		},
+	// 	];
+	// },
 };
 
 module.exports = nextTranslate(withPWA(config));
