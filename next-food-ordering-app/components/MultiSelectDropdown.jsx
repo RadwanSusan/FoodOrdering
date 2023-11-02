@@ -3,10 +3,9 @@ import Select from 'react-select';
 
 const options = [
 	{ value: 'Best Sellers', label: 'best sellers' },
-	{ value: 'Our Mix Grill', label: 'Our Mix Grill' },
+	{ value: 'Our Mix Grill', label: 'Meal for four' },
 	{ value: 'Meal for one', label: 'Meal for one' },
 	{ value: 'Meal for two', label: 'Meal for two' },
-	{ value: 'Meal for three', label: 'Meal for three' },
 	{ value: 'Sandwiches', label: 'Sandwiches' },
 	{ value: 'Wraps', label: 'Wraps' },
 	{ value: 'Appetizer', label: 'Appetizer' },

@@ -87,14 +87,10 @@ const MenuList = ({ menuListItems }) => {
 						key={'Our Mix Grill - mobile'}
 					>
 						<div onClick={() => handleCategoryClick('Our Mix Grill')}>
-							{t('Our Mix Grill')}
+							{t('Meal For Four')}
 						</div>
 					</li>
-					{renderSubMenu('Meals', [
-						'Meal for one',
-						'Meal for two',
-						'Meal for three',
-					])}
+					{renderSubMenu('Meals', ['Meal for one', 'Meal for two'])}
 					<li
 						className={barStyles.menuItem}
 						key={'Sandwiches - mobile'}
