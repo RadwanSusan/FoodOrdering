@@ -103,7 +103,7 @@ const Navbar = ({ admin }) => {
 					</Link>
 				</ul>
 			</div>
-			{/* <div className={styles.item}>
+			<div className={styles.item}>
 				<Button
 					aria-controls='simple-menu'
 					aria-haspopup='true'
@@ -194,7 +194,7 @@ const Navbar = ({ admin }) => {
 						</Link>
 					</MenuItem>
 				</Menu>
-			</div> */}
+			</div>
 			<div className={styles.item}>
 				<Link
 					href='/orders'
