@@ -1,7 +1,7 @@
 {
 	"name": "Lahmah & Fahmah",
 	"private": true,
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"author": {
 		"name": "Radwan Susan",
 		"email": "radwansusan90@gmail.com"
@@ -10,7 +10,7 @@
 		"type": "git",
 		"url": "https://github.com/RadwanSusan/FoodOrdering"
 	},
-	"homepage": "http://lahmahandfahmah.com",
+	"homepage": "https://lahmahandfahmah.com",
 	"keywords": [
 		"next",
 		"react",
