@@ -4,11 +4,11 @@ import styles from '../styles/Navbar.module.css';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-// import Button from '@mui/material/Button';
-// import Menu from '@mui/material/Menu';
-// import MenuItem from '@mui/material/MenuItem';
-// import englishFlag from '../public/img/en.svg';
-// import arabicFlag from '../public/img/ar.svg';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import englishFlag from '../public/img/en.svg';
+import arabicFlag from '../public/img/ar.svg';
 const Navbar = ({ admin }) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	let quantity = useSelector((state) => state.cart?.quantity);
