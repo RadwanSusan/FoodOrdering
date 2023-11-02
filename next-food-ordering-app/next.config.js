@@ -4,7 +4,7 @@ const withPWA = require('@ducanh2912/next-pwa').default({
 const nextTranslate = require('next-translate-plugin');
 
 const config = {
-	assetPrefix: 'http://31.170.165.239:765',
+	// assetPrefix: 'http://31.170.165.239:765',
 	reactStrictMode: true,
 	env: {
 		API_URL: process.env.API_URL,
@@ -31,14 +31,29 @@ const config = {
 				port: '765',
 			},
 			{
-				protocol: 'http',
-				hostname: '31.170.165.239',
+				protocol: 'https',
+				hostname: 'localhost',
 				port: '765',
 			},
 			{
 				protocol: 'http',
 				hostname: '31.170.165.239',
 				port: '765',
+			},
+			{
+				protocol: 'https',
+				hostname: '31.170.165.239',
+				port: '765',
+			},
+			{
+				protocol: 'http',
+				hostname: '31.170.165.239',
+				port: '3333',
+			},
+			{
+				protocol: 'https',
+				hostname: '31.170.165.239',
+				port: '3333',
 			},
 			{
 				protocol: 'http',
@@ -46,7 +61,7 @@ const config = {
 				port: '3333',
 			},
 			{
-				protocol: 'http',
+				protocol: 'https',
 				hostname: 'localhost',
 				port: '3333',
 			},
@@ -56,9 +71,14 @@ const config = {
 				port: '80',
 			},
 			{
-				protocol: 'http',
+				protocol: 'https',
 				hostname: 'lahmahandfahmah.com',
 				port: '80',
+			},
+			{
+				protocol: 'http',
+				hostname: '31.170.165.239',
+				port: '3333',
 			},
 		],
 		minimumCacheTTL: 60,
@@ -71,7 +91,7 @@ const config = {
 					{ key: 'Access-Control-Allow-Credentials', value: 'true' },
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: '31.170.165.239:765/*',
+						value: 'lahmahandfahmah.com/*',
 					},
 					{
 						key: 'Access-Control-Allow-Methods',
@@ -94,34 +114,34 @@ const config = {
 		locales: ['en', 'ar'],
 		defaultLocale: 'en',
 	},
-	// async rewrites() {
-	// 	return [
-	// 		{
-	// 			source: '/api/:path*',
-	// 			destination: 'http://31.170.165.239:80/api/:path*',
-	// 		},
-	// 		{
-	// 			source: '/:path*',
-	// 			destination: 'http://31.170.165.239:80/:path*',
-	// 		},
-	// 		{
-	// 			source: '/admin/:path*',
-	// 			destination: 'http://31.170.165.239:80/admin/:path*',
-	// 		},
-	// 		{
-	// 			source: '/images/:path*',
-	// 			destination: 'http://31.170.165.239:80/images/:path*',
-	// 		},
-	// 		{
-	// 			source: '/uploads/:path*',
-	// 			destination: 'http://31.170.165.239:80/uploads/:path*',
-	// 		},
-	// 		{
-	// 			source: '/api',
-	// 			destination: 'http://31.170.165.239:80/api',
-	// 		},
-	// 	];
-	// },
+	async rewrites() {
+		return [
+			{
+				source: '/api/:path*',
+				destination: 'https://lahmahandfahmah.com/api/:path*',
+			},
+			{
+				source: '/:path*',
+				destination: 'https://lahmahandfahmah.com/:path*',
+			},
+			{
+				source: '/admin/:path*',
+				destination: 'https://lahmahandfahmah.com/admin/:path*',
+			},
+			{
+				source: '/images/:path*',
+				destination: 'https://lahmahandfahmah.com/images/:path*',
+			},
+			{
+				source: '/uploads/:path*',
+				destination: 'https://lahmahandfahmah.com/uploads/:path*',
+			},
+			{
+				source: '/api',
+				destination: 'https://lahmahandfahmah.com/api',
+			},
+		];
+	},
 };
 
 module.exports = nextTranslate(withPWA(config));
