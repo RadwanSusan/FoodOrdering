@@ -118,27 +118,27 @@ const config = {
 		return [
 			{
 				source: '/api/:path*',
-				destination: 'https://lahmahandfahmah.com/api/:path*',
+				destination: 'http://31.170.165.239:765/api/:path*',
 			},
 			{
 				source: '/:path*',
-				destination: 'https://lahmahandfahmah.com/:path*',
+				destination: 'http://31.170.165.239:765/:path*',
 			},
 			{
 				source: '/admin/:path*',
-				destination: 'https://lahmahandfahmah.com/admin/:path*',
+				destination: 'http://31.170.165.239:765/admin/:path*',
 			},
 			{
 				source: '/images/:path*',
-				destination: 'https://lahmahandfahmah.com/images/:path*',
+				destination: 'http://31.170.165.239:765/images/:path*',
 			},
 			{
 				source: '/uploads/:path*',
-				destination: 'https://lahmahandfahmah.com/uploads/:path*',
+				destination: 'http://31.170.165.239:765/uploads/:path*',
 			},
 			{
 				source: '/api',
-				destination: 'https://lahmahandfahmah.com/api',
+				destination: 'http://31.170.165.239:765/api',
 			},
 		];
 	},
