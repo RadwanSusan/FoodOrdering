@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOrders, selectOrders } from '../../redux/ordersSlice';
 import { formatDistanceToNow } from 'date-fns';
@@ -21,6 +21,10 @@ const tagColors = [
 const Orders = () => {
 	const dispatch = useDispatch();
 	const orders = useSelector(selectOrders);
+	const fallbackImg = `${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`;
+	const [imgSrc, setImgSrc] = useState(
+		`${process.env.API_URL_MEDIA}${JSON.parse(orders[0].cart)[0].img}`,
+	);
 
 	useEffect(() => {
 		fetch(
@@ -42,6 +46,10 @@ const Orders = () => {
 				);
 			});
 	}, [dispatch]);
+
+	const handleError = () => {
+		setImgSrc(fallbackImg);
+	};
 
 	const getRandomColorClass = () => {
 		const randomIndex = Math.floor(Math.random() * tagColors.length);
@@ -65,22 +73,13 @@ const Orders = () => {
 						>
 							<div className={styles.cardHeader}>
 								<Image
-									src={
-										`${process.env.API_URL_MEDIA}${
-											JSON.parse(orders[0].cart)[0].img
-										}` ||
-										`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
-									}
+									src={imgSrc}
 									alt='product-image'
-									quality={90}
+									quality={95}
 									placeholder='blur'
-									blurDataURL={
-										`${process.env.API_URL_MEDIA}${
-											JSON.parse(orders[0].cart)[0].img
-										}` ||
-										`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
-									}
+									blurDataURL={imgSrc}
 									loading='lazy'
+									onError={handleError}
 								/>
 							</div>
 							<div className={styles.cardBody}>

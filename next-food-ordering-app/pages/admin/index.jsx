@@ -53,6 +53,13 @@ const ProductsTab = ({ products, setProductList }) => {
 	const [product, setProduct] = useState(products);
 	const [editingId, setEditingId] = useState(null);
 	const [close, setClose] = useState(true);
+	const [imgSrc, setImgSrc] = useState(
+		`${process.env.API_URL_MEDIA}${product.img}`,
+	);
+
+	useEffect(() => {
+		setImgSrc(`${process.env.API_URL_MEDIA}${product.img}`);
+	}, [product]);
 
 	const handleDelete = useCallback(
 		async (id) => {
@@ -168,9 +175,11 @@ const ProductsTab = ({ products, setProductList }) => {
 											<tr className={styles.trTitle}>
 												<td>
 													<Image
-														src={
-															`${process.env.API_URL_MEDIA}${product.img}` ||
-															`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
+														src={imgSrc}
+														onError={() =>
+															setImgSrc(
+																`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`,
+															)
 														}
 														width={110}
 														height={110}

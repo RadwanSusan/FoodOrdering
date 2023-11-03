@@ -17,6 +17,19 @@ const Cart = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 
+	const [imgSrcs, setImgSrcs] = useState(
+		cart.products.reduce((obj, product) => {
+			obj[product._id] = `${process.env.API_URL_MEDIA}${product.img}`;
+			return obj;
+		}, {}),
+	);
+
+	const fallbackImg = `${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`;
+
+	const handleError = (id) => {
+		setImgSrcs((prev) => ({ ...prev, [id]: fallbackImg }));
+	};
+
 	const createOrder = async (data) => {
 		try {
 			const orderData = {
@@ -121,21 +134,16 @@ const Cart = () => {
 									<td>
 										<div className={styles.imgContainer}>
 											<Image
-												src={
-													`${process.env.API_URL_MEDIA}${product.img}` ||
-													`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
-												}
+												src={imgSrcs[product._id]}
 												width={200}
 												height={150}
 												style={{ objectFit: 'contain' }}
 												alt='product-image'
 												loading='lazy'
 												placeholder='blur'
-												blurDataURL={
-													`${process.env.API_URL_MEDIA}${product.img}` ||
-													`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
-												}
+												blurDataURL={imgSrcs[product._id]}
 												quality={90}
+												onError={() => handleError(product._id)}
 											/>
 										</div>
 									</td>

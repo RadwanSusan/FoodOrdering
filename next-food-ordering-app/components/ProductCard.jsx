@@ -1,8 +1,18 @@
+import { useState } from 'react';
 import styles from '../styles/ProductCard.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const ProductCard = ({ product }) => {
+	const [imgSrc, setImgSrc] = useState(
+		`${process.env.API_URL_MEDIA}${product.img}`,
+	);
+	const fallbackImg = `${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`;
+
+	const handleError = () => {
+		setImgSrc(fallbackImg);
+	};
+
 	return (
 		<div className={styles.container}>
 			<Link
@@ -13,19 +23,16 @@ const ProductCard = ({ product }) => {
 			>
 				<Image
 					className={styles.productsImage}
-					src={
-						`${process.env.API_URL_MEDIA}${product.img}` ||
-						`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
-					}
+					src={imgSrc}
 					alt='product-image'
 					style={{ borderRadius: '8px', objectFit: 'cover' }}
 					quality={100}
 					placeholder='blur'
-					blurDataURL={`${process.env.API_URL_MEDIA}${product.img}`  ||
-					`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`}
+					blurDataURL={imgSrc}
 					loading='lazy'
 					width={300}
 					height={300}
+					onError={handleError}
 				/>
 				<h1 className={styles.title}>{product.title}</h1>
 				<span className={styles.price}>{product.prices[0]} AED</span>

@@ -19,6 +19,10 @@ const Product = ({ product }) => {
 	const [extras, setExtras] = useState([]);
 	const [checkedExtras, setCheckedExtras] = useState({});
 	const [isOpen, setIsOpen] = useState(false);
+	const [imgSrc, setImgSrc] = useState(
+		`${process.env.API_URL_MEDIA}${product.img}`,
+	);
+	const fallbackImg = `${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`;
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -28,6 +32,10 @@ const Product = ({ product }) => {
 		});
 		setCheckedExtras(extrasObj);
 	}, [product]);
+
+	const handleError = () => {
+		setImgSrc(fallbackImg);
+	};
 
 	const changePrice = (number) => {
 		setPrice((prevPrice) => prevPrice + number);
@@ -118,15 +126,13 @@ const Product = ({ product }) => {
 						onClick={() => setIsOpen(true)}
 					>
 						<Image
-							src={
-								`${process.env.API_URL_MEDIA}${product.img}` ||
-								`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
-							}
+							src={imgSrc}
 							alt='product-image'
 							fill
 							style={{ cursor: 'pointer', objectFit: 'contain' }}
 							quality={100}
 							priority
+							onError={handleError}
 						/>
 						{isOpen && (
 							<Lightbox
@@ -134,9 +140,7 @@ const Product = ({ product }) => {
 								close={() => setIsOpen(false)}
 								slides={[
 									{
-										src:
-											`${process.env.API_URL_MEDIA}${product.img}` ||
-											`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`,
+										src: imgSrc,
 									},
 								]}
 							/>
