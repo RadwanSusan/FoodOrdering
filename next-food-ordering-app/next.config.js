@@ -4,6 +4,7 @@ const withPWA = require('@ducanh2912/next-pwa').default({
 const nextTranslate = require('next-translate-plugin');
 
 const config = {
+	swcMinify: true,
 	reactStrictMode: false,
 	compress: true,
 	env: {
@@ -20,63 +21,26 @@ const config = {
 	images: {
 		remotePatterns: [
 			{
-				protocol: 'http',
 				hostname: 'res.cloudinary.com',
 			},
 			{
-				protocol: 'http',
 				hostname: 'localhost',
 				port: '765',
 			},
 			{
-				protocol: 'https',
-				hostname: 'localhost',
-				port: '765',
-			},
-			{
-				protocol: 'http',
 				hostname: '31.170.165.239',
 				port: '765',
 			},
 			{
-				protocol: 'https',
-				hostname: '31.170.165.239',
-				port: '765',
-			},
-			{
-				protocol: 'http',
 				hostname: '31.170.165.239',
 				port: '3333',
 			},
 			{
-				protocol: 'https',
-				hostname: '31.170.165.239',
-				port: '3333',
-			},
-			{
-				protocol: 'http',
 				hostname: 'localhost',
 				port: '3333',
 			},
 			{
-				protocol: 'https',
-				hostname: 'localhost',
-				port: '3333',
-			},
-			{
-				protocol: 'http',
 				hostname: 'lahmahandfahmah.com',
-				port: '80',
-			},
-			{
-				protocol: 'https',
-				hostname: 'lahmahandfahmah.com',
-				port: '80',
-			},
-			{
-				protocol: 'http',
-				hostname: '31.170.165.239',
-				port: '3333',
 			},
 		],
 		minimumCacheTTL: 60,
@@ -95,11 +59,6 @@ const config = {
 						key: 'Access-Control-Allow-Methods',
 						value: 'GET,DELETE,PATCH,POST,PUT,OPTIONS',
 					},
-					{ key: 'Access-Control-Allow-Headers', value: 'Content-Type' },
-					{
-						key: 'Access-Control-Allow-Methods',
-						value: 'GET,DELETE,PATCH,POST,PUT,OPTIONS',
-					},
 					{
 						key: 'Access-Control-Allow-Headers',
 						value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
@@ -112,34 +71,6 @@ const config = {
 		locales: ['en', 'ar'],
 		defaultLocale: 'en',
 	},
-	// async rewrites() {
-	// 	return [
-	// 		{
-	// 			source: '/api/:path*',
-	// 			destination: 'https://31.170.165.239:765/api/:path*',
-	// 		},
-	// 		{
-	// 			source: '/:path*',
-	// 			destination: 'https://31.170.165.239:765/:path*',
-	// 		},
-	// 		{
-	// 			source: '/admin/:path*',
-	// 			destination: 'https://31.170.165.239:765/admin/:path*',
-	// 		},
-	// 		{
-	// 			source: '/images/:path*',
-	// 			destination: 'https://31.170.165.239:765/images/:path*',
-	// 		},
-	// 		{
-	// 			source: '/uploads/:path*',
-	// 			destination: 'https://31.170.165.239:765/uploads/:path*',
-	// 		},
-	// 		{
-	// 			source: '/api',
-	// 			destination: 'https://31.170.165.239:765/api',
-	// 		},
-	// 	];
-	// },
 };
 
 module.exports = nextTranslate(withPWA(config));
