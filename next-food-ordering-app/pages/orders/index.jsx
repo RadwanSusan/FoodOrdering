@@ -22,9 +22,7 @@ const Orders = () => {
 	const dispatch = useDispatch();
 	const orders = useSelector(selectOrders);
 	const fallbackImg = `${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`;
-	const [imgSrc, setImgSrc] = useState(
-		`${process.env.API_URL_MEDIA}${JSON.parse(orders[0].cart)[0].img}`,
-	);
+	const [imgSrc, setImgSrc] = useState(fallbackImg);
 
 	useEffect(() => {
 		fetch(
@@ -38,7 +36,16 @@ const Orders = () => {
 				}
 				return response.json();
 			})
-			.then((data) => dispatch(setOrders(data)))
+			.then((data) => {
+				dispatch(setOrders(data));
+				if (data[0] && data[0].cart[0]) {
+					setImgSrc(
+						`${process.env.API_URL_MEDIA}${
+							JSON.parse(data[0].cart)[0].img
+						}`,
+					);
+				}
+			})
 			.catch((error) => {
 				console.error(
 					'There has been a problem with your fetch operation:',

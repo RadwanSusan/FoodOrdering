@@ -140,7 +140,7 @@ const Product = ({ product }) => {
 								close={() => setIsOpen(false)}
 								slides={[
 									{
-										src: imgSrc,
+										src: `${process.env.API_URL_MEDIA}${product.img}`,
 									},
 								]}
 							/>
