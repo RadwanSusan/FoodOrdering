@@ -10,8 +10,6 @@ const config = {
 		API_URL: process.env.API_URL,
 		API_URL_MEDIA: process.env.API_URL_MEDIA,
 		MONGO_URL: process.env.MONGO_URL,
-		// ADMIN_USERNAME: process.env.ADMIN_USERNAME,
-		// ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
 		ADMINS: process.env.ADMINS,
 		TOKEN: process.env.TOKEN,
 		STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,

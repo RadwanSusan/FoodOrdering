@@ -31,9 +31,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 				hidden={!isMenuOpen}
 			>
 				<div className={styles.menu__header}>
-					<label>
-						<div></div>
-					</label>
+					<label></label>
 					<p>Our Menu</p>
 					<button
 						title='Close'
@@ -51,7 +49,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 					<a
 						href='#menu'
 						key={1}
-						onClick={() => handleCategoryClick('best sellers')}
+						onClick={() => handleCategoryClick('Best Sellers')}
 					>
 						Best Sellers
 					</a>
@@ -60,28 +58,21 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 						key={2}
 						onClick={() => handleCategoryClick('Our Mix Grill')}
 					>
-						Our Mix Grill
+						Meal for four
 					</a>
 					<a
 						href='#menu'
 						key={3}
-						onClick={() => handleCategoryClick('Meal For One')}
+						onClick={() => handleCategoryClick('Meal for one')}
 					>
 						Meal For One
 					</a>
 					<a
 						href='#menu'
 						key={4}
-						onClick={() => handleCategoryClick('Meal For Two')}
+						onClick={() => handleCategoryClick('Meal for two')}
 					>
 						Meal For Two
-					</a>
-					<a
-						href='#menu'
-						key={5}
-						onClick={() => handleCategoryClick('Meal For Three')}
-					>
-						Meal For Three
 					</a>
 					<a
 						href='#menu'
@@ -100,7 +91,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 					<a
 						href='#menu'
 						key={7}
-						onClick={() => handleCategoryClick('Appetizers')}
+						onClick={() => handleCategoryClick('Appetizer')}
 					>
 						Appetizers
 					</a>
@@ -114,7 +105,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 					<a
 						href='#menu'
 						key={9}
-						onClick={() => handleCategoryClick('Salads')}
+						onClick={() => handleCategoryClick('Salad')}
 					>
 						Salads
 					</a>
@@ -162,13 +153,6 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 					</a>
 					<a
 						href='#menu'
-						key={16}
-						onClick={() => handleCategoryClick('Local Lamb')}
-					>
-						Local Lamb
-					</a>
-					<a
-						href='#menu'
 						key={17}
 						onClick={() => handleCategoryClick('Fresh Chicken')}
 					>
@@ -205,7 +189,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 				</div>
 				<div className={styles.menu__contact}>
 					<div className={styles.menu__contact}>
-						<a href='#0'>
+						<a href='tel:971042801585'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
 								fill='#000000'
@@ -221,7 +205,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 							</svg>
 							<span>Call</span>
 						</a>
-						<a href='#0'>
+						<a href='mailto:tasty@bestmeat.ae'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
 								fill='#000000'
@@ -237,7 +221,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 							</svg>
 							<span>Email</span>
 						</a>
-						<a href='#0'>
+						<a href='https://maps.app.goo.gl/VVkxhoNEP49H99TNA'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
 								fill='#000000'
