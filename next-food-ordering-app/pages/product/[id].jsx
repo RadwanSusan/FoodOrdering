@@ -118,7 +118,10 @@ const Product = ({ product }) => {
 						onClick={() => setIsOpen(true)}
 					>
 						<Image
-							src={`${process.env.API_URL_MEDIA}${product.img}`}
+							src={
+								`${process.env.API_URL_MEDIA}${product.img}` ||
+								`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
+							}
 							alt='product-image'
 							fill
 							style={{ cursor: 'pointer', objectFit: 'contain' }}
@@ -131,7 +134,9 @@ const Product = ({ product }) => {
 								close={() => setIsOpen(false)}
 								slides={[
 									{
-										src: `${process.env.API_URL_MEDIA}${product.img}`,
+										src:
+											`${process.env.API_URL_MEDIA}${product.img}` ||
+											`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`,
 									},
 								]}
 							/>

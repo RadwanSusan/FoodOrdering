@@ -121,14 +121,20 @@ const Cart = () => {
 									<td>
 										<div className={styles.imgContainer}>
 											<Image
-												src={`${process.env.API_URL_MEDIA}${product.img}`}
+												src={
+													`${process.env.API_URL_MEDIA}${product.img}` ||
+													`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
+												}
 												width={200}
 												height={150}
 												style={{ objectFit: 'contain' }}
 												alt='product-image'
 												loading='lazy'
 												placeholder='blur'
-												blurDataURL={`${process.env.API_URL_MEDIA}${product.img}`}
+												blurDataURL={
+													`${process.env.API_URL_MEDIA}${product.img}` ||
+													`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
+												}
 												quality={90}
 											/>
 										</div>

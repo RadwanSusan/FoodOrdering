@@ -65,15 +65,21 @@ const Orders = () => {
 						>
 							<div className={styles.cardHeader}>
 								<Image
-									src={`${process.env.API_URL_MEDIA}${
-										JSON.parse(orders[0].cart)[0].img
-									}`}
+									src={
+										`${process.env.API_URL_MEDIA}${
+											JSON.parse(orders[0].cart)[0].img
+										}` ||
+										`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
+									}
 									alt='product-image'
 									quality={90}
 									placeholder='blur'
-									blurDataURL={`${process.env.API_URL_MEDIA}${
-										JSON.parse(orders[0].cart)[0].img
-									}`}
+									blurDataURL={
+										`${process.env.API_URL_MEDIA}${
+											JSON.parse(orders[0].cart)[0].img
+										}` ||
+										`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`
+									}
 									loading='lazy'
 								/>
 							</div>
