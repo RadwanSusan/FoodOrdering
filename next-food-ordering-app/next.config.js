@@ -5,7 +5,7 @@ const nextTranslate = require('next-translate-plugin');
 
 const config = {
 	swcMinify: true,
-	reactStrictMode: false,
+	reactStrictMode: true,
 	compress: true,
 	env: {
 		API_URL: process.env.API_URL,
