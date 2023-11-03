@@ -190,9 +190,11 @@ const ProductsTab = ({ products, setProductList }) => {
 												<td>{product._id.slice(0, 7)}...</td>
 												<td>{product.title}</td>
 												<td>
-													{product.prices[0]} AED -{' '}
-													{product.prices[1]} AED -{' '}
-													{product.prices[2]} AED
+													{product.prices.map((price, index) =>
+														index !== product.prices.length - 1
+															? `${price} AED - `
+															: `${price} AED`,
+													)}
 												</td>
 												<td>
 													<button
