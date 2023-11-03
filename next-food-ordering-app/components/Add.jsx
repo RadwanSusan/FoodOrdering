@@ -143,6 +143,14 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 		}));
 	}, []);
 
+	const deletePrice = useCallback((index) => {
+		setProduct((prevProduct) => {
+			const newPrices = [...prevProduct.prices];
+			newPrices.splice(index, 1);
+			return { ...prevProduct, prices: newPrices };
+		});
+	}, []);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
@@ -195,14 +203,18 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 					<label className={styles.label}>Prices</label>
 					<div className={styles.priceContainer}>
 						{product.prices.map((price, index) => (
-							<input
-								key={index}
-								className={`${styles.input} ${styles.inputSm}`}
-								type='number'
-								placeholder={`Price ${index + 1}`}
-								onChange={(e) => changePrice(e, index)}
-								value={price}
-							/>
+							<div key={index}>
+								<input
+									className={`${styles.input} ${styles.inputSm}`}
+									type='number'
+									placeholder={`Price ${index + 1}`}
+									onChange={(e) => changePrice(e, index)}
+									value={price}
+								/>
+								{product.prices.length !== 1 && (
+									<button onClick={() => deletePrice(index)}>X</button>
+								)}
+							</div>
 						))}
 						{product.prices.length < 3 && (
 							<button
