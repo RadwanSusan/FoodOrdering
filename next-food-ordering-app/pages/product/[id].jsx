@@ -130,7 +130,7 @@ const Product = ({ product }) => {
 							alt='product-image'
 							fill
 							style={{ cursor: 'pointer', objectFit: 'contain' }}
-							quality={100}
+							quality={85}
 							priority
 							onError={handleError}
 						/>

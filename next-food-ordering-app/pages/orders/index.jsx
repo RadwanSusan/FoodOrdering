@@ -82,7 +82,7 @@ const Orders = () => {
 								<Image
 									src={imgSrc}
 									alt='product-image'
-									quality={95}
+									quality={90}
 									placeholder='blur'
 									blurDataURL={imgSrc}
 									loading='lazy'

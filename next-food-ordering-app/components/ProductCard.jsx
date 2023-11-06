@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
 					src={imgSrc}
 					alt='product-image'
 					style={{ borderRadius: '8px', objectFit: 'cover' }}
-					quality={100}
+					quality={85}
 					placeholder='blur'
 					blurDataURL={imgSrc}
 					loading='lazy'

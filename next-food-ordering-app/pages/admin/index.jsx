@@ -53,7 +53,6 @@ const ProductsTab = ({ products, setProductList }) => {
 	const [product, setProduct] = useState(products);
 	const [editingId, setEditingId] = useState(null);
 	const [close, setClose] = useState(true);
-	const fallbackImg = `${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`;
 
 	const handleDelete = useCallback(
 		async (id) => {
@@ -170,13 +169,11 @@ const ProductsTab = ({ products, setProductList }) => {
 												<td>
 													<Image
 														src={`${process.env.API_URL_MEDIA}${product.img}`}
-														onError={(e) => {
-															e.target.src = fallbackImg;
-														}}
 														width={110}
 														height={110}
 														style={{ objectFit: 'cover' }}
 														alt='product-image'
+														quality={80}
 													/>
 												</td>
 												<td>{product._id.slice(0, 7)}...</td>

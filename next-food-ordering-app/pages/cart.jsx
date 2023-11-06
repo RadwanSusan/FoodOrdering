@@ -142,7 +142,7 @@ const Cart = () => {
 												loading='lazy'
 												placeholder='blur'
 												blurDataURL={imgSrcs[product._id]}
-												quality={90}
+												quality={85}
 												onError={() => handleError(product._id)}
 											/>
 										</div>
