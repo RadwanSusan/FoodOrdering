@@ -114,6 +114,11 @@ const Product = ({ product }) => {
 		setPrice(product.prices[0]);
 		setQuantity(1);
 	};
+	const justifyContentStyle =
+		product.prices.length === 1
+			? { justifyContent: 'flex-start !important' }
+			: {};
+
 	return (
 		<>
 			<Head>
@@ -153,7 +158,10 @@ const Product = ({ product }) => {
 					<span className={styles.price}>{price} AED</span>
 					<p className={styles.desc}>{product.desc}</p>
 					<h3 className={styles.choose}>Choose the size</h3>
-					<div className={styles.sizes}>
+					<div
+						className={styles.sizes}
+						style={justifyContentStyle}
+					>
 						{product.prices.map((price, index) => (
 							<div
 								key={index}
