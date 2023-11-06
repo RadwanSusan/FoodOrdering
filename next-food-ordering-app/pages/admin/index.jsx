@@ -172,11 +172,11 @@ const ProductsTab = ({ products, setProductList }) => {
 												<td>
 													<Image
 														src={`${process.env.API_URL_MEDIA}${product.img}`}
-														width={110}
+														width={140}
 														height={110}
 														style={{ objectFit: 'cover' }}
 														alt='product-image'
-														quality={80}
+														quality={85}
 													/>
 												</td>
 												<td>{product.title}</td>
