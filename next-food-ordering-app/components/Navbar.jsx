@@ -76,12 +76,12 @@ const Navbar = ({ admin }) => {
 					/>
 				</div>
 				<div className={styles.texts}>
-					<div className={styles.text}>ORDER NOW!</div>
+					<div className={styles.text}>{t('orderNow')}</div>
 					<a
 						href='tel:+971(04) 280 1585'
 						className={styles.text}
 					>
-						+971(04)2801585
+						{t('phoneNumber')}
 					</a>
 				</div>
 			</div>
@@ -161,6 +161,7 @@ const Navbar = ({ admin }) => {
 						>
 							<div style={{ display: 'flex', alignItems: 'center' }}>
 								<Image
+									className='flag'
 									src={englishFlag}
 									alt='English'
 									width={30}
@@ -183,6 +184,7 @@ const Navbar = ({ admin }) => {
 								}}
 							>
 								<Image
+									className='flag'
 									src={arabicFlag}
 									alt='Arabic'
 									width={30}
@@ -218,7 +220,7 @@ const Navbar = ({ admin }) => {
 					href='/cart'
 					passHref
 					aria-label='link to cart page'
-					style={{ marginLeft: '20px' }}
+					className='cartItem'
 				>
 					<div className={styles.cart}>
 						<Image

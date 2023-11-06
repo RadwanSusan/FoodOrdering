@@ -5,12 +5,13 @@
 	"Best Sellers": "الأكثر مبيعا",
 	"Our Mix Grill": "شواء مشكل",
 	"Meals": "وجبات",
-	"Meal For One": "وجبة لشخص واحد",
-	"Meal For Two": "وجبة لشخصين",
+	"Meal for one": "وجبة لشخص واحد",
+	"Meal for two": "وجبة لشخصين",
 	"Meal For Three": "وجبة لثلاثة أشخاص",
+	"Meal For Four": "وجبة لأربعة أشخاص",
 	"Sandwiches": "الساندويشات",
 	"Appetizers": "المقبلات",
-	"Pans": "الأواني",
+	"Pans": "الصواني",
 	"Salads": "السلطات",
 	"Lambs": "الضأن",
 	"Australian Lamb": "ضأن أسترالي",
@@ -27,5 +28,7 @@
 	"Frozen Items": "الأصناف المجمدة",
 	"Soft Drinks": "المشروبات الغازية",
 	"Wraps": "اللفائف",
-	"emptyMenu": "الفئة فارغة"
+	"emptyMenu": "الفئة فارغة",
+	"orderNow": "!اطلب الان",
+	"phoneNumber": "+۹۷۱(۰٤)۲۸۰۱٥۸٥"
 }

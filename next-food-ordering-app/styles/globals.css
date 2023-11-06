@@ -45,3 +45,13 @@ a {
       color-stop(0.72, hsl(0, 68%, 53%)),
       color-stop(0.86, rgb(245, 30, 30)));
 }
+
+html[dir="rtl"] .css-1d6wzja-MuiButton-startIcon {
+  margin-right: -8px;
+  margin-left: 4px;
+}
+
+html[dir="rtl"] .flag {
+  margin-left: 10px;
+  margin-right: 0;
+}

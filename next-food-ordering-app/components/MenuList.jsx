@@ -111,7 +111,9 @@ const MenuList = ({ menuListItems }) => {
 						className={barStyles.menuItem}
 						key={'Pans - mobile'}
 					>
-						<div onClick={() => handleCategoryClick('Pans')}>Pans</div>
+						<div onClick={() => handleCategoryClick('Pans')}>
+							{t('Pans')}
+						</div>
 					</li>
 					<li
 						className={barStyles.menuItem}
