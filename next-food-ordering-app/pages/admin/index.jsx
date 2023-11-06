@@ -55,10 +55,6 @@ const ProductsTab = ({ products, setProductList }) => {
 	const [close, setClose] = useState(true);
 	const fallbackImg = `${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`;
 
-	useEffect(() => {
-		setImgSrc(`${process.env.API_URL_MEDIA}${product.img}`);
-	}, [product]);
-
 	const handleDelete = useCallback(
 		async (id) => {
 			try {
