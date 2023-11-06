@@ -18,7 +18,6 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import Head from 'next/head';
-import useSWR from 'swr';
 import {
 	differenceInHours,
 	differenceInMinutes,
@@ -809,7 +808,7 @@ const Index = ({ initialOrders, products }) => {
 		</ThemeProvider>
 	);
 };
-const fetcher = (url) => fetch(url).then((r) => r.json());
+
 export const getServerSideProps = async (ctx) => {
 	const myCookie = ctx.req?.cookies || '';
 	let admin = false;
@@ -826,11 +825,8 @@ export const getServerSideProps = async (ctx) => {
 			},
 		};
 	}
-	const { data: products } = useSWR(
-		`${process.env.API_URL}/api/products`,
-		fetcher,
-	);
-	// const productRes = await axios.get(`${process.env.API_URL}/api/products`);
+
+	const productRes = await axios.get(`${process.env.API_URL}/api/products`);
 	const orderRes = await axios.get(`${process.env.API_URL}/api/orders`);
 
 	orderRes.data.sort((a, b) => {
@@ -840,7 +836,7 @@ export const getServerSideProps = async (ctx) => {
 	return {
 		props: {
 			initialOrders: orderRes.data,
-			products,
+			products: productRes.data,
 			admin,
 		},
 	};

@@ -4,7 +4,6 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import MultiSelectDropdown from './MultiSelectDropdown';
 import { IoClose } from 'react-icons/io5';
-import useSWR, { mutate } from 'swr';
 
 const Add = memo(({ setClose, productToEdit, onCancel }) => {
 	const [product, setProduct] = useState(
@@ -127,7 +126,6 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 				`${process.env.API_URL}/api/products/` + product._id,
 				updatedProduct,
 			);
-			mutate(`${process.env.API_URL}/api/products`);
 			setClose(true);
 			onCancel();
 			showSuccessMessage('Product Updated');
