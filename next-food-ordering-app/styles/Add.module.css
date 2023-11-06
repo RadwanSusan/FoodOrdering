@@ -82,6 +82,14 @@
 	width: 25%;
 }
 
+.priceContainer inputSm {
+	width: 50%
+}
+
+.priceContainer div button {
+	margin-left: 5px;
+}
+
 .extra {
 	display: flex;
 	justify-content: space-between;
