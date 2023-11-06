@@ -19,10 +19,15 @@
   padding: 5px;
   cursor: pointer;
   transition: 0.15s;
+  border-radius: 5px;
   -webkit-transition: 0.15s;
   -moz-transition: 0.15s;
   -ms-transition: 0.15s;
   -o-transition: 0.15s;
+  -webkit-border-radius: ;
+  -moz-border-radius: ;
+  -ms-border-radius: ;
+  -o-border-radius: ;
 }
 
 .button:first-child {
@@ -31,7 +36,7 @@
 }
 
 .button:first-child:hover {
-  background-color: rgb(0, 128, 0);
+  background-color: rgb(32, 82, 182);
 }
 
 .button:last-child {
