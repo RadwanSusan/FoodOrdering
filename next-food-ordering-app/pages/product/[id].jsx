@@ -140,7 +140,7 @@ const Product = ({ product }) => {
 								close={() => setIsOpen(false)}
 								slides={[
 									{
-										src: `${imgSrc}`,
+										src: `http://lahmahandfahmah.com${product.img}`,
 									},
 								]}
 							/>
