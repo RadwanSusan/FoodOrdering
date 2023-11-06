@@ -592,16 +592,11 @@ const AllOrdersTab = ({
 	);
 };
 
-const Index = ({ initialOrders }) => {
+const Index = ({ initialOrders, products }) => {
 	const [orders, setOrders] = useState(initialOrders);
 	const [orderList, setOrderList] = useState(orders);
 	const originalOrderList = useRef(orders);
 	const [value, setValue] = useState(0);
-	const fetcher = (url) => fetch(url).then((res) => res.json());
-	const { data: products } = useSWR(
-		`${process.env.API_URL}/api/products`,
-		fetcher,
-	);
 	const [product, setProductList] = useState(products);
 	const [todaysOrders, setTodaysOrders] = useState([]);
 	const [sortedAndFilteredTodaysOrders, setSortedAndFilteredTodaysOrders] =
@@ -814,6 +809,7 @@ const Index = ({ initialOrders }) => {
 		</ThemeProvider>
 	);
 };
+const fetcher = (url) => fetch(url).then((r) => r.json());
 export const getServerSideProps = async (ctx) => {
 	const myCookie = ctx.req?.cookies || '';
 	let admin = false;
@@ -830,8 +826,11 @@ export const getServerSideProps = async (ctx) => {
 			},
 		};
 	}
-
-	const productRes = await axios.get(`${process.env.API_URL}/api/products`);
+	const { data: products } = useSWR(
+		`${process.env.API_URL}/api/products`,
+		fetcher,
+	);
+	// const productRes = await axios.get(`${process.env.API_URL}/api/products`);
 	const orderRes = await axios.get(`${process.env.API_URL}/api/orders`);
 
 	orderRes.data.sort((a, b) => {
@@ -841,7 +840,7 @@ export const getServerSideProps = async (ctx) => {
 	return {
 		props: {
 			initialOrders: orderRes.data,
-			products: productRes.data,
+			products,
 			admin,
 		},
 	};
