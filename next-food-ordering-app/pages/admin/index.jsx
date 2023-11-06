@@ -153,9 +153,12 @@ const ProductsTab = ({ products, setProductList }) => {
 								<tbody>
 									<tr className={styles.trTitle}>
 										<th>Image</th>
-										<th>Id</th>
 										<th>Title</th>
+										<th>Extras</th>
+										<th>Categories</th>
 										<th>Prices</th>
+										<th>Created at</th>
+										<th>Updated at</th>
 										<th>Action</th>
 									</tr>
 								</tbody>
@@ -176,14 +179,106 @@ const ProductsTab = ({ products, setProductList }) => {
 														quality={80}
 													/>
 												</td>
-												<td>{product._id.slice(0, 7)}...</td>
 												<td>{product.title}</td>
+												<td>
+													{product.extraOptions.map((option) => (
+														<div
+															key={option._id}
+															className={styles.extras}
+														>
+															<span
+																className={styles.extrasText}
+															>
+																{option.text}: {option.price}
+																AED
+															</span>
+														</div>
+													))}
+												</td>
+												<td>{product.category.join(', ')}</td>
 												<td>
 													{product.prices.map((price, index) =>
 														index !== product.prices.length - 1
 															? `${price} AED - `
 															: `${price} AED`,
 													)}
+												</td>
+												<td>
+													{(() => {
+														const diffInDays = differenceInDays(
+															new Date(),
+															new Date(product.createdAt),
+														);
+
+														if (diffInDays >= 1) {
+															return `${diffInDays} day ago`;
+														} else {
+															const diffInHours =
+																differenceInHours(
+																	new Date(),
+																	new Date(product.createdAt),
+																);
+
+															if (diffInHours < 1) {
+																const diffInMinutes =
+																	differenceInMinutes(
+																		new Date(),
+																		new Date(
+																			product.createdAt,
+																		),
+																	);
+																return `${diffInMinutes} minutes ago`;
+															} else {
+																const remainingMinutes =
+																	differenceInMinutes(
+																		new Date(),
+																		new Date(
+																			product.createdAt,
+																		),
+																	) % 60;
+																return `${diffInHours} hr ${remainingMinutes} minutes ago`;
+															}
+														}
+													})()}
+												</td>
+												<td>
+													{' '}
+													{(() => {
+														const diffInDays = differenceInDays(
+															new Date(),
+															new Date(product.updatedAt),
+														);
+
+														if (diffInDays >= 1) {
+															return `${diffInDays} day ago`;
+														} else {
+															const diffInHours =
+																differenceInHours(
+																	new Date(),
+																	new Date(product.updatedAt),
+																);
+
+															if (diffInHours < 1) {
+																const diffInMinutes =
+																	differenceInMinutes(
+																		new Date(),
+																		new Date(
+																			product.updatedAt,
+																		),
+																	);
+																return `${diffInMinutes} minutes ago`;
+															} else {
+																const remainingMinutes =
+																	differenceInMinutes(
+																		new Date(),
+																		new Date(
+																			product.updatedAt,
+																		),
+																	) % 60;
+																return `${diffInHours} hr ${remainingMinutes} minutes ago`;
+															}
+														}
+													})()}
 												</td>
 												<td>
 													<button
