@@ -32,7 +32,6 @@
 .sizes {
   width: 40%;
   display: flex;
-  justify-content: space-around;
 }
 
 .size {

@@ -116,8 +116,8 @@ const Product = ({ product }) => {
 	};
 	const justifyContentStyle =
 		product.prices.length === 1
-			? { justifyContent: 'flex-start !important' }
-			: {};
+			? { justifyContent: 'flex-start ' }
+			: { justifyContent: 'space-around' };
 
 	return (
 		<>
