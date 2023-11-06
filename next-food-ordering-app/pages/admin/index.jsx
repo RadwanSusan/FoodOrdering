@@ -171,7 +171,6 @@ const ProductsTab = ({ products, setProductList }) => {
 													<Image
 														src={`${process.env.API_URL_MEDIA}${product.img}`}
 														onError={(e) => {
-															e.target.onerror = null;
 															e.target.src = fallbackImg;
 														}}
 														width={110}
