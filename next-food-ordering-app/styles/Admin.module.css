@@ -18,6 +18,7 @@
   color: white;
   padding: 5px;
   cursor: pointer;
+  border-radius: 5px;
   transition: 0.15s;
   -webkit-transition: 0.15s;
   -moz-transition: 0.15s;
@@ -31,7 +32,7 @@
 }
 
 .button:first-child:hover {
-  background-color: rgb(0, 128, 0);
+  background-color: rgb(32, 82, 182);
 }
 
 .button:last-child {
