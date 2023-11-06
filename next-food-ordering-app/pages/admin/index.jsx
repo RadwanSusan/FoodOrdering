@@ -56,6 +56,7 @@ const ProductsTab = ({ products, setProductList }) => {
 	const [imgSrc, setImgSrc] = useState(
 		`${process.env.API_URL_MEDIA}${product.img}`,
 	);
+	const fallbackImg = `${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`;
 
 	useEffect(() => {
 		setImgSrc(`${process.env.API_URL_MEDIA}${product.img}`);
@@ -108,6 +109,10 @@ const ProductsTab = ({ products, setProductList }) => {
 	const handleEdit = useCallback((productId) => {
 		setEditingId(productId);
 	}, []);
+
+	const handleError = () => {
+		setImgSrc(fallbackImg);
+	};
 
 	const handleUpdate = useCallback(
 		async (updatedProduct) => {
@@ -176,15 +181,11 @@ const ProductsTab = ({ products, setProductList }) => {
 												<td>
 													<Image
 														src={imgSrc}
-														onError={() =>
-															setImgSrc(
-																`${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`,
-															)
-														}
 														width={110}
 														height={110}
 														style={{ objectFit: 'cover' }}
 														alt='product-image'
+														onError={handleError}
 													/>
 												</td>
 												<td>{product._id.slice(0, 7)}...</td>
