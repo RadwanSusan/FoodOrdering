@@ -107,8 +107,13 @@
   -o-border-radius: 2px;
 }
 
+html[dir="rtl"] .button {
+  margin-right: 10px;
+  margin-left: 0;
+}
+
 .button :hover {
-  background-color: #f1410e;
+  background-color: #af2600;
 }
 
 @media screen and (max-width: 620px) {

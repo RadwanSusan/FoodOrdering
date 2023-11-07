@@ -1,6 +1,9 @@
 {
+	"Lahmah&Fahmah": "لحمة و فحمة",
+	"Orders": "الطلبات",
 	"welcome": "أهلا بك",
 	"cart": "عربة التسوق",
+	"Cart": "السلة",
 	"menu": "قائمة الطعام",
 	"Best Sellers": "الأكثر مبيعا",
 	"Our Mix Grill": "شواء مشكل",
@@ -50,5 +53,21 @@
 	"OurMenu": "قائمة الطعام",
 	"Location": "الموقع",
 	"PhoneEmail": "البريد الالكتروني",
-	"CallUs": "اتصل بنا"
+	"CallUs": "اتصل بنا",
+	"My Orders": "طلباتي",
+	"No orders yet": "لا يوجد طلبات حتى الآن.",
+	"CART TOTAL": "المجموع الكلي",
+	"Total:": "المجموع:",
+	"CASH ON DELIVERY": "الدفع عند الاستلام",
+	"PAY WITH CREDIT/DEBIT CARD": "الدفع باستخدام بطاقة الائتمان",
+	"CHECKOUT NOW!": "اطلب الان!",
+	"Product": "المنتج",
+	"Name": "الاسم",
+	"Extras": "الاضافات",
+	"Price": "السعر",
+	"Quantity": "الكمية",
+	"Total": "المجموع",
+	"Choose the size": "اختر الحجم :",
+	"Choose additional ingredients": "اختر المكونات الاضافية",
+	"Add to Cart": "اضافة للسلة"
 }

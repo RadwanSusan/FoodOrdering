@@ -6,6 +6,7 @@ import styles from '../../styles/OrderList.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
+import useTranslation from 'next-translate/useTranslation';
 
 const tagColors = [
 	'tagTeal',
@@ -23,6 +24,7 @@ const Orders = () => {
 	const orders = useSelector(selectOrders);
 	const fallbackImg = `${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`;
 	const [imgSrc, setImgSrc] = useState(fallbackImg);
+	const { t, lang } = useTranslation('common');
 
 	useEffect(() => {
 		fetch(
@@ -66,12 +68,14 @@ const Orders = () => {
 	return (
 		<>
 			<Head>
-				<title>Lahmah & Fahmah</title>
+				<title>
+					{t('Lahmah&Fahmah')} | {t('Orders')}
+				</title>
 			</Head>
-			<h1 style={{ margin: '40px' }}>My Orders</h1>
+			<h1 style={{ margin: '40px' }}>{t('My Orders')}</h1>
 			<div className={styles.container}>
 				{orders.length === 0 ? (
-					<p>No orders yet</p>
+					<p>{t('No orders yet')}</p>
 				) : (
 					orders.map((order) => (
 						<div
@@ -98,13 +102,13 @@ const Orders = () => {
 								</Link>
 								<h5>{order.method}</h5>
 								<span>
-									Order total:{' '}
+									Order total:
 									<strong style={{ textDecoration: 'underline' }}>
 										{order.total} AED
 									</strong>
 								</span>
 								<span>
-									Shipping costs:{' '}
+									Shipping costs:
 									<strong>{order.shippingCost} AED</strong>
 								</span>
 								<hr />
@@ -137,7 +141,7 @@ const Orders = () => {
 										<small>
 											{formatDistanceToNow(
 												new Date(order.createdAt),
-											)}{' '}
+											)}
 											ago
 										</small>
 									</div>

@@ -1,6 +1,9 @@
 {
+	"Lahmah&Fahmah": "Lahmah & Fahmah",
+	"Orders": "Orders",
 	"welcome": "Welcome",
 	"cart": "Cart",
+	"Cart": "Cart",
 	"menu": "Our Menu",
 	"Best Sellers": "Best Sellers",
 	"Our Mix Grill": "Our Mix Grill",
@@ -50,5 +53,21 @@
 	"OurMenu": "Our Menu",
 	"Location": "Direction",
 	"PhoneEmail": "Email",
-	"CallUs": "Call Us"
+	"CallUs": "Call Us",
+	"My Orders": "My Orders",
+	"No orders yet": "No orders yet",
+	"CART TOTAL": "CART TOTAL",
+	"Total:": "Total:",
+	"CASH ON DELIVERY": "CASH ON DELIVERY",
+	"PAY WITH CREDIT/DEBIT CARD": "PAY WITH CREDIT/DEBIT CARD",
+	"CHECKOUT NOW!": "CHECKOUT NOW!",
+	"Product": "Product",
+	"Name": "Name",
+	"Extras": "Extras",
+	"Price": "Price",
+	"Quantity": "Quantity",
+	"Total": "Total",
+	"Choose the size": "Choose the size",
+	"Choose additional ingredients": "Choose additional ingredients",
+	"Add to Cart": "Add to Cart"
 }

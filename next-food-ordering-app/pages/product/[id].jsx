@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import 'yet-another-react-lightbox/styles.css';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
+import useTranslation from 'next-translate/useTranslation';
 const Lightbox = dynamic(() => import('yet-another-react-lightbox'), {
 	ssr: false,
 });
@@ -24,6 +25,7 @@ const Product = ({ product }) => {
 	);
 	const fallbackImg = `${process.env.API_URL_MEDIA}/images/LF-logo-1k.png`;
 	const dispatch = useDispatch();
+	const { t, lang } = useTranslation('common');
 
 	useEffect(() => {
 		const extrasObj = {};
@@ -65,7 +67,10 @@ const Product = ({ product }) => {
 			Swal.fire({
 				position: 'center',
 				icon: 'error',
-				title: 'Please select a quantity greater than 0',
+				title:
+					lang === 'en'
+						? 'Please select a quantity greater than 0'
+						: 'الرجاء تحديد الكمية الكافية أو أكبر من صفر',
 				showConfirmButton: false,
 				timer: 3000,
 				timerProgressBar: true,
@@ -77,7 +82,8 @@ const Product = ({ product }) => {
 			Swal.fire({
 				position: 'center',
 				icon: 'error',
-				title: 'Please select a size',
+				title:
+					lang === 'en' ? 'Please select a size' : 'الرجاء تحديد الحجم',
 				showConfirmButton: false,
 				timer: 3000,
 				timerProgressBar: true,
@@ -98,7 +104,8 @@ const Product = ({ product }) => {
 		Swal.fire({
 			position: 'center',
 			icon: 'success',
-			title: 'Product added',
+			title:
+				lang === 'en' ? 'Product added successfully' : 'تمت الاضافة بنجاح',
 			showConfirmButton: false,
 			timer: 3000,
 			timerProgressBar: true,
@@ -122,7 +129,9 @@ const Product = ({ product }) => {
 	return (
 		<>
 			<Head>
-				<title>Lahmah & Fahmah</title>
+				<title>
+					{t('Lahmah&Fahmah')} | {t('Product')}
+				</title>
 			</Head>
 			<div className={styles.container}>
 				<div className={styles.left}>
@@ -157,7 +166,7 @@ const Product = ({ product }) => {
 					<h1 className={styles.title}>{product.title}</h1>
 					<span className={styles.price}>{price} AED</span>
 					<p className={styles.desc}>{product.desc}</p>
-					<h3 className={styles.choose}>Choose the size</h3>
+					<h3 className={styles.choose}>{t('Choose the size')}</h3>
 					<div
 						className={styles.sizes}
 						style={justifyContentStyle}
@@ -217,7 +226,7 @@ const Product = ({ product }) => {
 							className={styles.button}
 							onClick={handleClick}
 						>
-							Add to Cart
+							{t('Add to Cart')}
 						</button>
 					</div>
 				</div>

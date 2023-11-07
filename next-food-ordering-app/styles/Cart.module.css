@@ -145,3 +145,7 @@
 .trTitle {
   text-align: left;
 }
+
+html[dir="rtl"] .trTitle {
+  text-align: right;
+}

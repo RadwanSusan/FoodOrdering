@@ -9,6 +9,7 @@ import OrderDetail from '../components/OrderDetail';
 import Swal from 'sweetalert2';
 import { CheckoutRedirectButton } from '../components/StripeButton';
 import Head from 'next/head';
+import useTranslation from 'next-translate/useTranslation';
 
 const Cart = () => {
 	const cart = useSelector((state) => state.cart);
@@ -16,6 +17,7 @@ const Cart = () => {
 	const [cash, setCash] = useState(false);
 	const dispatch = useDispatch();
 	const router = useRouter();
+	const { t, lang } = useTranslation('common');
 
 	const [imgSrcs, setImgSrcs] = useState(
 		cart.products.reduce((obj, product) => {
@@ -52,7 +54,7 @@ const Cart = () => {
 				Swal.fire({
 					position: 'center',
 					icon: 'success',
-					title: 'Order Placed',
+					title: lang === 'en' ? 'Order Success' : 'تم الطلب بنجاح',
 					showConfirmButton: false,
 					timer: 3000,
 					timerProgressBar: true,
@@ -61,7 +63,7 @@ const Cart = () => {
 				Swal.fire({
 					position: 'center',
 					icon: 'error',
-					title: 'Order Failed',
+					title: lang === 'en' ? 'Order Failed' : 'فشل الطلب',
 					showConfirmButton: false,
 					timer: 3000,
 					timerProgressBar: true,
@@ -71,7 +73,7 @@ const Cart = () => {
 			Swal.fire({
 				position: 'center',
 				icon: 'error',
-				title: 'Order Failed',
+				title: lang === 'en' ? 'Order Failed' : 'فشل الطلب',
 				showConfirmButton: false,
 				timer: 3000,
 				timerProgressBar: true,
@@ -81,21 +83,28 @@ const Cart = () => {
 
 	const handleRemoveFromCart = (product) => {
 		Swal.fire({
-			title: 'Are you sure?',
-			text: "You won't be able to revert this!",
+			title: lang === 'en' ? 'Are you sure?' : 'هل انت متأكد؟',
+			text:
+				lang === 'en'
+					? "You won't be able to revert this!"
+					: 'لن تتمكن من التراجع من هذه العملية',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes, delete it!',
+			confirmButtonText: lang === 'en' ? 'Yes, delete it!' : 'نعم',
+			cancelButtonText: lang === 'en' ? 'No, cancel' : 'لا ، الغاء',
 		}).then((result) => {
 			if (result.isConfirmed) {
 				dispatch(removeFromCart(product.uniqueId));
 				Swal.fire({
 					position: 'center',
 					icon: 'success',
-					title: 'Item Removed',
-					text: 'This item has been removed from cart',
+					title: lang === 'en' ? 'Item Removed' : 'تم الحذف بنجاح',
+					text:
+						lang === 'en'
+							? 'This item has been removed from cart'
+							: 'تمت العملية بنجاح',
 					showConfirmButton: false,
 					timer: 3000,
 					timerProgressBar: true,
@@ -107,19 +116,21 @@ const Cart = () => {
 	return (
 		<>
 			<Head>
-				<title>Lahmah & Fahmah</title>
+				<title>
+					{t('Lahmah&Fahmah')} | {t('Cart')}
+				</title>
 			</Head>
 			<div className={styles.container}>
 				<div className={styles.left}>
 					<table className={styles.table}>
 						<tbody>
 							<tr className={styles.trTitle}>
-								<th>Product</th>
-								<th>Name</th>
-								<th>Extras</th>
-								<th>Price</th>
-								<th>Quantity</th>
-								<th>Total</th>
+								<th>{t('Product')}</th>
+								<th>{t('Name')}</th>
+								<th>{t('Extras')}</th>
+								<th>{t('Price')}</th>
+								<th>{t('Quantity')}</th>
+								<th>{t('Total')}</th>
 							</tr>
 						</tbody>
 						<tbody>
@@ -188,9 +199,9 @@ const Cart = () => {
 				</div>
 				<div className={styles.right}>
 					<div className={styles.wrapper}>
-						<h2 className={styles.title}>CART TOTAL</h2>
+						<h2 className={styles.title}>{t('CART TOTAL')}</h2>
 						<div className={styles.totalText}>
-							<b className={styles.totalTextTitle}>Total:</b>
+							<b className={styles.totalTextTitle}>{t('Total:')}</b>
 							{cart.total} AED
 						</div>
 						{open ? (
@@ -202,7 +213,10 @@ const Cart = () => {
 											return Swal.fire({
 												position: 'center',
 												icon: 'info',
-												title: 'Cart is empty',
+												title:
+													lang === 'en'
+														? 'Cart is empty'
+														: 'عربة التسوق فارغة',
 												showConfirmButton: false,
 												timer: 3000,
 												timerProgressBar: true,
@@ -210,7 +224,7 @@ const Cart = () => {
 										setCash(true);
 									}}
 								>
-									CASH ON DELIVERY
+									{t('CASH ON DELIVERY')}
 								</button>
 								<CheckoutRedirectButton
 									disabled={cart.total === 0}
@@ -218,7 +232,7 @@ const Cart = () => {
 									currency='aed'
 									cart={cart}
 								>
-									PAY WITH CREDIT/DEBIT CARD
+									{t('PAY WITH CREDIT/DEBIT CARD')}
 								</CheckoutRedirectButton>
 							</div>
 						) : (
@@ -228,7 +242,10 @@ const Cart = () => {
 										return Swal.fire({
 											position: 'center',
 											icon: 'info',
-											title: 'Cart is empty',
+											title:
+												lang === 'en'
+													? 'Cart is empty'
+													: 'عربة التسوق فارغة',
 											showConfirmButton: false,
 											timer: 3000,
 											timerProgressBar: true,
@@ -237,7 +254,7 @@ const Cart = () => {
 								}}
 								className={styles.button}
 							>
-								CHECKOUT NOW!
+								{t('CHECKOUT NOW!')}
 							</button>
 						)}
 					</div>
