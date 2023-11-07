@@ -152,7 +152,9 @@ const MenuList = ({ menuListItems }) => {
 					<Lottie
 						options={animationOptions}
 						height={400}
-						width={400}
+						width={document.body.clientWidth < 400 ? 285 : 400}
+						isClickToPauseDisabled
+						autoplay
 					/>
 					<h3>{t('emptyMenu')}</h3>
 				</>
