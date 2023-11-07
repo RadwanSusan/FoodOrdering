@@ -32,6 +32,7 @@ const Featured = () => {
 					style={{ objectFit: 'cover' }}
 					fill={true}
 					priority
+					sizes='(100vw, 100vh)'
 				/>
 			</div>
 			<div
@@ -64,6 +65,7 @@ const Featured = () => {
 					style={{ objectFit: 'cover' }}
 					fill
 					priority
+					sizes='(100vw, 100vh)'
 				/>
 			</div>
 		</div>

@@ -27,8 +27,7 @@
 		{
 			"src": "/img/lahmahAndFahmah/screenshot2.png",
 			"sizes": "1280x720",
-			"type": "image/png",
-			"form_factor": "desktop"
+			"type": "image/png"
 		}
 	],
 	"theme_color": "#FFFFFF",
