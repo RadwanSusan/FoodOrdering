@@ -1,9 +1,11 @@
 import styles from '../styles/Featured.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
+import useTranslation from 'next-translate/useTranslation';
 
 const Featured = () => {
 	const [index, setIndex] = useState(0);
+	const { t, lang } = useTranslation('common');
 	const images = [
 		'/img/lahmahAndFahmah/1.jpg',
 		'/img/lahmahAndFahmah/2.jpeg',
@@ -24,7 +26,10 @@ const Featured = () => {
 			<div
 				className={styles.arrowContainer}
 				style={{ left: 0 }}
-				onClick={() => handleArrow('l')}
+				onClick={() =>
+					(lang === 'en' && handleArrow('l')) ||
+					(lang === 'ar' && handleArrow('r'))
+				}
 			>
 				<Image
 					src='/img/arrowl.png'
@@ -37,7 +42,12 @@ const Featured = () => {
 			</div>
 			<div
 				className={styles.wrapper}
-				style={{ transform: `translateX(${-100 * index}vw)` }}
+				style={
+					(lang === 'en' && {
+						transform: `translateX(${-100 * index}vw)`,
+					}) ||
+					(lang === 'ar' && { transform: `translateX(${100 * index}vw)` })
+				}
 			>
 				{images.map((img, i) => (
 					<div
@@ -50,6 +60,8 @@ const Featured = () => {
 							style={{ objectFit: 'cover' }}
 							fill={true}
 							priority
+							sizes='(100vw, 100vh)'
+							quality={100}
 						/>
 					</div>
 				))}
@@ -57,7 +69,10 @@ const Featured = () => {
 			<div
 				className={styles.arrowContainer}
 				style={{ right: 0 }}
-				onClick={() => handleArrow('r')}
+				onClick={() =>
+					(lang === 'en' && handleArrow('r')) ||
+					(lang === 'ar' && handleArrow('l'))
+				}
 			>
 				<Image
 					src='/img/arrowr.png'
