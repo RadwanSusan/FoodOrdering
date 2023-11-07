@@ -1,10 +1,11 @@
 import styles from '../styles/MobileMenuList.module.css';
 import { useState } from 'react';
 import Image from 'next/legacy/image';
+import useTranslation from 'next-translate/useTranslation';
 
 const MobileMenuList = ({ handleCategoryClick }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+	const { t, lang } = useTranslation('common');
 	const handleMenuToggle = () => {
 		setIsMenuOpen(!isMenuOpen);
 	};
@@ -24,7 +25,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 						height={50}
 					/>
 				</div>
-				Our Menu
+				{t('OurMenu')}
 			</button>
 			<section
 				className={styles.menu__body}
@@ -32,7 +33,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 			>
 				<div className={styles.menu__header}>
 					<label></label>
-					<p>Our Menu</p>
+					<p> {t('OurMenu')}</p>
 					<button
 						title='Close'
 						onClick={handleMenuToggle}
@@ -51,140 +52,140 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 						key={1}
 						onClick={() => handleCategoryClick('Best Sellers')}
 					>
-						Best Sellers
+						{t('Best Sellers')}
 					</a>
 					<a
 						href='#menu'
 						key={2}
 						onClick={() => handleCategoryClick('Our Mix Grill')}
 					>
-						Meal for four
+						{t('Meal For Four')}
 					</a>
 					<a
 						href='#menu'
 						key={3}
 						onClick={() => handleCategoryClick('Meal for one')}
 					>
-						Meal For One
+						{t('Meal for one')}
 					</a>
 					<a
 						href='#menu'
 						key={4}
 						onClick={() => handleCategoryClick('Meal for two')}
 					>
-						Meal For Two
+						{t('Meal for two')}
 					</a>
 					<a
 						href='#menu'
 						key={6}
 						onClick={() => handleCategoryClick('Sandwiches')}
 					>
-						Sandwiches
+						{t('Sandwiches')}
 					</a>
 					<a
 						href='#menu'
 						key={66}
 						onClick={() => handleCategoryClick('Wraps')}
 					>
-						Wraps
+						{t('Wraps')}
 					</a>
 					<a
 						href='#menu'
 						key={7}
 						onClick={() => handleCategoryClick('Appetizer')}
 					>
-						Appetizers
+						{t('Appetizers')}
 					</a>
 					<a
 						href='#menu'
 						key={8}
 						onClick={() => handleCategoryClick('Pans')}
 					>
-						Pans
+						{t('Pans')}
 					</a>
 					<a
 						href='#menu'
 						key={9}
 						onClick={() => handleCategoryClick('Salad')}
 					>
-						Salads
+						{t('Salads')}
 					</a>
 					<a
 						href='#menu'
 						key={10}
 						onClick={() => handleCategoryClick('Australian Lamb')}
 					>
-						Australian Lamb
+						{t('Australian Lamb')}
 					</a>
 					<a
 						href='#menu'
 						key={11}
 						onClick={() => handleCategoryClick('Local Lamb')}
 					>
-						Local Lamb
+						{t('Local Lamb')}
 					</a>
 					<a
 						href='#menu'
 						key={12}
 						onClick={() => handleCategoryClick('Syrian Lamb')}
 					>
-						Syrian Lamb
+						{t('Syrian Lamb')}
 					</a>
 					<a
 						href='#menu'
 						key={13}
 						onClick={() => handleCategoryClick('Mutton')}
 					>
-						Mutton
+						{t('Mutton')}
 					</a>
 					<a
 						href='#menu'
 						key={14}
 						onClick={() => handleCategoryClick('Australian Beef')}
 					>
-						Australian Beef
+						{t('Australian Beef')}
 					</a>
 					<a
 						href='#menu'
 						key={15}
 						onClick={() => handleCategoryClick('Local Beef')}
 					>
-						Local Beef
+						{t('Local Beef')}
 					</a>
 					<a
 						href='#menu'
 						key={17}
 						onClick={() => handleCategoryClick('Fresh Chicken')}
 					>
-						Fresh Chicken
+						{t('Fresh Chicken')}
 					</a>
 					<a
 						href='#menu'
 						key={18}
 						onClick={() => handleCategoryClick('Ready To Cook')}
 					>
-						Ready To Cook
+						{t('Ready To Cook')}
 					</a>
 					<a
 						href='#menu'
 						key={19}
 						onClick={() => handleCategoryClick('Ready To Grill')}
 					>
-						Ready To Grill
+						{t('Ready To Grill')}
 					</a>
 					<a
 						href='#menu'
 						key={20}
 						onClick={() => handleCategoryClick('Frozen Items')}
 					>
-						Frozen Items
+						{t('Frozen Items')}
 					</a>
 					<a
 						href='#menu'
 						key={21}
 						onClick={() => handleCategoryClick('Soft Drinks')}
 					>
-						Soft Drinks
+						{t('Soft Drinks')}
 					</a>
 				</div>
 				<div className={styles.menu__contact}>
@@ -203,7 +204,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 								></path>
 								<path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'></path>
 							</svg>
-							<span>Call</span>
+							<span>{t('CallUs')}</span>
 						</a>
 						<a href='mailto:tasty@bestmeat.ae'>
 							<svg
@@ -219,7 +220,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 									fill='none'
 								></path>
 							</svg>
-							<span>Email</span>
+							<span>{t('PhoneEmail')}</span>
 						</a>
 						<a href='https://maps.app.goo.gl/VVkxhoNEP49H99TNA'>
 							<svg
@@ -235,7 +236,7 @@ const MobileMenuList = ({ handleCategoryClick }) => {
 									fill='none'
 								></path>
 							</svg>
-							<span>Directions</span>
+							<span>{t('Location')}</span>
 						</a>
 					</div>
 				</div>

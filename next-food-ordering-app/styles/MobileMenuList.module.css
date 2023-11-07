@@ -124,6 +124,11 @@
    margin-right: 15px;
 }
 
+html[dir="rtl"] .menu__button div {
+   margin-right: 0;
+   margin-left: 10px;
+}
+
 .menu__button div div {
    display: table;
    height: 1px;
