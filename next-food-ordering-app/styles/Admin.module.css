@@ -54,6 +54,7 @@
   border: none;
   padding: 8px;
   cursor: pointer;
+  border-radius: 2px;
   transition: 0.15s;
   -webkit-transition: 0.15s;
   -moz-transition: 0.15s;

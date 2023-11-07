@@ -378,6 +378,7 @@ const TodaysOrdersTab = ({
 					<tr className={styles.trTitle}>
 						<th>Customer</th>
 						<th>Total</th>
+						<th>Address</th>
 						<th>Payment Method</th>
 						<th>Status</th>
 						<th>Order Date</th>
@@ -389,6 +390,7 @@ const TodaysOrdersTab = ({
 						<tr className={styles.trTitle}>
 							<td>{order.customer}</td>
 							<td>${order.total}</td>
+							<td>{order.address}</td>
 							<td>
 								{order.method === 0 ? (
 									<span>cash</span>
@@ -514,6 +516,7 @@ const AllOrdersTab = ({
 					<tr className={styles.trTitle}>
 						<th>Customer</th>
 						<th>Total</th>
+						<th>Address</th>
 						<th>Payment Method</th>
 						<th>Status</th>
 						<th>Order Date</th>
@@ -525,6 +528,7 @@ const AllOrdersTab = ({
 						<tr className={styles.trTitle}>
 							<td>{order.customer}</td>
 							<td>${order.total}</td>
+							<td>{order.address}</td>
 							<td>
 								{order.method === 0 ? (
 									<span>cash</span>
