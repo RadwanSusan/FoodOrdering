@@ -30,5 +30,21 @@
 	"Wraps": "Wraps",
 	"emptyMenu": "empty category",
 	"orderNow": "ORDER NOW!",
-	"phoneNumber": "+971(04)2801585"
+	"phoneNumber": "+971(04)2801585",
+	"DownloadOn": "Download On",
+	"AppleStore": "Apple Store",
+	"PlayStore": "Play Store",
+	"AndroidAppOn": "Android App On",
+	"FindOurRestaurant": "Find Our Restaurant",
+	"Address": "Mirdif Mall, Dubai – U.A.E",
+	"phoneNumberNumber": "+971(04)2801585",
+	"phoneNumberNumberP": "Landline Number: ",
+	"phoneNumberNumber2": "+971(54) 313 5151",
+	"phoneNumberNumberP2": "Phone Number: ",
+	"WorkingHours": "Working Hours",
+	"WorkTime": "Everyday from 8:00 AM - 02:00 AM",
+	"Email": "Email: ",
+	"EmailAddress": "tasty@bestmeat.ae",
+	"Copyright": "Copyright © 2023 Lahmah & Fahmah. All rights reserved. Powered by ",
+	"PME": "PME"
 }

@@ -1,21 +1,15 @@
 import styles from '../styles/Footer.module.css';
 import useInstallPrompt from './useInstallPrompt';
 import Image from 'next/image';
+import useTranslation from 'next-translate/useTranslation';
 
 const Footer = () => {
 	const { prompt } = useInstallPrompt();
+	const { t, lang } = useTranslation('common');
 
 	const handleInstallClick = () => {
-		console.log(prompt);
 		if (!prompt) return;
 		prompt.prompt();
-		prompt.userChoice.then((choiceResult) => {
-			if (choiceResult.outcome === 'accepted') {
-				console.log('User accepted the install prompt');
-			} else {
-				console.log('User dismissed the install prompt');
-			}
-		});
 	};
 
 	return (
@@ -47,8 +41,8 @@ const Footer = () => {
 											height='40'
 										/>
 										<div>
-											<h3>Download On</h3>
-											<p>Apple Store</p>
+											<h3>{t('DownloadOn')}</h3>
+											<p>{t('AppleStore')}</p>
 										</div>
 									</div>
 									<div
@@ -62,8 +56,8 @@ const Footer = () => {
 											height='40'
 										/>
 										<div>
-											<h3>Android App On</h3>
-											<p>Google Play</p>
+											<h3>{t('AndroidAppOn')}</h3>
+											<p>{t('PlayStore')}</p>
 										</div>
 									</div>
 								</div>
@@ -71,25 +65,44 @@ const Footer = () => {
 						</h2>
 					</div>
 					<div className={styles.card}>
-						<h1 className={styles.title}>FIND OUR RESTAURANT</h1>
+						<h1 className={styles.title}>{t('FindOurRestaurant')}</h1>
 						<p className={styles.text}>
-							Mirdif Mall, Dubai – U.A.E
-							<br /> Tel. (04) 280 1585
-							<br /> Mobile (054) 313 5151
-							<br /> Email: tasty@bestmeat.ae
+							{t('Address')}
+							<br />
+							{t('phoneNumberNumberP')}
+							<p
+								style={{
+									direction: 'ltr',
+									margin: '0',
+									display: 'inline-block',
+								}}
+							>
+								{t('phoneNumberNumber')}
+							</p>
+							<br />
+							{t('phoneNumberNumberP2')}
+							<p
+								style={{
+									direction: 'ltr',
+									margin: '0',
+									display: 'inline-block',
+								}}
+							>
+								{t('phoneNumberNumber2')}
+							</p>
+							<br /> {t('Email')}
+							<p style={{ display: 'inline' }}>{t('EmailAddress')}</p>
 						</p>
 					</div>
 					<div className={styles.card}>
-						<h1 className={styles.title}>WORKING HOURS</h1>
-						<p className={styles.text}>
-							Everyday from 8:00 AM - 02:00 AM
-						</p>
+						<h1 className={styles.title}>{t('WorkingHours')}</h1>
+						<p className={styles.text}>{t('WorkTime')}</p>
 					</div>
 				</div>
 			</div>
 			<div className={styles.copyright}>
 				<p>
-					© 2023 Lahmah & Fahmah. All rights reserved. Powered by{' '}
+					{t('Copyright')}
 					<a
 						href='https://pme-ms.com/'
 						style={{
@@ -97,7 +110,7 @@ const Footer = () => {
 							fontWeight: 'bold',
 						}}
 					>
-						PME
+						{t('PME')}
 					</a>
 				</p>
 			</div>
