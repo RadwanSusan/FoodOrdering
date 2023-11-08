@@ -7,7 +7,16 @@ const ProductSchema = new mongoose.Schema(
 			required: true,
 			maxlength: 60,
 		},
+		title_ar: {
+			type: String,
+			required: true,
+			maxlength: 60,
+		},
 		desc: {
+			type: String,
+			maxlength: 200,
+		},
+		desc_ar: {
 			type: String,
 			maxlength: 200,
 		},
@@ -27,6 +36,7 @@ const ProductSchema = new mongoose.Schema(
 			type: [
 				{
 					text: { type: String, required: true },
+					text_ar: { type: String, required: true },
 					price: { type: Number, required: true },
 				},
 			],

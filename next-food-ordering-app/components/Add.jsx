@@ -4,22 +4,26 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import MultiSelectDropdown from './MultiSelectDropdown';
 import { IoClose } from 'react-icons/io5';
+import useTranslation from 'next-translate/useTranslation';
+import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
+import { toArabic } from 'arabic-digits';
 
 const Add = memo(({ setClose, productToEdit, onCancel }) => {
 	const [product, setProduct] = useState(
 		() =>
 			productToEdit || {
-				file: null,
-				title: null,
-				desc: null,
-				prices: [null],
+				file: '',
+				title: '',
+				desc: '',
+				prices: [''],
 				extraOptions: [],
-				extra: null,
-				category: null,
+				extra: '',
+				category: '',
 			},
 	);
 
-	const [extra, setExtra] = useState({ text: '', price: '' });
+	const [extra, setExtra] = useState({ text: '', text_ar: '', price: '' });
+	const { t, lang } = useTranslation('common');
 
 	const changePrice = useCallback((e, index) => {
 		setProduct((prevProduct) => {
@@ -44,12 +48,16 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 	}, []);
 
 	const handleExtra = useCallback(() => {
-		if (extra.text.trim() !== '' && extra.price.trim() !== '') {
+		if (
+			extra.text.trim() !== '' &&
+			extra.text_ar.trim() !== '' &&
+			extra.price.trim() !== ''
+		) {
 			setProduct((prevProduct) => ({
 				...prevProduct,
 				extraOptions: [...prevProduct.extraOptions, extra],
 			}));
-			setExtra({ text: '', price: '' });
+			setExtra({ text: '', text_ar: '', price: '' });
 		}
 	}, [extra]);
 
@@ -90,7 +98,9 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 			const url = await uploadFile(product.file);
 			const newProduct = {
 				title: product.title,
+				title_ar: product.title_ar,
 				desc: product.desc,
+				desc_ar: product.desc_ar,
 				prices: product.prices,
 				extraOptions: product.extraOptions,
 				img: url,
@@ -99,11 +109,18 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 			await createProduct(newProduct);
 			setClose(true);
 			onCancel();
-			showSuccessMessage('Product Added');
+			showSuccessMessage(lang === 'en' ? 'Product Added' : 'تمت الاضافة');
 		} catch (err) {
-			showErrorMessage('Something went wrong');
+			showErrorMessage(lang === 'en' ? 'Something went wrong' : 'حدث خطأ');
 		}
-	}, [product, setClose, showErrorMessage, showSuccessMessage, onCancel]);
+	}, [
+		product,
+		setClose,
+		showErrorMessage,
+		showSuccessMessage,
+		onCancel,
+		lang,
+	]);
 
 	const handleUpdate = useCallback(async () => {
 		try {
@@ -116,7 +133,9 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 			const updatedProduct = {
 				_id: product._id,
 				title: product.title,
+				title_ar: product.title_ar,
 				desc: product.desc,
+				desc_ar: product.desc_ar,
 				prices: product.prices,
 				extraOptions: product.extraOptions,
 				img: url,
@@ -128,11 +147,20 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 			);
 			setClose(true);
 			onCancel();
-			showSuccessMessage('Product Updated');
+			showSuccessMessage(
+				lang === 'en' ? 'Product Updated' : 'تم تحديث المنتج',
+			);
 		} catch (err) {
-			showErrorMessage('Something went wrong');
+			showErrorMessage(lang === 'en' ? 'Something went wrong' : 'حدث خطأ');
 		}
-	}, [product, setClose, showErrorMessage, showSuccessMessage, onCancel]);
+	}, [
+		product,
+		setClose,
+		showErrorMessage,
+		showSuccessMessage,
+		onCancel,
+		lang,
+	]);
 
 	const handleDeleteExtra = useCallback((optionToDelete) => {
 		setProduct((prevProduct) => ({
@@ -166,9 +194,13 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 						color='white'
 					/>
 				</span>
-				{productToEdit ? <h1>Edit Product</h1> : <h1>Add Product</h1>}
+				{productToEdit ? (
+					<h1>{t('Edit Product')}</h1>
+				) : (
+					<h1>{t('Add Product')}</h1>
+				)}
 				<div className={styles.item}>
-					<label className={styles.label}>Choose an image</label>
+					<label className={styles.label}>{t('Choose an image')}</label>
 					<input
 						type='file'
 						onChange={(e) =>
@@ -178,7 +210,7 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 					/>
 				</div>
 				<div className={styles.item}>
-					<label className={styles.label}>Title</label>
+					<label className={styles.label}>{t('Title')}</label>
 					<input
 						className={styles.input}
 						type='text'
@@ -189,7 +221,19 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 					/>
 				</div>
 				<div className={styles.item}>
-					<label className={styles.label}>Desc</label>
+					<label className={styles.label}>{t('TitleArabic')}</label>
+					<input
+						className={styles.input}
+						type='text'
+						onChange={(e) =>
+							setProduct({ ...product, title_ar: e.target.value })
+						}
+						value={product.title_ar}
+						style={{ direction: 'rtl' }}
+					/>
+				</div>
+				<div className={styles.item}>
+					<label className={styles.label}>{t('Desc')}</label>
 					<textarea
 						rows={4}
 						type='text'
@@ -200,19 +244,35 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 					/>
 				</div>
 				<div className={styles.item}>
-					<label className={styles.label}>Prices</label>
+					<label className={styles.label}>{t('DescArabic')}</label>
+					<textarea
+						rows={4}
+						type='text'
+						onChange={(e) =>
+							setProduct({ ...product, desc_ar: e.target.value })
+						}
+						value={product.desc_ar}
+						style={{ direction: 'rtl' }}
+					/>
+				</div>
+				<div className={styles.item}>
+					<label className={styles.label}>{t('Prices')}</label>
 					<div className={styles.priceContainer}>
 						{product.prices.map((price, index) => (
 							<div key={index}>
 								<input
 									className={`${styles.input} ${styles.inputSm}`}
 									type='number'
-									placeholder={`Price ${index + 1}`}
+									placeholder={lang === 'ar' ? 'السعر' : 'Price'}
 									onChange={(e) => changePrice(e, index)}
 									value={price}
+									name='price'
+									min='0'
 								/>
 								{product.prices.length !== 1 && (
-									<button onClick={() => deletePrice(index)}>X</button>
+									<button onClick={() => deletePrice(index)}>
+										<AiOutlineClose size={17} />
+									</button>
 								)}
 							</div>
 						))}
@@ -224,30 +284,40 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 										prices: [...prevProduct.prices, null],
 									}))
 								}
+								className={styles.button2}
 							>
-								+
+								<AiOutlinePlus size={17} />
 							</button>
 						)}
 					</div>
 				</div>
 				<div className={styles.item}>
-					<label className={styles.label}>Extra</label>
+					<label className={styles.label}>{t('Extra')}</label>
 					<div className={styles.extra}>
 						<input
 							className={`${styles.input} ${styles.inputSm}`}
 							type='text'
-							placeholder='Item'
+							placeholder={lang === 'ar' ? 'العنصر بالانجليزية' : 'Item'}
 							name='text'
-							id='extra'
 							onChange={handleExtraInput}
 							value={extra.text}
 						/>
 						<input
 							className={`${styles.input} ${styles.inputSm}`}
+							type='text'
+							placeholder={
+								lang === 'ar' ? 'العنصر بالعربية' : 'Item (Arabic)'
+							}
+							name='text_ar'
+							onChange={handleExtraInput}
+							value={extra.text_ar}
+							style={{ direction: 'rtl' }}
+						/>
+						<input
+							className={`${styles.input} ${styles.inputSm}`}
 							type='number'
-							placeholder='Price'
+							placeholder={lang === 'ar' ? 'السعر' : 'Price'}
 							name='price'
-							id='extra2'
 							onChange={handleExtraInput}
 							value={extra.price}
 						/>
@@ -255,7 +325,7 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 							className={styles.extraButton}
 							onClick={handleExtra}
 						>
-							Add option
+							{t('Add option')}
 						</button>
 					</div>
 					<div className={styles.extraItems}>
@@ -264,16 +334,25 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 								key={index}
 								className={styles.extraItem}
 							>
-								<span>{option.text}</span>
-								<button onClick={() => handleDeleteExtra(option)}>
-									X
+								<span>
+									{option.text} | {option.text_ar} |{' '}
+									{lang === 'ar'
+										? toArabic(option.price)
+										: option.price}{' '}
+									{t('AED')}
+								</span>
+								<button
+									className={styles.extraItemRemove}
+									onClick={() => handleDeleteExtra(option)}
+								>
+									<AiOutlineClose size={15} />
 								</button>
 							</div>
 						))}
 					</div>
 				</div>
 				<div className={styles.item}>
-					<label className={styles.label}>Category</label>
+					<label className={styles.label}>{t('Category')}</label>
 					<MultiSelectDropdown
 						onChange={handleCategoryChange}
 						value={product.category}
@@ -283,7 +362,7 @@ const Add = memo(({ setClose, productToEdit, onCancel }) => {
 					className={styles.addButton}
 					onClick={productToEdit ? handleUpdate : handleCreate}
 				>
-					{productToEdit ? 'Update' : 'Create'}
+					{productToEdit ? t('Update') : t('Create')}
 				</button>
 			</div>
 		</div>

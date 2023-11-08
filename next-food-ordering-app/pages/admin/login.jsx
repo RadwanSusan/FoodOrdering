@@ -3,12 +3,14 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styles from '../../styles/Login.module.css';
 import Head from 'next/head';
+import useTranslation from 'next-translate/useTranslation';
 
 const Login = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState(false);
 	const router = useRouter();
+	const { t, lang } = useTranslation('common');
 
 	const handleClick = async () => {
 		try {
@@ -25,7 +27,7 @@ const Login = () => {
 	return (
 		<>
 			<Head>
-				<title>Lahmah & Fahmah</title>
+				<title>{t('Lahmah&FahmahAdmin')}</title>
 			</Head>
 			<div className={styles.container}>
 				<div className={styles.wrapper}>

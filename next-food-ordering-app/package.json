@@ -37,6 +37,7 @@
 		"@reduxjs/toolkit": "^1.9.7",
 		"@stripe/stripe-js": "^2.1.11",
 		"@turf/turf": "^6.5.0",
+		"arabic-digits": "^1.1.0",
 		"axios": "^1.6.0",
 		"cookie": "^0.6.0",
 		"date-fns": "^2.30.0",
@@ -61,7 +62,7 @@
 		"stripe": "^14.3.0",
 		"sweetalert2": "^11.9.0",
 		"uuid": "^9.0.1",
-		"yet-another-react-lightbox": "^3.15.0"
+		"yet-another-react-lightbox": "^3.15.1"
 	},
 	"devDependencies": {
 		"eslint": "8.53.0",

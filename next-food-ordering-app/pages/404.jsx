@@ -1,11 +1,13 @@
 import styles from '../styles/Custom404.module.css';
 import Head from 'next/head';
+import useTranslation from 'next-translate/useTranslation';
 
 export default function Custom404() {
+	const { t, lang } = useTranslation('common');
 	return (
 		<>
 			<Head>
-				<title>Lahmah & Fahmah</title>
+				<title>{t('Lahmah&Fahmah404')}</title>
 			</Head>
 			<div className={styles.container}>
 				<h1>404</h1>
@@ -15,16 +17,13 @@ export default function Custom404() {
 					</div>
 				</div>
 				<div className={styles.info}>
-					<h2>We can&apos;t find that page</h2>
-					<p>
-						We&apos;re fairly sure that page used to be here, but seems to
-						have gone missing. We do apologise on it&apos;s behalf.
-					</p>
+					<h2>{t('PageNotFound')}</h2>
+					<p>{t('apologise')}</p>
 					<a
 						href={`${process.env.API_URL}`}
 						rel='noreferrer noopener'
 					>
-						Home
+						{t('Home')}
 					</a>
 				</div>
 			</div>

@@ -4,19 +4,22 @@ import Swal from 'sweetalert2';
 import { IoClose } from 'react-icons/io5';
 import * as turf from '@turf/turf';
 import polygons from '../pages/api/shipping/polygons.json';
+import useTranslation from 'next-translate/useTranslation';
+import { toArabic } from 'arabic-digits';
 
 const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 	const [customer, setCustomer] = useState('');
 	const [address, setAddress] = useState('');
 	const [phone, setPhone] = useState('');
 	const [userLocation, setUserLocation] = useState(null);
+	const { t, lang } = useTranslation('common');
 
 	const handleClick = async () => {
 		if (!address) {
 			Swal.fire({
 				icon: 'error',
-				title: 'Oops...',
-				text: 'Please enter a location!',
+				title: lang === 'en' ? 'Oops...' : 'عذرا',
+				text: lang === 'en' ? 'Enter address!' : 'ادخل العنوان!',
 				showConfirmButton: false,
 				timer: 5000,
 				timerProgressBar: true,
@@ -25,7 +28,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 		}
 
 		Swal.fire({
-			title: 'Processing your order...',
+			title: lang === 'en' ? 'Loading...' : 'جاري التحميل...',
 			icon: 'info',
 			allowOutsideClick: false,
 			showConfirmButton: false,
@@ -46,8 +49,9 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 		).catch(() => {
 			Swal.fire({
 				icon: 'error',
-				title: 'Oops...',
-				text: 'Failed to fetch location!',
+				title: lang === 'en' ? 'Oops...' : 'عذرا',
+				text:
+					lang === 'en' ? 'Failed to fetch location!' : 'فشل جلب العنوان!',
 				showConfirmButton: false,
 				timer: 5000,
 				timerProgressBar: true,
@@ -57,8 +61,9 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 		if (!response.ok) {
 			Swal.fire({
 				icon: 'error',
-				title: 'Oops...',
-				text: 'Invalid location entered!',
+				title: lang === 'en' ? 'Oops...' : 'عذرا',
+				text:
+					lang === 'en' ? 'Invalid location entered!' : 'ادخل موقع صحيح!',
 				showConfirmButton: false,
 				timer: 5000,
 				timerProgressBar: true,
@@ -71,8 +76,9 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 		if (data.results.length === 0) {
 			Swal.fire({
 				icon: 'error',
-				title: 'Oops...',
-				text: 'Invalid location entered!',
+				title: lang === 'en' ? 'Oops...' : 'عذرا',
+				text:
+					lang === 'en' ? 'Invalid location entered!' : 'ادخل موقع صحيح!',
 				showConfirmButton: false,
 				timer: 5000,
 				timerProgressBar: true,
@@ -86,8 +92,11 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 		) {
 			Swal.fire({
 				icon: 'info',
-				title: 'Oops...',
-				text: 'Please enter a specific location, not just a general area!',
+				title: lang === 'en' ? 'Oops...' : 'عذرا',
+				text:
+					lang === 'en'
+						? 'Please enter a specific location, not just a general area!'
+						: 'الرجاء إدخال موقع محدد، وليس فقط منطقة عامة!',
 				showConfirmButton: true,
 				timer: 5000,
 				timerProgressBar: true,
@@ -104,8 +113,11 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 		if (!turf.booleanWithin(point, dubaiPolygon)) {
 			Swal.fire({
 				icon: 'error',
-				title: 'Delivery unavailable',
-				text: 'We cannot deliver to your address.',
+				title: lang === 'en' ? 'Delivery unavailable' : 'التوصيل غير متوفر',
+				text:
+					lang === 'en'
+						? 'We cannot deliver to your address.'
+						: 'لا يمكن توصيل لعنوانك.',
 				showConfirmButton: false,
 				timer: 5000,
 				timerProgressBar: true,
@@ -137,7 +149,14 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 
 		Swal.fire({
 			title: 'Shipping Cost',
-			text: `The shipping cost is ${shippingCost} AED. The new total is ${newTotal} AED. Confirm order?`,
+			text:
+				lang === 'en'
+					? `The shipping cost is ${shippingCost} AED. The new total is ${newTotal} AED. Confirm order?`
+					: `تأكيد الطلب؟ التوصيل هو ${toArabic(
+							shippingCost,
+					  )} درهم إماراتي المبلغ الجديد الإجمالي هو ${toArabic(
+							newTotal,
+					  )} درهم أماراتي`,
 			icon: 'question',
 			showCancelButton: true,
 			confirmButtonText: 'Yes',
@@ -210,8 +229,11 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 					);
 					Swal.fire({
 						icon: 'error',
-						title: 'Oops...',
-						text: 'It seems like you have denied location permissions. Please allow location permissions to automatically get your location.',
+						title: lang === 'en' ? 'Oops...' : 'عذرا',
+						text:
+							lang === 'en'
+								? 'It seems like you have denied location permissions. Please allow location permissions to automatically get your location.'
+								: 'يبدو أنك رفضت أذونات الموقع. يرجى السماح لأذونات الموقع بالحصول على موقعك تلقائيًا.',
 						showConfirmButton: false,
 						timer: 5000,
 						timerProgressBar: true,
@@ -221,8 +243,11 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 		} else {
 			Swal.fire({
 				icon: 'error',
-				title: 'Oops...',
-				text: 'Geolocation is not supported by this browser.',
+				title: lang === 'en' ? 'Oops...' : 'عذرا',
+				text:
+					lang === 'en'
+						? 'Geolocation is not supported by this browser.'
+						: 'تحديد الموقع الجغرافي غير مدعوم من هذا المتصفح.',
 				showConfirmButton: false,
 				timer: 5000,
 				timerProgressBar: true,
@@ -247,17 +272,21 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 						className={styles.title}
 						style={{ color: 'black' }}
 					>
-						Your total is {total} AED
+						{lang === 'en'
+							? `Your total is ${total} AED`
+							: 'المبلغ الإجمالي هو ' + toArabic(total) + ' درهم '}
 					</h1>
 					<div className={styles.item}>
 						<label
 							className={styles.label}
 							style={{ color: 'black' }}
 						>
-							Name Surname
+							{lang === 'en' ? 'Full Name' : 'الاسم الكامل'}
 						</label>
 						<input
-							placeholder='Full Name'
+							placeholder={
+								lang === 'en' ? 'Enter your name' : 'ادخل اسمك'
+							}
 							type='text'
 							className={styles.input}
 							onChange={(e) => setCustomer(e.target.value)}
@@ -268,11 +297,15 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 							className={styles.label}
 							style={{ color: 'black' }}
 						>
-							Phone Number
+							{lang === 'en' ? 'Phone Number' : 'رقم الهاتف'}
 						</label>
 						<input
 							type='text'
-							placeholder='+971(50)0000000'
+							placeholder={
+								lang === 'en'
+									? '+971(50)0000000'
+									: toArabic('+971(50)0000000')
+							}
 							className={styles.input}
 							onChange={(e) => setPhone(e.target.value)}
 						/>
@@ -282,11 +315,13 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 							className={styles.label}
 							style={{ color: 'black' }}
 						>
-							Address
+							{lang === 'en' ? 'Address' : 'العنوان'}
 						</label>
 						<textarea
 							rows={5}
-							placeholder='Po Box 17918 Jebel Ali Free Zone, Dubai, UAE'
+							placeholder={
+								lang === 'en' ? 'Enter your address' : 'ادخل عنوانك'
+							}
 							type='text'
 							className={styles.textarea}
 							value={address}
@@ -298,7 +333,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 							className={styles.button}
 							onClick={() => getLocation()}
 						>
-							Get My Location
+							{lang === 'en' ? 'Get Location' : 'الحصول على موقع'}
 						</button>
 						<br />
 						<button
@@ -308,7 +343,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 							}
 							onClick={handleClick}
 						>
-							Order
+							{lang === 'en' ? 'Confirm' : 'تأكيد'}
 						</button>
 					</div>
 				</div>

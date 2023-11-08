@@ -13,7 +13,7 @@ const Success = () => {
 	return (
 		<>
 			<Head>
-				<title>Lahmah & Fahmah</title>
+				<title>{t('Lahmah&FahmahSuccess')}</title>
 			</Head>
 			<Lottie
 				options={animationOptions}

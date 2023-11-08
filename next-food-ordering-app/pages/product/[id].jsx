@@ -9,6 +9,7 @@ import 'yet-another-react-lightbox/styles.css';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import useTranslation from 'next-translate/useTranslation';
+import { toArabic } from 'arabic-digits';
 const Lightbox = dynamic(() => import('yet-another-react-lightbox'), {
 	ssr: false,
 });
@@ -130,7 +131,8 @@ const Product = ({ product }) => {
 		<>
 			<Head>
 				<title>
-					{t('Lahmah&Fahmah')} | {t('Product')}
+					{t('Lahmah&Fahmah')} |{' '}
+					{lang === 'ar' ? product.title_ar : product.title}
 				</title>
 			</Head>
 			<div className={styles.container}>
@@ -163,9 +165,16 @@ const Product = ({ product }) => {
 					</div>
 				</div>
 				<div className={styles.right}>
-					<h1 className={styles.title}>{product.title}</h1>
-					<span className={styles.price}>{price} AED</span>
-					<p className={styles.desc}>{product.desc}</p>
+					<h1 className={styles.title}>
+						{lang === 'ar' ? product.title_ar : product.title}
+					</h1>
+					<span className={styles.price}>
+						{lang === 'ar' ? toArabic(price) : price} {t('AEDLONG')}
+					</span>
+
+					<p className={styles.desc}>
+						{lang === 'ar' ? product.desc_ar : product.desc}
+					</p>
 					<h3 className={styles.choose}>{t('Choose the size')}</h3>
 					<div
 						className={styles.sizes}
@@ -182,7 +191,9 @@ const Product = ({ product }) => {
 									alt='product-size'
 									fill
 								/>
-								<span className={styles.number}>{`${price} AED`}</span>
+								<span className={styles.number}>
+									{lang === 'ar' ? toArabic(price) : price} {t('AED')}
+								</span>
 							</div>
 						))}
 					</div>
@@ -199,13 +210,19 @@ const Product = ({ product }) => {
 							>
 								<input
 									type='checkbox'
-									id={option.text}
-									name={option.text}
+									id={lang === 'ar' ? option.text_ar : option.text}
+									name={lang === 'ar' ? option.text_ar : option.text}
 									className={styles.checkbox}
 									checked={checkedExtras[option._id] || false}
 									onChange={(e) => handleChange(e, option)}
 								/>
-								<label htmlFor={option.text}>{option.text}</label>
+								<label
+									htmlFor={
+										lang === 'ar' ? option.text_ar : option.text
+									}
+								>
+									{lang === 'ar' ? option.text_ar : option.text}
+								</label>
 							</div>
 						))}
 					</div>
@@ -222,6 +239,7 @@ const Product = ({ product }) => {
 							min='1'
 							className={styles.quantity}
 						/>
+
 						<button
 							className={styles.button}
 							onClick={handleClick}

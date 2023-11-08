@@ -2,9 +2,11 @@ import styles from '../../styles/Order.module.css';
 import Image from 'next/image';
 import axios from 'axios';
 import Head from 'next/head';
+import useTranslation from 'next-translate/useTranslation';
 
 const Order = ({ order }) => {
 	const status = order.status;
+	const { t, lang } = useTranslation('common');
 
 	const statusClass = (index) => {
 		if (index - status < 1) return styles.done;
@@ -15,7 +17,7 @@ const Order = ({ order }) => {
 	return (
 		<>
 			<Head>
-				<title>Lahmah & Fahmah</title>
+				<title>{t('Lahmah&FahmahOrders')}</title>
 			</Head>
 			<div className={styles.container}>
 				<div className={styles.left}>

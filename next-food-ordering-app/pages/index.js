@@ -5,15 +5,17 @@ import AddButton from '../components/AddButton';
 import Featured from '../components/Featured';
 import MenuList from '../components/MenuList';
 import Head from 'next/head';
+import useTranslation from 'next-translate/useTranslation';
 
 export default function Home({ productsList, admin }) {
+	const { t, lang } = useTranslation('common');
 	const [close, setClose] = useState(true);
 	let counter = 0;
 
 	return (
 		<>
 			<Head>
-				<title>Lahmah & Fahmah</title>
+				<title>{t('Lahmah&Fahmah')}</title>
 			</Head>
 			<Featured />
 			{admin ? <AddButton setClose={setClose} /> : null}

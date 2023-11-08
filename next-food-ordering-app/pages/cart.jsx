@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { CheckoutRedirectButton } from '../components/StripeButton';
 import Head from 'next/head';
 import useTranslation from 'next-translate/useTranslation';
+import { toArabic } from 'arabic-digits';
 
 const Cart = () => {
 	const cart = useSelector((state) => state.cart);
@@ -160,7 +161,9 @@ const Cart = () => {
 									</td>
 									<td>
 										<span className={styles.name}>
-											{product.title}
+											{lang === 'en'
+												? product.title
+												: product.title_ar}
 										</span>
 									</td>
 									<td>
@@ -172,17 +175,30 @@ const Cart = () => {
 									</td>
 									<td>
 										<span className={styles.price}>
-											{product.price} AED
+											{lang === 'ar' ? (
+												toArabic(product.price) + ' د.إ'
+											) : (
+												<>{product.price} AED</>
+											)}
 										</span>
 									</td>
 									<td>
 										<span className={styles.quantity}>
-											{product.quantity}
+											{lang === 'ar' ? (
+												toArabic(product.quantity)
+											) : (
+												<>{product.quantity}</>
+											)}
 										</span>
 									</td>
 									<td>
 										<span className={styles.total}>
-											{product.price * product.quantity} AED
+											{lang === 'ar' ? (
+												toArabic(product.price * product.quantity) +
+												' د.إ'
+											) : (
+												<>{product.price * product.quantity} AED</>
+											)}
 										</span>
 									</td>
 									<td>
@@ -201,8 +217,12 @@ const Cart = () => {
 					<div className={styles.wrapper}>
 						<h2 className={styles.title}>{t('CART TOTAL')}</h2>
 						<div className={styles.totalText}>
-							<b className={styles.totalTextTitle}>{t('Total:')}</b>
-							{cart.total} AED
+							<b className={styles.totalTextTitle}>{t('TotalCart')}</b>
+							{lang === 'ar' ? (
+								toArabic(cart.total) + ' د.إ'
+							) : (
+								<>{cart.total} AED</>
+							)}
 						</div>
 						{open ? (
 							<div className={styles.paymentMethods}>
