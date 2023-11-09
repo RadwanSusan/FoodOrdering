@@ -29,6 +29,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
 }
 

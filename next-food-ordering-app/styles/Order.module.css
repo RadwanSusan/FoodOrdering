@@ -33,6 +33,16 @@
   -webkit-animation: inProgress 1s ease infinite alternate;
 }
 
+@-webkit-keyframes inProgress {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes inProgress {
   from {
     opacity: 0;

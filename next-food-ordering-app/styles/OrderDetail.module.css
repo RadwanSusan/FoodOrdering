@@ -10,6 +10,7 @@
 	justify-content: center;
 	flex-direction: column;
 	background-color: rgb(49 49 49 / 52%);
+	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
 }
 
