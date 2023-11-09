@@ -125,7 +125,7 @@ html[dir="rtl"] .button {
   }
 
   .imgContainer {
-    width: 70vw;
+    width: 90vw;
     height: 70vw;
   }
 
@@ -136,6 +136,7 @@ html[dir="rtl"] .button {
   .sizes {
     width: 100%;
     padding: 0px 20px;
+    justify-content: center !important;
   }
 
   .ingredients {
