@@ -4,6 +4,7 @@ import styles from '../styles/Navbar.module.css';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
+import setLanguage from 'next-translate/setLanguage';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -157,45 +158,39 @@ const Navbar = ({ admin }) => {
 					}}
 				>
 					<MenuItem onClick={handleClose}>
-						<Link
-							href='/'
-							locale='en'
+						<div
+							style={{ display: 'flex', alignItems: 'center' }}
+							onClick={async () => await setLanguage('en')}
 						>
-							<div style={{ display: 'flex', alignItems: 'center' }}>
-								<Image
-									className='flag'
-									src={englishFlag}
-									alt='English'
-									width={30}
-									height={30}
-									style={{ marginRight: '10px' }}
-								/>
-								English
-							</div>
-						</Link>
+							<Image
+								className='flag'
+								src={englishFlag}
+								alt='English'
+								width={30}
+								height={30}
+								style={{ marginRight: '10px' }}
+							/>
+							English
+						</div>
 					</MenuItem>
 					<MenuItem onClick={handleClose}>
-						<Link
-							href='/'
-							locale='ar'
+						<div
+							style={{
+								display: 'flex',
+								alignItems: 'center',
+							}}
+							onClick={async () => await setLanguage('ar')}
 						>
-							<div
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-								}}
-							>
-								<Image
-									className='flag'
-									src={arabicFlag}
-									alt='Arabic'
-									width={30}
-									height={30}
-									style={{ marginRight: '10px' }}
-								/>
-								العربية
-							</div>
-						</Link>
+							<Image
+								className='flag'
+								src={arabicFlag}
+								alt='Arabic'
+								width={30}
+								height={30}
+								style={{ marginRight: '10px' }}
+							/>
+							العربية
+						</div>
 					</MenuItem>
 				</Menu>
 			</div>
