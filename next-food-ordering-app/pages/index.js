@@ -42,6 +42,12 @@ export const getServerSideProps = async (ctx) => {
 	}
 
 	const res = await axios.get(`${process.env.API_URL}/api/products`);
+
+	ctx.res.setHeader(
+		'Cache-Control',
+		'public, s-maxage=30, stale-while-revalidate=59',
+	);
+
 	return {
 		props: {
 			productsList: res.data,

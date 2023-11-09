@@ -1,5 +1,29 @@
 const withPWA = require('@ducanh2912/next-pwa').default({
 	dest: 'public',
+	aggressiveFrontEndNavCaching: true,
+	cacheStartUrl: true,
+	swcMinify: true,
+	reloadOnOnline: true,
+	register: true,
+	watchWorkersInDev: true,
+	workboxOptions: {
+		runtimeCaching: [
+			{
+				urlPattern: /^https?.*/,
+				handler: 'CacheFirst',
+				options: {
+					cacheName: 'https-calls',
+					expiration: {
+						maxEntries: 100,
+						maxAgeSeconds: 60 * 60 * 24 * 365,
+					},
+					cacheableResponse: {
+						statuses: [0, 200],
+					},
+				},
+			},
+		],
+	},
 });
 const nextTranslate = require('next-translate-plugin');
 

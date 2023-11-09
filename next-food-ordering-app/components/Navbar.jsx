@@ -86,7 +86,7 @@ const Navbar = ({ admin }) => {
 				</div>
 			</div>
 			<div className={styles.item}>
-				<ul className={styles.list}>
+				<div className={styles.list}>
 					<Link
 						href='/'
 						passHref
@@ -101,7 +101,7 @@ const Navbar = ({ admin }) => {
 							priority
 						/>
 					</Link>
-				</ul>
+				</div>
 			</div>
 			<div className={styles.item}>
 				<Button
@@ -124,6 +124,8 @@ const Navbar = ({ admin }) => {
 				</Button>
 				<Menu
 					id='simple-menu'
+					aria-labelledby='simple-menu'
+					role='menu'
 					anchorEl={anchorEl}
 					open={Boolean(anchorEl)}
 					onClose={handleClose}

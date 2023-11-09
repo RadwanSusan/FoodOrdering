@@ -660,11 +660,11 @@ const Index = ({ initialOrders, products }) => {
 					res.data,
 					...orderList.filter((order) => order._id !== id),
 				]);
-				const phoneNumber = item.phone_number;
-				const message = `Your order status has been updated to ${
-					status[currentStatus + 1]
-				}`;
-				await axios.post('/api/whatsappBot', { phoneNumber, message });
+				// const phoneNumber = item.phone_number;
+				// const message = `Your order status has been updated to ${
+				// 	status[currentStatus + 1]
+				// }`;
+				// await axios.post('/api/whatsappBot', { phoneNumber, message });
 			} catch (err) {
 				Swal.fire({
 					position: 'center',
@@ -822,6 +822,11 @@ export const getServerSideProps = async (ctx) => {
 	orderRes.data.sort((a, b) => {
 		return new Date(b.createdAt) - new Date(a.createdAt);
 	});
+
+	ctx.res.setHeader(
+		'Cache-Control',
+		'public, s-maxage=30, stale-while-revalidate=59',
+	);
 
 	return {
 		props: {
