@@ -89,6 +89,15 @@ const config = {
 					},
 				],
 			},
+			{
+				source: '/(.*)',
+				headers: [
+					{
+						key: 'Content-Security-Policy',
+						value: "default-src 'self'; script-src 'self'; object-src 'none';",
+					},
+				],
+			},
 		];
 	},
 	i18n: {

@@ -30,12 +30,9 @@ const handler = (req, res) => {
 	if (req.method === 'POST') {
 		const { username, password } = req.body;
 		const admins = JSON.parse(process.env.ADMINS);
-		console.log('Checking credentials:', username, password);
-		console.log('Admins:', admins);
 		const user = admins.find(
 			(admin) => admin.username === username && admin.password === password,
 		);
-		console.log(`🚀  file: login.js:38  user =>`, user);
 
 		if (user) {
 			res.setHeader(

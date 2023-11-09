@@ -62,7 +62,6 @@ const handler = async (req, res) => {
 				res.status(400).json({ statusCode: response.status });
 			}
 		} catch (err) {
-			console.error(err);
 			res.status(500).json({ statusCode: 500, message: err.message });
 		}
 	} else {

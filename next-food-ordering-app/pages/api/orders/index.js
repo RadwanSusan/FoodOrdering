@@ -14,7 +14,6 @@ const handler = async (req, res) => {
 				: await Order.find();
 			res.status(200).json(orders);
 		} catch (err) {
-			console.log(err, 'error');
 			res.status(500).json(err);
 		}
 	}
@@ -27,7 +26,6 @@ const handler = async (req, res) => {
 			});
 			res.status(201).json(order);
 		} catch (err) {
-			console.log(err, 'error');
 			res.status(500).json(err);
 		}
 	}

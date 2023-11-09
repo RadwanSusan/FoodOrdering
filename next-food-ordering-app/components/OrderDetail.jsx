@@ -140,7 +140,17 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 					longitude: 55.33018138630277,
 				},
 			}),
-		}).catch((error) => console.error('Failed to fetch shipping:', error));
+		}).catch(() =>
+			Swal.fire({
+				icon: 'error',
+				title: lang === 'en' ? 'Oops...' : 'عذرا',
+				text:
+					lang === 'en' ? 'Failed to fetch shipping!' : 'فشل جلب التوصيل!',
+				showConfirmButton: false,
+				timer: 5000,
+				timerProgressBar: true,
+			}),
+		);
 
 		const data2 = await response2.json();
 		const { shippingCost } = data2;
@@ -224,9 +234,6 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 					setAddress(data.results[0].formatted);
 				},
 				(error) => {
-					console.error(
-						'Error Code = ' + error.code + ' - ' + error.message,
-					);
 					Swal.fire({
 						icon: 'error',
 						title: lang === 'en' ? 'Oops...' : 'عذرا',

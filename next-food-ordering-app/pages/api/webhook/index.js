@@ -33,7 +33,6 @@ export default async function handler(req, res) {
 				process.env.STRIPE_WEBHOOK_SECRET,
 			);
 		} catch (err) {
-			console.error(err);
 			return res.status(500).send(`Webhook Error: ${err.message}`);
 		}
 		if (event.type === 'checkout.session.completed') {
@@ -41,7 +40,6 @@ export default async function handler(req, res) {
 				const session = event.data.object;
 				await updateOrder(session, res);
 			} catch (err) {
-				console.error(err);
 				res.status(500).json({ received: false });
 			}
 		} else {

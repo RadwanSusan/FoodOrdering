@@ -14,7 +14,6 @@ const handler = async (req, res) => {
 			const order = await Order.findById(id);
 			res.status(200).json(order);
 		} catch (err) {
-			console.log(err, 'error');
 			res.status(500).json(err);
 		}
 	}
@@ -25,7 +24,6 @@ const handler = async (req, res) => {
 			});
 			res.status(200).json(order);
 		} catch (err) {
-			console.log(err, 'error');
 			res.status(500).json(err);
 		}
 	}
@@ -34,7 +32,6 @@ const handler = async (req, res) => {
 			const order = await Order.findByIdAndDelete(id);
 			res.status(200).json(order);
 		} catch (err) {
-			console.log(err, 'error');
 			res.status(500).json(err);
 		}
 	}

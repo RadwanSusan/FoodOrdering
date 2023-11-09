@@ -2,10 +2,13 @@ import { loadStripe } from '@stripe/stripe-js';
 import styles from '../styles/Cart.module.css';
 import { useState } from 'react';
 import OrderDetail from './OrderDetail';
+import Swal from 'sweetalert2';
+import useTranslation from 'next-translate/useTranslation';
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 export const CheckoutRedirectButton = ({ children, ...props }) => {
 	const [showOrderDetail, setShowOrderDetail] = useState(false);
+	const { t, lang } = useTranslation('common');
 
 	const handleCheckout = async (data) => {
 		const stripe = await stripePromise;
@@ -45,28 +48,36 @@ export const CheckoutRedirectButton = ({ children, ...props }) => {
 		});
 
 		if (result.error) {
-			console.error(result.error.message);
+			Swal.fire({
+				position: 'center',
+				icon: 'error',
+				title: lang === 'en' ? 'An error occurred' : 'حدث خطا',
+				text: result.error.message,
+				showConfirmButton: false,
+				timer: 3000,
+				timerProgressBar: true,
+			});
 		}
-	};
 
-	return (
-		<form onSubmit={(e) => e.preventDefault()}>
-			{showOrderDetail && (
-				<OrderDetail
-					total={props.amount / 100}
-					createOrder={handleCheckout}
-					cart={props.cart}
-					setCash={setShowOrderDetail}
-				/>
-			)}
-			<button
-				className={styles.payButton}
-				type='button'
-				disabled={props.disabled}
-				onClick={() => setShowOrderDetail(true)}
-			>
-				{children}
-			</button>
-		</form>
-	);
+		return (
+			<form onSubmit={(e) => e.preventDefault()}>
+				{showOrderDetail && (
+					<OrderDetail
+						total={props.amount / 100}
+						createOrder={handleCheckout}
+						cart={props.cart}
+						setCash={setShowOrderDetail}
+					/>
+				)}
+				<button
+					className={styles.payButton}
+					type='button'
+					disabled={props.disabled}
+					onClick={() => setShowOrderDetail(true)}
+				>
+					{children}
+				</button>
+			</form>
+		);
+	};
 };

@@ -6,6 +6,7 @@ import styles from '../../styles/OrderList.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
+import Swal from 'sweetalert2';
 import useTranslation from 'next-translate/useTranslation';
 
 const tagColors = [
@@ -49,12 +50,17 @@ const Orders = () => {
 				}
 			})
 			.catch((error) => {
-				console.error(
-					'There has been a problem with your fetch operation:',
-					error,
-				);
+				Swal.fire({
+					position: 'center',
+					icon: 'error',
+					title: lang === 'en' ? `An error occurred ${error}` : 'حدث خطا',
+					text: error.message,
+					showConfirmButton: false,
+					timer: 3000,
+					timerProgressBar: true,
+				});
 			});
-	}, [dispatch]);
+	}, [dispatch, lang]);
 
 	const handleError = () => {
 		setImgSrc(fallbackImg);

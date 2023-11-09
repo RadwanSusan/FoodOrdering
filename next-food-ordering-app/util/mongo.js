@@ -21,10 +21,14 @@ async function dbConnect() {
 		bufferCommands: false,
 	};
 
-	cachedConnection = mongoose
-		.connect(mongoUrl, connectionOptions)
-		.then(() => mongoose);
-	return cachedConnection;
+	try {
+		cachedConnection = await mongoose.connect(mongoUrl, connectionOptions);
+		console.log('Database connection successful');
+		return mongoose;
+	} catch (error) {
+		console.error('Error connecting to database:', error);
+		throw error;
+	}
 }
 
 export default dbConnect;
