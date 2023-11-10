@@ -823,10 +823,10 @@ export const getServerSideProps = async (ctx) => {
 		return new Date(b.createdAt) - new Date(a.createdAt);
 	});
 
-	ctx.res.setHeader(
-		'Cache-Control',
-		'public, s-maxage=30, stale-while-revalidate=59',
-	);
+	// ctx.res.setHeader(
+	// 	'Cache-Control',
+	// 	'public, s-maxage=30, stale-while-revalidate=59',
+	// );
 
 	return {
 		props: {

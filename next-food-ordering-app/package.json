@@ -46,7 +46,7 @@
 		"micro": "^10.0.1",
 		"mongoose": "^8.0.0",
 		"multiparty": "^4.2.3",
-		"next": "14.0.1",
+		"next": "14.0.2",
 		"next-translate": "^2.6.2",
 		"nextjs-progressbar": "^0.0.16",
 		"react": "18.2.0",
@@ -58,14 +58,14 @@
 		"redux": "^4.2.1",
 		"redux-persist": "^6.0.0",
 		"sharp": "^0.32.6",
-		"stripe": "^14.3.0",
+		"stripe": "^14.4.0",
 		"sweetalert2": "^11.9.0",
 		"uuid": "^9.0.1",
 		"yet-another-react-lightbox": "^3.15.1"
 	},
 	"devDependencies": {
 		"eslint": "8.53.0",
-		"eslint-config-next": "14.0.1",
+		"eslint-config-next": "14.0.2",
 		"next-translate-plugin": "^2.6.2",
 		"webpack": "^5.89.0"
 	}
