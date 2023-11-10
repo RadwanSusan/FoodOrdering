@@ -369,7 +369,7 @@ const TodaysOrdersTab = ({
 					<tbody key={order._id}>
 						<tr className={styles.trTitle}>
 							<td>{order.customer}</td>
-							<td>${order.total}</td>
+							<td>{order.total} AED</td>
 							<td>{order.address}</td>
 							<td>
 								{order.method === 0 ? (
@@ -507,7 +507,7 @@ const AllOrdersTab = ({
 					<tbody key={order._id}>
 						<tr className={styles.trTitle}>
 							<td>{order.customer}</td>
-							<td>${order.total}</td>
+							<td>{order.total} AED</td>
 							<td>{order.address}</td>
 							<td>
 								{order.method === 0 ? (
