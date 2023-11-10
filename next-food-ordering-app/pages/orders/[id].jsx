@@ -3,6 +3,7 @@ import Image from 'next/image';
 import axios from 'axios';
 import Head from 'next/head';
 import useTranslation from 'next-translate/useTranslation';
+import { toArabic } from 'arabic-digits';
 
 const Order = ({ order }) => {
 	const status = order.status;
@@ -25,10 +26,10 @@ const Order = ({ order }) => {
 						<table className={styles.table}>
 							<thead className={styles.thead}>
 								<tr className={styles.trTitle}>
-									<th>Order ID</th>
-									<th>Customer</th>
-									<th>Address</th>
-									<th>Total</th>
+									<th>{t('Order ID')}</th>
+									<th>{t('Customer')}</th>
+									<th>{t('Orderaddress')}</th>
+									<th>{t('Ordertotal')}</th>
 								</tr>
 							</thead>
 							<tbody className={styles.tbody}>
@@ -61,9 +62,9 @@ const Order = ({ order }) => {
 								src='/img/paid.svg'
 								width={30}
 								height={30}
-								alt='Payment'
+								alt={t('Payment')}
 							/>
-							<span>Payment</span>
+							<span>{t('Payment')}</span>
 							<div className={styles.checkedIcon}>
 								<Image
 									className={styles.checkedIcon}
@@ -79,9 +80,9 @@ const Order = ({ order }) => {
 								src='/img/bake.svg'
 								width={30}
 								height={30}
-								alt='Preparing'
+								alt={t('Preparing')}
 							/>
-							<span>Preparing</span>
+							<span>{t('Preparing')}</span>
 							<div className={styles.checkedIcon}>
 								<Image
 									className={styles.checkedIcon}
@@ -97,9 +98,9 @@ const Order = ({ order }) => {
 								src='/img/bike.svg'
 								width={30}
 								height={30}
-								alt='On the way'
+								alt={t('On the way')}
 							/>
-							<span>On the way</span>
+							<span>{t('On the way')}</span>
 							<div className={styles.checkedIcon}>
 								<Image
 									className={styles.checkedIcon}
@@ -115,9 +116,9 @@ const Order = ({ order }) => {
 								src='/img/delivered.svg'
 								width={30}
 								height={30}
-								alt='Delivered'
+								alt={t('Delivered')}
 							/>
-							<span>Delivered</span>
+							<span>{t('Delivered')}</span>
 							<div className={styles.checkedIcon}>
 								<Image
 									className={styles.checkedIcon}
@@ -132,16 +133,18 @@ const Order = ({ order }) => {
 				</div>
 				<div className={styles.right}>
 					<div className={styles.wrapper}>
-						<h2 className={styles.title}>CART TOTAL</h2>
+						<h2 className={styles.title}>{t('CART TOTAL')}</h2>
 						<div className={styles.totalText}>
-							<b className={styles.totalTextTitle}>Total:</b>$
-							{order.total}
+							<b className={styles.totalTextTitle}>{t('Total')}</b>
+							{lang === 'en'
+								? `${order.total} AED`
+								: `${toArabic(order.total)} درهم إماراتي`}
 						</div>
 						<button
 							disabled
 							className={styles.button}
 						>
-							PAID
+							{t('PAID')}
 						</button>
 					</div>
 					<br />

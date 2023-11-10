@@ -100,5 +100,14 @@
 	"Shipping costs": "كلفة التوصيل :",
 	"Cash on Delivery": "الدفع عند الإستلام",
 	"stripe payment": "الدفع الإكتروني",
-	"Product Name": "إسم المنتج"
+	"Product Name": "إسم المنتج",
+	"Order ID": "رقم الطلب",
+	"Customer": "إسم المستخدم",
+	"Orderaddress": "عنوان المستخدم",
+	"Ordertotal": "المجموع الكلي",
+	"Payment": "عملية الدفع",
+	"Preparing": "تحضير الطلب",
+	"On the way": "توصيل الطلب",
+	"Delivered": "تم التوصيل",
+	"PAID": "الطلب مدفوع"
 }

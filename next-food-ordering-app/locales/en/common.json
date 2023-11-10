@@ -100,5 +100,14 @@
 	"Shipping costs": "Shipping costs: ",
 	"Cash on Delivery": "Cash on Delivery",
 	"stripe payment": "Electronic payment",
-	"Product Name": "Product Name"
+	"Product Name": "Product Name",
+	"Order ID": "Order ID",
+	"Customer": "Customer",
+	"Orderaddress": "Order Address",
+	"Ordertotal": "Order Total",
+	"Payment": "Payment",
+	"Preparing": "Preparing",
+	"On the way": "On the way",
+	"Delivered": "Delivered",
+	"PAID": "PAID"
 }
