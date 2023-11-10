@@ -311,7 +311,7 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 							placeholder={
 								lang === 'en'
 									? '+971(50)0000000'
-									: toArabic('+971(50)0000000')
+									: 'رقم الهاتف الخاص بك'
 							}
 							className={styles.input}
 							onChange={(e) => setPhone(e.target.value)}

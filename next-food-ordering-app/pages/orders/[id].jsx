@@ -49,7 +49,9 @@ const Order = ({ order }) => {
 									</td>
 									<td>
 										<span className={styles.total}>
-											${order.total}
+											{lang === 'en'
+												? `${order.total} AED`
+												: `${toArabic(order.total)} درهم إماراتي`}
 										</span>
 									</td>
 								</tr>
@@ -135,7 +137,7 @@ const Order = ({ order }) => {
 					<div className={styles.wrapper}>
 						<h2 className={styles.title}>{t('CART TOTAL')}</h2>
 						<div className={styles.totalText}>
-							<b className={styles.totalTextTitle}>{t('Total')}</b>
+							<b className={styles.totalTextTitle}>{t('TotalOrder')}</b>
 							{lang === 'en'
 								? `${order.total} AED`
 								: `${toArabic(order.total)} درهم إماراتي`}

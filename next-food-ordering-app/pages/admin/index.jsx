@@ -372,10 +372,10 @@ const TodaysOrdersTab = ({
 							<td>{order.total} AED</td>
 							<td>{order.address}</td>
 							<td>
-								{order.method === 0 ? (
-									<span>cash</span>
+								{order.method === 'Cash on Delivery' ? (
+									<span>Cash on Delivery</span>
 								) : (
-									<span>credit card</span>
+									<span>Credit card</span>
 								)}
 							</td>
 							<td>{status[order.status]}</td>
