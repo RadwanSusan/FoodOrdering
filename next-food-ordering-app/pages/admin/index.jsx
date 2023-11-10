@@ -640,7 +640,7 @@ const Index = ({ initialOrders, products }) => {
 		},
 	});
 
-	const handleChange = (newValue) => {
+	const handleChange = (e, newValue) => {
 		setValue(newValue);
 	};
 
