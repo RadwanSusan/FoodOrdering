@@ -112,6 +112,7 @@
 .user {
    display: flex;
    margin-top: auto;
+   direction: ltr;
 }
 
 .user img {

@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Head from 'next/head';
 import Swal from 'sweetalert2';
 import useTranslation from 'next-translate/useTranslation';
+import { toArabic } from 'arabic-digits';
 
 const tagColors = [
 	'tagTeal',
@@ -97,6 +98,8 @@ const Orders = () => {
 									blurDataURL={imgSrc}
 									loading='lazy'
 									onError={handleError}
+									// width={300}
+									// height={200}
 								/>
 							</div>
 							<div className={styles.cardBody}>
@@ -104,26 +107,38 @@ const Orders = () => {
 									href={`/orders/${order._id}`}
 									className={`${styles.tag} ${getRandomColorClass()}`}
 								>
-									<span>Track Your Order</span>
+									<span>{t('Track Your Order')}</span>
 								</Link>
-								<h5>{order.method}</h5>
+								<h5>
+									{order.method === 'Cash on Delivery'
+										? t('Cash on Delivery')
+										: t('stripe payment')}
+								</h5>
 								<span>
-									Order total:
+									{t('Order total')}
 									<strong style={{ textDecoration: 'underline' }}>
-										{order.total} AED
+										{lang === 'en'
+											? `${order.total} AED`
+											: `${toArabic(order.total)} درهم إماراتي`}
 									</strong>
 								</span>
 								<span>
-									Shipping costs:
-									<strong>{order.shippingCost} AED</strong>
+									{t('Shipping costs')}
+									<strong>
+										{lang === 'en'
+											? `${order.shippingCost} AED`
+											: `${toArabic(
+													order.shippingCost,
+											  )} درهم إماراتي`}
+									</strong>
 								</span>
 								<hr />
 								<table className={styles.table}>
 									<thead>
 										<tr>
-											<th>Quantity</th>
-											<th>Product Name</th>
-											<th>Price</th>
+											<th>{t('Quantity')}</th>
+											<th>{t('Product Name')}</th>
+											<th>{t('Price')}</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -131,15 +146,27 @@ const Orders = () => {
 											const parsedItem = JSON.parse(item);
 											return parsedItem.map((i, iIndex) => (
 												<tr key={`${index}-${iIndex}`}>
-													<td>{i.quantity}</td>
-													<td>{i.title}</td>
-													<td>{i.price} AED</td>
+													<td>
+														{lang === 'en'
+															? i.quantity
+															: toArabic(i.quantity)}
+													</td>
+													<td>
+														{lang === 'en' ? i.title : i.title_ar}
+													</td>
+													<td>
+														{lang === 'en'
+															? `${i.price} AED`
+															: `${toArabic(
+																	i.price,
+															  )} درهم إماراتي`}
+													</td>
 												</tr>
 											));
 										})}
 									</tbody>
 								</table>
-								<h3>Your Order</h3>
+								<h3>{t('Your Order')}</h3>
 								<hr />
 								<div className={styles.user}>
 									<div className={styles.userInfo}>
@@ -147,7 +174,7 @@ const Orders = () => {
 										<small>
 											{formatDistanceToNow(
 												new Date(order.createdAt),
-											)}
+											)}{' '}
 											ago
 										</small>
 									</div>

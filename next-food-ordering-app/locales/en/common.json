@@ -93,5 +93,12 @@
 	"Lahmah&Fahmah404": "Lahmah & Fahmah | 404",
 	"Home": "Home",
 	"apologise": "We're fairly sure that page used to be here, but seems to have gone missing. We do apologise on it's behalf.",
-	"PageNotFound": "We can't find that page."
+	"PageNotFound": "We can't find that page.",
+	"Track Your Order": "Track Your Order",
+	"Order total": "Order total: ",
+	"Your Order": "Your Order",
+	"Shipping costs": "Shipping costs: ",
+	"Cash on Delivery": "Cash on Delivery",
+	"stripe payment": "Electronic payment",
+	"Product Name": "Product Name"
 }
