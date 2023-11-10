@@ -71,7 +71,7 @@ const Orders = () => {
 		const randomIndex = Math.floor(Math.random() * tagColors.length);
 		return styles[tagColors[randomIndex]];
 	};
-
+	
 	return (
 		<>
 			<Head>
