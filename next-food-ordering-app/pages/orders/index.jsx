@@ -71,7 +71,7 @@ const Orders = () => {
 		const randomIndex = Math.floor(Math.random() * tagColors.length);
 		return styles[tagColors[randomIndex]];
 	};
-	
+
 	return (
 		<>
 			<Head>
@@ -196,10 +196,10 @@ export const getServerSideProps = async (ctx) => {
 		admin = true;
 	}
 
-	ctx.res.setHeader(
-		'Cache-Control',
-		'public, s-maxage=30, stale-while-revalidate=59',
-	);
+	// ctx.res.setHeader(
+	// 	'Cache-Control',
+	// 	'public, s-maxage=30, stale-while-revalidate=59',
+	// );
 
 	return {
 		props: {
