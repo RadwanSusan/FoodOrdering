@@ -49,6 +49,12 @@ const options = [
 	{ value: 'Soft Drinks', label: 'Soft Drinks' },
 ];
 
+const messages = [
+	'Your order is being prepared',
+	'Your order is on the way',
+	'Your order has been delivered',
+];
+
 const ProductsTab = ({ products, setProductList }) => {
 	const [selectedCategory, setSelectedCategory] = useState(options[0].value);
 	const [product, setProduct] = useState(products);
@@ -414,9 +420,19 @@ const TodaysOrdersTab = ({
 							<td>
 								<button
 									className={styles.nextStepButton}
+									disabled={order.status === 3}
 									onClick={() => handleStatus(order._id)}
+									style={{
+										cursor:
+											order.status >= 3 ? 'not-allowed' : 'pointer',
+										opacity: order.status >= 3 ? '0.5' : '1',
+										backgroundColor:
+											order.status >= 3 ? 'grey' : 'green',
+									}}
 								>
-									Next Stage
+									{order.status >= 3
+										? 'Order Delivered'
+										: 'Next Stage'}
 								</button>
 							</td>
 						</tr>
@@ -510,10 +526,10 @@ const AllOrdersTab = ({
 							<td>{order.total} AED</td>
 							<td>{order.address}</td>
 							<td>
-								{order.method === 0 ? (
-									<span>cash</span>
+								{order.method === 'Cash on Delivery' ? (
+									<span>Cash on Delivery</span>
 								) : (
-									<span>credit card</span>
+									<span>Credit card</span>
 								)}
 							</td>
 							<td>{status[order.status]}</td>
@@ -552,9 +568,19 @@ const AllOrdersTab = ({
 							<td>
 								<button
 									className={styles.nextStepButton}
+									disabled={order.status === 3}
 									onClick={() => handleStatus(order._id)}
+									style={{
+										cursor:
+											order.status >= 3 ? 'not-allowed' : 'pointer',
+										opacity: order.status >= 3 ? '0.5' : '1',
+										backgroundColor:
+											order.status >= 3 ? 'grey' : 'green',
+									}}
 								>
-									Next Stage
+									{order.status >= 3
+										? 'Order Delivered'
+										: 'Next Stage'}
 								</button>
 							</td>
 						</tr>
@@ -644,36 +670,78 @@ const Index = ({ initialOrders, products }) => {
 		setValue(newValue);
 	};
 
+	// const handleStatus = useCallback(
+	// 	async (id) => {
+	// 		const item = orderList.filter((order) => order._id === id)[0];
+	// 		const currentStatus = item.status;
+
+	// 		try {
+	// 			const res = await axios.put(
+	// 				`${process.env.API_URL}/api/orders/` + id,
+	// 				{
+	// 					status: currentStatus + 1,
+	// 				},
+	// 			);
+	// 			setOrderList([
+	// 				res.data,
+	// 				...orderList.filter((order) => order._id !== id),
+	// 			]);
+	// 			// const phoneNumber = item.phone_number;
+	// 			// const message = `Your order status has been updated to ${
+	// 			// 	status[currentStatus + 1]
+	// 			// }`;
+	// 			// await axios.post('/api/whatsappBot', { phoneNumber, message });
+
+	// 			client.messages
+	// 				.create({
+	// 					body: currentStatus,
+	// 					from: 'whatsapp:+14155238886',
+	// 					to: `whatsapp:${item.phone_number}`,
+	// 				})
+	// 				.then((message) => console.log(message.sid))
+	// 				.done();
+	// 		} catch (err) {
+	// 			Swal.fire({
+	// 				position: 'center',
+	// 				icon: 'error',
+	// 				title: 'Status Change Failed',
+	// 				showConfirmButton: false,
+	// 				timer: 3000,
+	// 				timerProgressBar: true,
+	// 			});
+	// 		}
+	// 	},
+	// 	[orderList],
+	// );
+
 	const handleStatus = useCallback(
 		async (id) => {
 			const item = orderList.filter((order) => order._id === id)[0];
 			const currentStatus = item.status;
-
-			try {
-				const res = await axios.put(
-					`${process.env.API_URL}/api/orders/` + id,
-					{
-						status: currentStatus + 1,
-					},
-				);
-				setOrderList([
-					res.data,
-					...orderList.filter((order) => order._id !== id),
-				]);
-				// const phoneNumber = item.phone_number;
-				// const message = `Your order status has been updated to ${
-				// 	status[currentStatus + 1]
-				// }`;
-				// await axios.post('/api/whatsappBot', { phoneNumber, message });
-			} catch (err) {
-				Swal.fire({
-					position: 'center',
-					icon: 'error',
-					title: 'Status Change Failed',
-					showConfirmButton: false,
-					timer: 3000,
-					timerProgressBar: true,
-				});
+			if (currentStatus <= 3) {
+				try {
+					const res = await axios.put(
+						`${process.env.API_URL}/api/orders/` + id,
+						{ status: currentStatus + 1 },
+					);
+					setOrderList([
+						res.data,
+						...orderList.filter((order) => order._id !== id),
+					]);
+					await axios.post('/api/twilio', {
+						to: `${item.phone_number}`,
+						body: `${messages[currentStatus]}`,
+					});
+				} catch (err) {
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'Status Change Failed',
+						showConfirmButton: false,
+						timer: 3000,
+						timerProgressBar: true,
+					});
+				}
 			}
 		},
 		[orderList],
@@ -822,11 +890,6 @@ export const getServerSideProps = async (ctx) => {
 	orderRes.data.sort((a, b) => {
 		return new Date(b.createdAt) - new Date(a.createdAt);
 	});
-
-	// ctx.res.setHeader(
-	// 	'Cache-Control',
-	// 	'public, s-maxage=30, stale-while-revalidate=59',
-	// );
 
 	return {
 		props: {

@@ -32,7 +32,6 @@ const Cart = () => {
 	const handleError = (id) => {
 		setImgSrcs((prev) => ({ ...prev, [id]: fallbackImg }));
 	};
-
 	const createOrder = async (data) => {
 		try {
 			const orderData = {
@@ -50,16 +49,35 @@ const Cart = () => {
 				orderData,
 			);
 			if (res.status === 201) {
-				dispatch(reset());
-				router.push(`/orders/${res.data._id}`);
-				Swal.fire({
-					position: 'center',
-					icon: 'success',
-					title: lang === 'en' ? 'Order Success' : 'تم الطلب بنجاح',
-					showConfirmButton: false,
-					timer: 3000,
-					timerProgressBar: true,
-				});
+				await axios
+					.post('/api/twilio', {
+						to: `${data.phone}`,
+						body: 'Your order has been placed successfully',
+					})
+					.then(() => {
+						dispatch(reset());
+						router.push(`/orders/${res.data._id}`);
+						Swal.fire({
+							position: 'center',
+							icon: 'success',
+							title: lang === 'en' ? 'Order Success' : 'تم الطلب بنجاح',
+							showConfirmButton: false,
+							timer: 3000,
+							timerProgressBar: true,
+						});
+					})
+					.catch(() => {
+						dispatch(reset());
+						router.push(`/orders/${res.data._id}`);
+						Swal.fire({
+							position: 'center',
+							icon: 'success',
+							title: lang === 'en' ? 'Order Success' : 'تم الطلب بنجاح',
+							showConfirmButton: false,
+							timer: 3000,
+							timerProgressBar: true,
+						});
+					});
 			} else {
 				Swal.fire({
 					position: 'center',
