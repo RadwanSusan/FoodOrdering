@@ -154,3 +154,15 @@
 html[dir="rtl"] .trTitle {
   text-align: right;
 }
+
+.removeIcon {
+  cursor: pointer;
+  color: red;
+  border: none;
+  background-color: transparent;
+}
+
+.removeIcon:hover {
+  opacity: 0.7;
+  transition: 0.5s;
+}

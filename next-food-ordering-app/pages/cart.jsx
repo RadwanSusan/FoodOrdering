@@ -11,6 +11,7 @@ import { CheckoutRedirectButton } from '../components/StripeButton';
 import Head from 'next/head';
 import useTranslation from 'next-translate/useTranslation';
 import { toArabic } from 'arabic-digits';
+import { IoMdClose } from 'react-icons/io';
 
 const Cart = () => {
 	const cart = useSelector((state) => state.cart);
@@ -221,9 +222,10 @@ const Cart = () => {
 									</td>
 									<td>
 										<button
+											className={styles.removeIcon}
 											onClick={() => handleRemoveFromCart(product)}
 										>
-											X
+											<IoMdClose size={23} />
 										</button>
 									</td>
 								</tr>
