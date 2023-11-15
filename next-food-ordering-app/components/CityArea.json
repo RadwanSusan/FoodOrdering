@@ -91,7 +91,7 @@
 			"name_ar": "واحة دبي للسيليكون"
 		},
 		{ "name": "Deira", "shippingCost": 0, "name_ar": "الديرة" },
-		{ "name": "Dubai Harbour", "shippingCost": 0 },
+		{ "name": "Dubai Harbour", "shippingCost": 0, "name_ar": "ميناء دبي" },
 		{
 			"name": "Dubai International City",
 			"shippingCost": 0,
@@ -133,17 +133,12 @@
 		{
 			"name": "JLT - Jumeirah Lake Towers",
 			"shippingCost": 0,
-			"name_ar": ""
+			"name_ar": "أبراج بحيرة الجميرا"
 		},
 		{
 			"name": "JVC - Jumeirah Village Circle",
 			"shippingCost": 0,
-			"name_ar": ""
-		},
-		{
-			"name": "JVT - Jumeirah Village Triangle",
-			"shippingCost": 0,
-			"name_ar": ""
+			"name_ar": "قرية جميرا الدائرية"
 		},
 		{
 			"name": "Jebel Ali Village",
@@ -177,8 +172,11 @@
 			"shippingCost": 0,
 			"name_ar": "شوبا هارتلاند"
 		},
-		{ "name": "The Heart Of Europe", "shippingCost": 0, "name_ar": "" },
-		{ "name": "The Valley", "shippingCost": 0, "name_ar": "قلب أوروبا" },
+		{
+			"name": "The Heart Of Europe",
+			"shippingCost": 0,
+			"name_ar": "قلب أوروبا"
+		},
 		{ "name": "Tilal Al Ghaf", "shippingCost": 0, "name_ar": "تلال الغاف" },
 		{ "name": "Warsan First", "shippingCost": 0, "name_ar": "ورسان الأول" },
 		{ "name": "Za'abeel", "shippingCost": 0, "name_ar": "زعبيل" },

@@ -39,20 +39,6 @@ const OrderDetail = ({ total, createOrder, cart, setCash }) => {
 			return;
 		}
 
-		Swal.fire({
-			title: lang === 'en' ? 'Loading...' : 'جاري التحميل...',
-			icon: 'info',
-			allowOutsideClick: false,
-			showConfirmButton: false,
-			showCancelButton: false,
-			showLoaderOnConfirm: false,
-			timerProgressBar: true,
-			timer: 3000,
-			didOpen: () => {
-				Swal.showLoading();
-			},
-		});
-
 		const shippingCost =
 			areasData.areas.find((data) => data.name === area)?.shippingCost || 0;
 		const newTotal = total + shippingCost;
