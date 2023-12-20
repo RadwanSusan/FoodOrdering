@@ -25,47 +25,8 @@ const Navbar = ({ admin }) => {
 		setAnchorEl(null);
 	};
 
-	// const [isOpen, setIsOpen] = useState(false);
-
 	return (
 		<nav className={styles.container}>
-			{/* The Burger Menu Button */}
-			{/* <button
-				id='burger'
-				className={styles.openMainNav}
-				onClick={() => setIsOpen(!isOpen)}
-			>
-				<span className={styles.burger}></span>
-			</button> */}
-			{/* <nav
-				className={`${styles.mainNav} ${
-					isOpen ? styles.mainNavIsOpen : ''
-				}`}
-				id='main-nav'
-			>
-				<ul>
-					<li>
-						<Link href='/'>
-							<i>Homepage</i>
-						</Link>
-					</li>
-					<li>
-						<Link href='/products'>
-							<i>Products</i>
-						</Link>
-					</li>
-					<li>
-						<Link href='#menu'>
-							<i>Menu</i>
-						</Link>
-					</li>
-					<li>
-						<Link href='/contact'>
-							<i>Contact</i>
-						</Link>
-					</li>
-				</ul>
-			</nav> */}
 			<div className={[styles.item, styles.phone].join(' ')}>
 				<div className={styles.callButton}>
 					<Image
@@ -80,8 +41,7 @@ const Navbar = ({ admin }) => {
 					<div className={styles.text}>{t('orderNow')}</div>
 					<a
 						href='tel:+971(04) 280 1585'
-						className={styles.text}
-					>
+						className={styles.text}>
 						{t('phoneNumber')}
 					</a>
 				</div>
@@ -91,8 +51,7 @@ const Navbar = ({ admin }) => {
 					<Link
 						href='/'
 						passHref
-						aria-label='link to homepage'
-					>
+						aria-label='link to homepage'>
 						<Image
 							src='/img/lahmahAndFahmah/logo.png'
 							alt='restaurant logo'
@@ -119,8 +78,7 @@ const Navbar = ({ admin }) => {
 					}
 					sx={{
 						color: 'black',
-					}}
-				>
+					}}>
 					{lang.toUpperCase()}
 				</Button>
 				<Menu
@@ -155,13 +113,11 @@ const Navbar = ({ admin }) => {
 								zIndex: 0,
 							},
 						},
-					}}
-				>
+					}}>
 					<MenuItem onClick={handleClose}>
 						<div
 							style={{ display: 'flex', alignItems: 'center' }}
-							onClick={async () => await setLanguage('en')}
-						>
+							onClick={async () => await setLanguage('en')}>
 							<Image
 								className='flag'
 								src={englishFlag}
@@ -179,8 +135,7 @@ const Navbar = ({ admin }) => {
 								display: 'flex',
 								alignItems: 'center',
 							}}
-							onClick={async () => await setLanguage('ar')}
-						>
+							onClick={async () => await setLanguage('ar')}>
 							<Image
 								className='flag'
 								src={arabicFlag}
@@ -199,8 +154,7 @@ const Navbar = ({ admin }) => {
 					href='/orders'
 					passHref
 					aria-label='link to orders page'
-					className={styles.cartItem}
-				>
+					className={styles.cartItem}>
 					<div className={styles.cart}>
 						<Image
 							src='/img/pastOrders.svg'
@@ -217,8 +171,7 @@ const Navbar = ({ admin }) => {
 					href='/cart'
 					passHref
 					aria-label='link to cart page'
-					className='cartItem'
-				>
+					className='cartItem'>
 					<div className={styles.cart}>
 						<Image
 							src='/img/cart-black.svg'
@@ -237,8 +190,7 @@ const Navbar = ({ admin }) => {
 						href='/admin'
 						passHref
 						aria-label='link to admin page'
-						style={{ marginLeft: '20px' }}
-					>
+						style={{ marginLeft: '20px' }}>
 						<div className={styles.cart}>
 							<Image
 								src='/img/admin.svg'

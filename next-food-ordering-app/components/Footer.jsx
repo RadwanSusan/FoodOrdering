@@ -2,10 +2,25 @@ import styles from '../styles/Footer.module.css';
 import useInstallPrompt from './useInstallPrompt';
 import Image from 'next/image';
 import useTranslation from 'next-translate/useTranslation';
+import { useState } from 'react';
 
 const Footer = () => {
 	const { prompt } = useInstallPrompt();
 	const { t, lang } = useTranslation('common');
+	const [showInstallPopup, setShowInstallPopup] = useState(false);
+
+	const handleAppleStoreBoxClick = () => {
+		const isAppleDevice =
+			/iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+		if (isAppleDevice) {
+			setShowInstallPopup(true);
+		}
+	};
+
+	const closeInstallPopup = () => {
+		setShowInstallPopup(false);
+	};
 
 	const handleInstallClick = () => {
 		if (!prompt) return;
@@ -32,8 +47,7 @@ const Footer = () => {
 								<div className={styles.PWA}>
 									<div
 										className={styles.apple}
-										onClick={handleInstallClick}
-									>
+										onClick={handleAppleStoreBoxClick}>
 										<Image
 											src='/img/apple.svg'
 											alt='app-store'
@@ -47,8 +61,7 @@ const Footer = () => {
 									</div>
 									<div
 										className={styles.android}
-										onClick={handleInstallClick}
-									>
+										onClick={handleInstallClick}>
 										<Image
 											src='/img/android.svg'
 											alt='play-store'
@@ -75,8 +88,7 @@ const Footer = () => {
 									direction: 'ltr',
 									margin: '0',
 									display: 'inline-block',
-								}}
-							>
+								}}>
 								{t('phoneNumberNumber')}
 							</p>
 							<br />
@@ -86,8 +98,7 @@ const Footer = () => {
 									direction: 'ltr',
 									margin: '0',
 									display: 'inline-block',
-								}}
-							>
+								}}>
 								{t('phoneNumberNumber2')}
 							</p>
 							<br /> {t('Email')}
@@ -108,12 +119,53 @@ const Footer = () => {
 						style={{
 							color: 'rgb(223, 67, 67)',
 							fontWeight: 'bold',
-						}}
-					>
+						}}>
 						{t('PME')}
 					</a>
 				</p>
 			</div>
+			{showInstallPopup && (
+				<>
+					<div
+						className={`${styles.overlay}`}
+						onClick={closeInstallPopup}></div>
+					<div
+						className={` ${styles.installPopup} ${
+							showInstallPopup ? styles.show : ''
+						}`}>
+						<p>
+							{lang === 'en'
+								? 'To install the app on your iPhone:'
+								: 'لتثبيت التطبيق على جهازك الأيفون:'}
+						</p>
+						<ol
+							style={
+								lang === 'en'
+									? { textAlign: 'left' }
+									: { textAlign: 'right' }
+							}>
+							<li>
+								{lang === 'en'
+									? "Tap the 'Share' button in Safari's toolbar."
+									: 'اضغط على زر "مشاركة" في شريط أدوات Safari.'}
+							</li>
+							<li>
+								{lang === 'en'
+									? "Scroll down and tap 'Add to Home Screen'."
+									: "قم بالتمرير لأسفل وانقر فوق 'إضافة إلى الشاشة الرئيسية'."}
+							</li>
+							<li>
+								{lang === 'en'
+									? "Edit the name if you like and tap 'Add'."
+									: "قم بتحرير الاسم إذا أردت ثم اضغط على 'إضافة'."}
+							</li>
+						</ol>
+						<button onClick={closeInstallPopup}>
+							{lang === 'en' ? 'Close' : 'اغلاق'}
+						</button>
+					</div>
+				</>
+			)}
 		</>
 	);
 };

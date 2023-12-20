@@ -73,8 +73,7 @@ export const CheckoutRedirectButton = ({ children, ...props }) => {
 					className={styles.payButton}
 					type='button'
 					disabled={props.disabled}
-					onClick={() => setShowOrderDetail(true)}
-				>
+					onClick={() => setShowOrderDetail(true)}>
 					{children}
 				</button>
 			</form>
