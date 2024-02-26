@@ -9,12 +9,11 @@ class MyDocument extends Document {
 		return (
 			<Html
 				dir={this.props.locale === 'ar' ? 'rtl' : 'ltr'}
-				lang={this.props.locale}
-			>
+				lang={this.props.locale}>
 				<Head>
 					<meta
 						name='description'
-						content='Best PWA app in the world!'
+						content='Lahmah&Fahmah - Your favourite food delivery service'
 					/>
 					<meta
 						httpEquiv='Content-Security-Policy'
@@ -35,22 +34,17 @@ class MyDocument extends Document {
 					/>
 					<link
 						rel='apple-touch-icon'
-						href='/icons/touch-icon-iphone.png'
+						href='/apple-touch-icon.png'
 					/>
 					<link
 						rel='apple-touch-icon'
 						sizes='152x152'
-						href='/icons/touch-icon-ipad.png'
-					/>
-					<link
-						rel='apple-touch-icon'
-						sizes='180x180'
-						href='/icons/touch-icon-iphone-retina.png'
+						href='/mstile-150x150.png'
 					/>
 					<link
 						rel='apple-touch-icon'
 						sizes='167x167'
-						href='/icons/touch-icon-ipad-retina.png'
+						href='/apple-touch-icon.png'
 					/>
 					<link
 						rel='manifest'
@@ -62,23 +56,19 @@ class MyDocument extends Document {
 					/>
 					<meta
 						name='twitter:url'
-						content='https://yourdomain.com'
+						content='https://lahmahandfahmah.com'
 					/>
 					<meta
 						name='twitter:title'
-						content='My awesome PWA app'
+						content='Lahmah&Fahmah'
 					/>
 					<meta
 						name='twitter:description'
-						content='Best PWA app in the world!'
+						content='Lahmah&Fahmah - Your favourite food delivery service'
 					/>
 					<meta
 						name='twitter:image'
-						content='/icons/twitter.png'
-					/>
-					<meta
-						name='twitter:creator'
-						content='@DavidWShadow'
+						content='/apple-touch-icon.png'
 					/>
 					<meta
 						property='og:type'
@@ -86,58 +76,23 @@ class MyDocument extends Document {
 					/>
 					<meta
 						property='og:title'
-						content='My awesome PWA app'
+						content='Lahmah&Fahmah'
 					/>
 					<meta
 						property='og:description'
-						content='Best PWA app in the world!'
+						content='Lahmah&Fahmah - Your favourite food delivery service'
 					/>
 					<meta
 						property='og:site_name'
-						content='My awesome PWA app'
+						content='Lahmah&Fahmah'
 					/>
 					<meta
 						property='og:url'
-						content='https://yourdomain.com'
+						content='https://lahmahandfahmah.com'
 					/>
 					<meta
 						property='og:image'
-						content='/icons/og.png'
-					/>
-					<link
-						rel='apple-touch-startup-image'
-						href='/images/apple_splash_2048.png'
-						sizes='2048x2732'
-					/>
-					<link
-						rel='apple-touch-startup-image'
-						href='/images/apple_splash_1668.png'
-						sizes='1668x2224'
-					/>
-					<link
-						rel='apple-touch-startup-image'
-						href='/images/apple_splash_1536.png'
-						sizes='1536x2048'
-					/>
-					<link
-						rel='apple-touch-startup-image'
-						href='/images/apple_splash_1125.png'
-						sizes='1125x2436'
-					/>
-					<link
-						rel='apple-touch-startup-image'
-						href='/images/apple_splash_1242.png'
-						sizes='1242x2208'
-					/>
-					<link
-						rel='apple-touch-startup-image'
-						href='/images/apple_splash_750.png'
-						sizes='750x1334'
-					/>
-					<link
-						rel='apple-touch-startup-image'
-						href='/images/apple_splash_640.png'
-						sizes='640x1136'
+						content='/apple-touch-icon.png'
 					/>
 					<link
 						rel='apple-touch-icon'
@@ -155,10 +110,6 @@ class MyDocument extends Document {
 						type='image/png'
 						sizes='16x16'
 						href='/favicon-16x16.png'
-					/>
-					<link
-						rel='manifest'
-						href='/site.webmanifest'
 					/>
 					<link
 						rel='mask-icon'
